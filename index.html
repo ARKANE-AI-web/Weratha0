@@ -6,11 +6,10 @@
 <title>وَراثة WIRATHA — Strategic Suite</title>
 <style>
 /* ═══════════════════════════════════════════════════════════════
-   WIRATHA STRATEGIC SUITE — Unified Offline iOS Application
-   Unified 3-in-1 Ultimate Architecture (Single-File Masterpiece)
+   WIRATHA STRATEGIC SUITE — Unified Offline Application (No 404s)
    ═══════════════════════════════════════════════════════════════ */
 
-/* ─── Reset & Base ─── */
+/* ─── Base Styles & Reset ─── */
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
 body{
@@ -23,656 +22,470 @@ body{
 }
 
 /* ─── Fonts ─── */
-@font-face{
-  font-family:'Tajawal';
-  font-style:normal;
-  font-weight:300 900;
-  font-display:swap;
-  src:local('Tajawal'),local('Tajawal Regular'),
-    url(https://fonts.gstatic.com/s/tajawal/v9/Iura6YBj_oCad4k1r5PCrQ.woff2) format('woff2');
-}
-@font-face{
-  font-family:'Reem Kufi';
-  font-style:normal;
-  font-weight:400 700;
-  font-display:swap;
-  src:local('Reem Kufi'),local('Reem Kufi Regular'),
-    url(https://fonts.gstatic.com/s/reemkufi/v15/2sDcZGJLip7W2J7v7wQDbw.woff2) format('woff2');
-}
-@font-face{
-  font-family:'JetBrains Mono';
-  font-style:normal;
-  font-weight:400 700;
-  font-display:swap;
-  src:local('JetBrains Mono'),
-    url(https://fonts.gstatic.com/s/jetbrainsmono/v18/tDbY2o-flEEny0FZhsfKu5WU4zr3E_BX0PnT8RD8yKxTOlOTk6OThhvA.woff2) format('woff2');
-}
+@import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Reem+Kufi:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap');
 
-/* ─── Color Variables ─── */
+/* ─── Variables ─── */
 :root{
-  --deep:#0A2540;--deeper:#06182B;--ink:#0A2540;
-  --teal:#0FB5A8;--tealdk:#0A7D74;--cyan:#22D3EE;
-  --coral:#FF6B6B;--gold:#F4B860;--gold2:#B8893A;
-  --mist:#EAF2F4;--line:rgba(34,211,238,0.15);--greyx:#5B7185;--soft:#9DB0BF;
-  --void:#040B14;--panel:#0C2236;--gridc:#13304D;
-  --violet:#8B7FE8;--emer:#34D399;--sky:#38BDF8;
+  --teal:#0FB5A8; --cyan:#22D3EE; --coral:#FF6B6B; --gold:#F4B860;
+  --mist:#EAF2F4; --greyx:#5B7185; --soft:#9DB0BF; --void:#040B14;
+  --glass-bg: rgba(12, 34, 54, 0.6);
+  --glass-border: rgba(34, 211, 238, 0.15);
 }
 
-/* ─── Typography & Utilities ─── */
+/* ─── Utility Classes ─── */
 .font-head{font-family:'Reem Kufi','Tajawal',sans-serif}
 .font-mono{font-family:'JetBrains Mono',monospace}
-.kicker{letter-spacing:.28em}
-.bignum{font-variant-numeric:tabular-nums;line-height:.9}
-::selection{background:#0FB5A8;color:#06182B}
+.text-teal{color:var(--teal)} .text-cyan{color:var(--cyan)} .text-coral{color:var(--coral)} .text-gold{color:var(--gold)}
+.bg-void{background:var(--void)}
+.bignum{font-variant-numeric:tabular-nums; line-height:1}
 
-/* ─── Layout & Layout Helpers ─── */
-.max-w-6xl{max-width:72rem;margin-left:auto;margin-right:auto}
-.max-w-5xl{max-width:64rem;margin-left:auto;margin-right:auto}
-.max-w-4xl{max-width:56rem;margin-left:auto;margin-right:auto}
-.max-w-3xl{max-width:48rem;margin-left:auto;margin-right:auto}
-.grid{display:grid} .flex{display:flex} .inline-flex{display:inline-flex}
-.items-center{align-items:center} .justify-center{justify-content:center} .justify-between{justify-content:space-between}
-.flex-col{flex-direction:column} .flex-1{flex:1 1 0%} .gap-2{gap:.5rem} .gap-3{gap:.75rem} .gap-4{gap:1rem} .gap-6{gap:1.5rem} .gap-8{gap:2rem}
-.text-center{text-align:center} .text-left{text-align:left} .text-right{text-align:right}
+.max-w-5xl{max-width:64rem; margin:0 auto;}
+.max-w-4xl{max-width:56rem; margin:0 auto;}
+.grid{display:grid} .flex{display:flex} .items-center{align-items:center} .justify-between{justify-content:space-between}
+.text-center{text-align:center} .text-right{text-align:right}
 .relative{position:relative} .absolute{position:absolute} .overflow-hidden{overflow:hidden}
-.rounded-xl{border-radius:.75rem} .rounded-2xl{border-radius:1rem} .rounded-3xl{border-radius:1.5rem} .rounded-full{border-radius:9999px}
-.w-full{width:100%} .w-fit{width:fit-content}
-.p-4{padding:1rem} .p-6{padding:1.5rem} .p-8{padding:2rem} .p-10{padding:2.5rem}
-.px-4{padding-left:1rem;padding-right:1rem} .px-8{padding-left:2rem;padding-right:2rem}
-.py-4{padding-top:1rem;padding-bottom:1rem} .py-12{padding-top:3rem;padding-bottom:3rem} .py-16{padding-top:4rem;padding-bottom:4rem} .py-24{padding-top:6rem;padding-bottom:6rem}
-.mb-2{margin-bottom:.5rem} .mb-4{margin-bottom:1rem} .mb-6{margin-bottom:1.5rem} .mb-8{margin-bottom:2rem} .mb-12{margin-bottom:3rem}
-.mt-4{margin-top:1rem} .mt-6{margin-top:1.5rem} .mt-8{margin-top:2rem}
+.rounded-xl{border-radius:.75rem} .rounded-2xl{border-radius:1rem} .rounded-full{border-radius:9999px}
+.w-full{width:100%} .mb-4{margin-bottom:1rem} .mb-6{margin-bottom:1.5rem} .mt-4{margin-top:1rem}
+.p-4{padding:1rem} .p-6{padding:1.5rem}
 
-.text-xs{font-size:.75rem} .text-sm{font-size:.875rem} .text-base{font-size:1rem} .text-lg{font-size:1.125rem} .text-xl{font-size:1.25rem} .text-2xl{font-size:1.5rem} .text-3xl{font-size:1.875rem} .text-4xl{font-size:2.25rem} .text-5xl{font-size:3rem} .text-6xl{font-size:3.75rem}
-
-/* ─── Glassmorphic Core Styles ─── */
+/* ─── Glassmorphism ─── */
 .glass-panel{
-  background:rgba(12, 34, 54, 0.6);
-  backdrop-filter:blur(16px);
-  -webkit-backdrop-filter:blur(16px);
-  border:1px solid rgba(34, 211, 238, 0.15);
-  border-radius:1.25rem;
+  background:var(--glass-bg); backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px);
+  border:1px solid var(--glass-border); border-radius:1.25rem;
 }
 .glass-card{
-  background:rgba(255, 255, 255, 0.04);
-  backdrop-filter:blur(12px);
-  -webkit-backdrop-filter:blur(12px);
+  background:rgba(255, 255, 255, 0.03); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px);
   border:1px solid rgba(255, 255, 255, 0.08);
 }
 
-/* ─── Core Navigation Tab Bar ─── */
-.tab-content{display:none}
-.tab-content.active{display:block;animation:fadeInMaster .45s ease}
-@keyframes fadeInMaster{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+/* ─── Bottom Navigation Tab Bar ─── */
+.tab-content{display:none; animation:fadeIn .4s ease;}
+.tab-content.active{display:block;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
 
 .tab-bar{
-  position:fixed;
-  bottom:0;left:0;right:0;
-  z-index:9999;
-  background:rgba(6,24,43,.92);
-  backdrop-filter:blur(25px);
-  -webkit-backdrop-filter:blur(25px);
-  border-top:1px solid rgba(15,181,168,.3);
-  display:flex;
-  justify-content:space-around;
-  align-items:center;
-  height:68px;
-  padding-bottom:env(safe-area-inset-bottom,0);
+  position:fixed; bottom:0; left:0; right:0; z-index:9999;
+  background:rgba(6,24,43,.95); backdrop-filter:blur(25px); -webkit-backdrop-filter:blur(25px);
+  border-top:1px solid rgba(15,181,168,.3); display:flex; justify-content:space-around; align-items:center;
+  height:75px; padding-bottom:env(safe-area-inset-bottom,0);
 }
 .tab-btn{
-  flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:4px; height:100%;
-  background:none; border:none; color:#5B7185; font-family:'Tajawal',sans-serif; font-size:11px; font-weight:600;
-  cursor:pointer; transition:all .25s; -webkit-tap-highlight-color:transparent;
+  flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:6px; height:100%;
+  background:none; border:none; color:#5B7185; font-family:'Tajawal',sans-serif; font-size:12px; font-weight:700;
+  cursor:pointer; transition:all .3s;
 }
-.tab-btn svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
-.tab-btn.active{color:#0FB5A8;text-shadow:0 0 10px rgba(15,181,168,0.3)}
+.tab-btn svg{width:24px; height:24px; fill:none; stroke:currentColor; stroke-width:2; stroke-linecap:round; stroke-linejoin:round}
+.tab-btn.active{color:#0FB5A8; text-shadow:0 0 12px rgba(15,181,168,0.4)}
+.tab-btn.active svg{stroke:#0FB5A8; filter:drop-shadow(0 0 5px rgba(15,181,168,0.5))}
 
-/* ─── Inner Sub-Navigation Tab Bar (For Tab 1) ─── */
+/* ─── Inner Sub-Navigation (Tab 1 Files) ─── */
 .sub-nav-container{
-  position:sticky; top:0; z-index:100;
-  background:rgba(6, 24, 43, 0.85);
-  backdrop-filter:blur(15px);
-  -webkit-backdrop-filter:blur(15px);
-  border-bottom:1px solid rgba(34, 211, 238, 0.1);
-  overflow-x:auto; white-space:nowrap;
+  position:sticky; top:0; z-index:100; background:rgba(6, 24, 43, 0.9);
+  backdrop-filter:blur(15px); -webkit-backdrop-filter:blur(15px); border-bottom:1px solid rgba(34, 211, 238, 0.15);
+  overflow-x:auto; white-space:nowrap; padding:12px 16px; display:flex; gap:10px;
 }
-.sub-nav-wrapper{display:flex; padding:10px 20px; gap:8px}
 .sub-btn{
-  background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08);
-  color:#9DB0BF; padding:8px 16px; border-radius:9999px; font-size:13px; font-weight:600;
-  cursor:pointer; transition:all 0.25s;
+  background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1);
+  color:#9DB0BF; padding:8px 20px; border-radius:9999px; font-size:14px; font-weight:700; font-family:'Tajawal',sans-serif;
+  cursor:pointer; transition:all 0.3s;
 }
-.sub-btn.active{
-  background:rgba(15, 181, 168, 0.15); border-color:#0FB5A8; color:#22D3EE;
-}
-.sub-content{display:none}
-.sub-content.active{display:block; animation:fadeInMaster 0.35s ease}
+.sub-btn.active{background:rgba(15, 181, 168, 0.15); border-color:#0FB5A8; color:#22D3EE;}
+.sub-content{display:none; animation:fadeIn 0.3s ease;}
+.sub-content.active{display:block;}
 
-/* ─── Background Deco & Utilities ─── */
-.glow-teal{background:radial-gradient(circle at 50% 20%,rgba(15,181,168,.25),transparent 60%)}
-.glow-coral{background:radial-gradient(circle at 80% 70%,rgba(255,107,107,.15),transparent 60%)}
-.dot-grid{background-image:radial-gradient(rgba(34, 211, 238, 0.08) 1px,transparent 1px);background-size:24px 24px}
-.hairline{height:1px;background:linear-gradient(90deg,transparent,#0FB5A8,transparent)}
-.text-teal{color:#0FB5A8} .text-cyan{color:#22D3EE} .text-coral{color:#FF6B6B} .text-gold{color:#F4B860} .text-mist{color:#EAF2F4} .text-greyx{color:#5B7185}
-.bg-deeper{background:#06182B} .bg-deep{background:#0A2540} .bg-void{background:#040B14}
-
-/* ─── Form Styles for Sandbox ─── */
-.input-group{display:flex; flex-direction:column; gap:6px; margin-bottom:16px}
-.input-label{font-size:13px; font-weight:600; color:#22D3EE}
+/* ─── Forms & Inputs (Sandbox) ─── */
+.input-group{margin-bottom:16px;}
+.input-label{display:block; font-size:13px; font-weight:700; color:#22D3EE; margin-bottom:8px;}
 .form-input, .form-select{
-  background:rgba(6, 24, 43, 0.6); border:1px solid rgba(34, 211, 238, 0.25);
-  color:#fff; padding:12px 16px; border-radius:10px; font-family:'Tajawal',sans-serif; font-size:14px;
-  outline:none; transition:all 0.3s;
+  width:100%; background:rgba(4, 11, 20, 0.6); border:1px solid rgba(34, 211, 238, 0.2);
+  color:#fff; padding:14px; border-radius:10px; font-family:'Tajawal',sans-serif; font-size:15px; outline:none; transition:all 0.3s;
 }
-.form-input:focus, .form-select:focus{ border-color:#0FB5A8; box-shadow:0 0 10px rgba(15,181,168,0.2) }
+.form-input:focus, .form-select:focus{border-color:#0FB5A8; box-shadow:0 0 12px rgba(15,181,168,0.2)}
 .action-btn{
-  background:linear-gradient(135deg, #0FB5A8, #22D3EE); color:#06182B;
-  padding:14px 24px; border:none; border-radius:12px; font-weight:700; font-size:15px;
-  cursor:pointer; transition:all 0.3s; text-align:center;
+  width:100%; background:linear-gradient(135deg, #0FB5A8, #22D3EE); color:#06182B;
+  padding:16px; border:none; border-radius:12px; font-weight:800; font-size:16px; cursor:pointer; transition:all 0.3s; font-family:'Tajawal',sans-serif;
 }
-.action-btn:hover{ transform:translateY(-2px); box-shadow:0 8px 20px rgba(34,211,238,0.3) }
+.action-btn:hover{transform:translateY(-2px); box-shadow:0 8px 20px rgba(34,211,238,0.3)}
 
-/* ─── Simulation Widgets & Badges ─── */
-.scenario-card{
-  border:1px solid rgba(255,255,255,0.06); padding:16px; border-radius:12px;
-  cursor:pointer; transition:all 0.25s; background:rgba(255,255,255,0.02);
-}
-.scenario-card:hover{ background:rgba(34,211,238,0.05); border-color:rgba(34,211,238,0.3) }
-.badge{ padding:4px 10px; border-radius:6px; font-size:11px; font-weight:700; font-family:'JetBrains Mono','Tajawal' }
-.badge-success{ background:rgba(52,211,153,0.15); color:#34D399; border:1px solid rgba(52,211,153,0.3) }
-.badge-warning{ background:rgba(244,184,96,0.15); color:#F4B860; border:1px solid rgba(244,184,96,0.3) }
-.badge-danger{ background:rgba(255,107,107,0.15); color:#FF6B6B; border:1px solid rgba(255,107,107,0.3) }
+/* ─── UI Components ─── */
+.badge{display:inline-block; padding:4px 10px; border-radius:6px; font-size:12px; font-weight:700;}
+.badge-success{background:rgba(52,211,153,0.15); color:#34D399; border:1px solid rgba(52,211,153,0.3)}
+.badge-warning{background:rgba(244,184,96,0.15); color:#F4B860; border:1px solid rgba(244,184,96,0.3)}
+.badge-danger{background:rgba(255,107,107,0.15); color:#FF6B6B; border:1px solid rgba(255,107,107,0.3)}
 
 .dropzone{
-  border:2px dashed rgba(34, 211, 238, 0.3); border-radius:14px; padding:32px 16px;
-  text-center:center; cursor:pointer; transition:all 0.3s; background:rgba(34,211,238,0.02);
+  border:2px dashed rgba(34, 211, 238, 0.4); border-radius:12px; padding:30px 20px; text-align:center;
+  cursor:pointer; transition:all 0.3s; background:rgba(34,211,238,0.03);
 }
-.dropzone:hover{ border-color:#0FB5A8; background:rgba(15,181,168,0.04) }
+.dropzone:hover{border-color:#0FB5A8; background:rgba(15,181,168,0.08)}
 
-/* ─── Responsive ─── */
-@media(max-width:768px){
-  .responsive-grid-2, .responsive-grid-3, .responsive-grid-4{grid-template-columns:1fr!important}
-  .responsive-flex-col{flex-direction:column!important}
-  .responsive-text-4xl{font-size:1.85rem!important}
-  .responsive-text-5xl{font-size:2.25rem!important}
+/* ─── Pitch Deck Slide Styles ─── */
+.pitch-slide{
+  background:rgba(0,0,0,0.2); border-right:4px solid #0FB5A8; padding:20px; margin-bottom:20px; border-radius:0 12px 12px 0;
 }
-@media(min-width:769px){
-  .responsive-grid-2{grid-template-columns:repeat(2,1fr)}
-  .responsive-grid-3{grid-template-columns:repeat(3,1fr)}
-  .responsive-grid-4{grid-template-columns:repeat(4,1fr)}
-}
+
+/* ─── Grids & Responsive ─── */
+.grid-2{grid-template-columns:repeat(2,1fr); gap:1rem;}
+.grid-3{grid-template-columns:repeat(3,1fr); gap:1rem;}
+@media(max-width:768px){ .grid-2, .grid-3{grid-template-columns:1fr;} }
 main{padding-bottom:100px}
 </style>
 </head>
 <body>
 
-<nav class="tab-bar" id="mainTabBar">
-  <button class="tab-btn active" onclick="switchMainTab('tabSuite')" id="btnSuite">
-    <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
-    <span>الحقيبة الاستراتيجية</span>
+<nav class="tab-bar">
+  <button class="tab-btn active" onclick="switchMainTab('tabFiles')" id="btnFiles">
+    <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+    <span>ملفات المشروع</span>
   </button>
-  <button class="tab-btn" onclick="switchMainTab('tabPitch')" id="btnPitch">
-    <svg viewBox="0 0 24 24"><polygon points="12 2 2 22 12 17 22 22 12 2"/></svg>
-    <span>محاكي المستثمر (MVP)</span>
+  <button class="tab-btn" onclick="switchMainTab('tabInvestor')" id="btnInvestor">
+    <svg viewBox="0 0 24 24"><polygon points="12 2 2 22 12 17 22 22 12 2"></polygon></svg>
+    <span>محاكي المستثمر</span>
   </button>
-  <button class="tab-btn" onclick="switchMainTab('tabSandbox')" id="btnSandbox">
-    <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="9" y1="3" x2="9" y2="21"/><line x1="15" y1="3" x2="15" y2="21"/></svg>
-    <span>المنصة التشغيلية</span>
+  <button class="tab-btn" onclick="switchMainTab('tabRealMVP')" id="btnRealMVP">
+    <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line></svg>
+    <span>المنصة الحقيقية (MVP)</span>
   </button>
 </nav>
 
-
-<div id="tabSuite" class="tab-content active">
+<div id="tabFiles" class="tab-content active main-section">
   
   <div class="sub-nav-container">
-    <div class="sub-nav-wrapper">
-      <button class="sub-btn active" onclick="switchSubTab('sub1')" id="btnSub1">Blueprint (المخطط)</button>
-      <button class="sub-btn" onclick="switchSubTab('sub2')" id="btnSub2">الحوكمة والامتثال</button>
-      <button class="sub-btn" onclick="switchSubTab('sub3')" id="btnSub3">الأمن وتشفير الجينوم</button>
-      <button class="sub-btn" onclick="switchSubTab('sub4')" id="btnSub4">الربط التقني APIs</button>
-      <button class="sub-btn" onclick="switchSubTab('sub5')" id="btnSub5">النموذج المالي</button>
-      <button class="sub-btn" onclick="switchSubTab('sub6')" id="btnSub6">Pitch Deck (العرض)</button>
-    </div>
+    <button class="sub-btn active" onclick="switchSubTab('file1')" id="btnFile1">1. المخطط التنفيذي</button>
+    <button class="sub-btn" onclick="switchSubTab('file2')" id="btnFile2">2. الحوكمة</button>
+    <button class="sub-btn" onclick="switchSubTab('file3')" id="btnFile3">3. الأمن السيبراني</button>
+    <button class="sub-btn" onclick="switchSubTab('file4')" id="btnFile4">4. الربط التقني</button>
+    <button class="sub-btn" onclick="switchSubTab('file5')" id="btnFile5">5. النموذج المالي</button>
+    <button class="sub-btn" onclick="switchSubTab('filePitch')" id="btnFilePitch" style="color:#F4B860; border-color:#F4B860;">العرض التقديمي</button>
   </div>
 
-  <header class="relative overflow-hidden bg-void dot-grid py-12 px-4 text-center">
-    <div class="absolute inset-0 glow-teal" style="opacity:0.4"></div>
-    <p class="text-teal text-xs kicker font-bold mb-2">ARKANE AI • STRATEGIC SUITE</p>
-    <h1 class="font-head text-white text-4xl font-bold mb-1">وِراثَة WIRATHA</h1>
-    <p class="text-cyan text-sm tracking-widest">المستندات الاستراتيجية الموحدة للمنظومة الوطنية</p>
-    <div class="hairline w-32 mx-auto mt-4"></div>
-  </header>
-
-  <div class="max-w-5xl mx-auto px-4 py-8">
-
-    <div id="sub1" class="sub-content active">
-      <div class="glass-panel p-6 mb-6">
-        <h2 class="font-head text-2xl text-cyan mb-4">1. المخطط التنفيذي والاستراتيجي (Blueprint)</h2>
-        <p class="text-mist mb-4 leading-relaxed">
-          تعد منصة <strong>«وِراثَة»</strong> بمثابة البنية التحتية الإدراكية الذكية المكملة لمنظومة الفحص الوطني قبل الزواج في المملكة العربية السعودية. حيث نهدف إلى معالجة الفجوة الكبرى بين الكشف المخبري المباشر والقرار الأسري التابع له.
-        </p>
-        <div class="grid responsive-grid-2 gap-4 mt-6">
-          <div class="glass-card p-4 rounded-xl">
-            <h3 class="text-teal font-bold mb-2">رؤية الوجود وفلسفة الحل</h3>
-            <p class="text-sm text-soft">تحويل النتائج الطبية المعقدة إلى سيناريوهات واضحة تدعم الخيارات الإنجابية الواعية كفحص الأجنة PGT-M، مما يحمي الأسر من انتقال الأمراض الوراثية المتنحية دون أي صدام ثقافي.</p>
-          </div>
-          <div class="glass-card p-4 rounded-xl">
-            <h3 class="text-coral font-bold mb-2">المؤشرات الوطنية المستهدفة</h3>
-            <p class="text-sm text-soft">رفع نسبة الوعي وإلغاء الزواج عالي الخطورة من 9% إلى 52% عبر تقديم استشارات رقمية مدعومة بالذكاء الاصطناعي تراعي الخصوصية وتكافئ مستهدفات رؤية المملكة 2030.</p>
-          </div>
-        </div>
-      </div>
+  <div class="max-w-5xl px-4 py-8">
+    
+    <div id="file1" class="sub-content active glass-panel p-6">
+      <h2 class="font-head text-2xl text-cyan mb-4">الملف الأول: المخطط التنفيذي والاستراتيجي (Blueprint)</h2>
+      <p class="text-mist mb-4">هذا قسم مخصص لدمج محتوى الملف الأول الخاص بالمخطط التنفيذي. (سيتم لصق محتوى الملف هنا ليعمل بضغطة زر دون الانتقال لصفحة أخرى).</p>
+      <div class="glass-card p-4 rounded-xl border border-teal/20"><p class="text-sm text-soft">منصة «وِراثَة» هي البنية التحتية الإدراكية المكملة لمنظومة الفحص الوطني قبل الزواج...</p></div>
     </div>
 
-    <div id="sub2" class="sub-content">
-      <div class="glass-panel p-6 mb-6">
-        <h2 class="font-head text-2xl text-cyan mb-4">2. حوكمة البيانات والامتثال (Governance & PDPL)</h2>
-        <p class="text-mist mb-4 leading-relaxed">
-          تمتثل منصة «وِراثَة» بالكامل لنظام حماية البيانات الشخصية السعودي (PDPL) واللوائح الصادرة عن الهيئة السعودية للبيانات والذكاء الاصطناعي (SDAIA). نظرًا للحساسية الفائقة للمعلومات الجينية والوراثية.
-        </p>
-        <div class="glass-card p-5 rounded-xl border border-teal/20 mb-4">
-          <h3 class="text-teal font-bold mb-3">بروتوكول الموافقة الثنائية التفاعلية (Bi-Party Consent Tracker)</h3>
-          <p class="text-sm text-soft mb-3">
-            لا يتم عرض النتائج المشتركة أو فك تشفير التداخل الجيني إلا بعد اكتمال التوقيع الرقمي والموافقة الصريحة المتزامنة من الطرفين (المقبل والمقبلة على الزواج) عبر النفاذ الوطني الموحد، منعاً لأي تسريب أو استغلال للبيانات خارج نطاقها الشرعي والنظامي.
-          </p>
-          <span class="badge badge-success">ممتثل لنظام PDPL</span>
-        </div>
-      </div>
+    <div id="file2" class="sub-content glass-panel p-6">
+      <h2 class="font-head text-2xl text-cyan mb-4">الملف الثاني: حوكمة البيانات والامتثال (PDPL)</h2>
+      <p class="text-mist mb-4">هذا قسم مخصص لدمج محتوى الملف الثاني. يمتثل المشروع لنظام حماية البيانات الشخصية السعودي.</p>
+      <div class="glass-card p-4 rounded-xl border border-teal/20"><p class="text-sm text-soft">بروتوكول الموافقة الثنائية التفاعلية: لا يتم عرض النتائج إلا بعد التوقيع الرقمي عبر النفاذ الوطني...</p></div>
     </div>
 
-    <div id="sub3" class="sub-content">
-      <div class="glass-panel p-6 mb-6">
-        <h2 class="font-head text-2xl text-cyan mb-4">3. الأمن السيبراني وتشفير الجينوم (Cybersecurity & NCA Standards)</h2>
-        <p class="text-mist mb-4 leading-relaxed">
-          تطبيق ضوابط الأمن السيبراني الأساسية الصادرة عن الهيئة الوطنية للأمن السيبراني (NCA). حماية الهوية الجينية هي حماية للأمن القومي الحيوي للمملكة.
-        </p>
-        <div class="glass-card p-4 rounded-xl font-mono text-xs text-sky mb-4 bg-void p-4">
-          <p class="text-teal font-head text-sm font-bold mb-2">// بروتوكول التشفير المعتمد للـ Genomic Hashes</p>
-          <p>const crypto = require('crypto');</p>
-          <p>function encryptGenomicData(patientRawDNA, salt) {</p>
-          <p>&nbsp;&nbsp;return crypto.createHmac('sha256', salt).update(patientRawDNA).digest('hex');</p>
-          <p>}</p>
-          <p class="text-greyx mt-2">// يتم حفظ البصمة المشفرة فقط دون تخزين السلسلة الوراثية الكاملة في الخوادم السحابية</p>
-        </div>
-      </div>
+    <div id="file3" class="sub-content glass-panel p-6">
+      <h2 class="font-head text-2xl text-cyan mb-4">الملف الثالث: الأمن السيبراني وتشفير الجينوم</h2>
+      <p class="text-mist mb-4">هذا قسم مخصص لدمج محتوى الملف الثالث الخاص بضوابط الهيئة الوطنية للأمن السيبراني (NCA).</p>
     </div>
 
-    <div id="sub4" class="sub-content">
-      <div class="glass-panel p-6 mb-6">
-        <h2 class="font-head text-2xl text-cyan mb-4">4. الربط التقني والـ APIs المنظومية</h2>
-        <p class="text-mist mb-4">التكامل والربط التقني الشامل والمباشر مع المنصات الوطنية الصحية التابعة لوزارة الصحة:</p>
-        <div class="space-y-3">
-          <div class="glass-card p-4 rounded-xl flex items-center justify-between responsive-flex-col text-right">
-            <div>
-              <span class="badge badge-success font-mono">POST</span>
-              <strong class="text-white mr-2">Sehaty/Fahas/Integrate</strong>
-            </div>
-            <p class="text-xs text-soft mt-1">سحب نتائج الفحص الطبي والتحاليل من منصة صحتي فور صدورها.</p>
-          </div>
-          <div class="glass-card p-4 rounded-xl flex items-center justify-between responsive-flex-col text-right">
-            <div>
-              <span class="badge badge-success font-mono">GET</span>
-              <strong class="text-white mr-2">SehaVirtualHospital/Consult/Request</strong>
-            </div>
-            <p class="text-xs text-soft mt-1">جدولة وتحويل الحالات الحرجة آلياً إلى مستشفى صحة الافتراضي للعيادات الجينية.</p>
-          </div>
-        </div>
-      </div>
+    <div id="file4" class="sub-content glass-panel p-6">
+      <h2 class="font-head text-2xl text-cyan mb-4">الملف الرابع: الربط التقني والـ APIs</h2>
+      <p class="text-mist mb-4">هذا قسم مخصص لدمج محتوى الملف الرابع الخاص بالتكامل مع منصة صحتي ومستشفى صحة الافتراضي.</p>
     </div>
 
-    <div id="sub5" class="sub-content">
-      <div class="glass-panel p-6 mb-6">
-        <h2 class="font-head text-2xl text-cyan mb-4">5. النموذج المالي والتجاري والاستدامة الاقتصاديّة</h2>
-        <div class="grid responsive-grid-3 gap-4 mb-6">
-          <div class="glass-card p-4 text-center">
-            <p class="text-coral text-2xl font-bold bignum">182,000 ر.س</p>
-            <p class="text-xs text-soft mt-1">الكلفة المجتمعية السنوية للمريض الواحد</p>
-          </div>
-          <div class="glass-card p-4 text-center">
-            <p class="text-coral text-2xl font-bold bignum">5.25 مليار ر.س</p>
-            <p class="text-xs text-soft mt-1">كلفة الأنيميا المنجلية السنوية بالمملكة</p>
-          </div>
-          <div class="glass-card p-4 text-center">
-            <p class="text-teal text-2xl font-bold bignum">3.95 مليون ر.س</p>
-            <p class="text-xs text-soft mt-1">سعر دواء واحد لضمور العضلات (Spinraza)</p>
-          </div>
-        </div>
-        <p class="text-sm text-mist leading-loose">
-          يعتمد نموذج العمل على تحقيق وفورات مالية مليارية للخزينة العامة والضمان الصحي من خلال الوقاية الاستباقية؛ حيث يمثل الاستثمار في الفحص والأجنة نسبة ضئيلة جداً مقارنةً بكلفة علاج الأمراض المزمنة طيلة حياة الفرد.
-        </p>
-      </div>
+    <div id="file5" class="sub-content glass-panel p-6">
+      <h2 class="font-head text-2xl text-cyan mb-4">الملف الخامس: النموذج المالي والتجاري</h2>
+      <p class="text-mist mb-4">هذا قسم مخصص لدمج محتوى الملف الخامس الخاص بالاستدامة الاقتصادية وتحقيق الوفورات المليارية للخزينة العامة.</p>
     </div>
 
-    <div id="sub6" class="sub-content">
-      <div class="glass-panel p-6 mb-6">
-        <h2 class="font-head text-2xl text-gold mb-2">6. العرض التقديمي الكامل (Pitch Deck Strategy)</h2>
-        <p class="text-xs text-greyx mb-6">مخطط تسلسلي وهيكلي برمي مبني بالكامل على وثيقة المشروع الرسمية لتسهيل العرض والتقديم:</p>
-        
-        <div class="space-y-6">
-          <div class="border-r-2 border-gold pl-4 pr-3">
-            <h3 class="text-gold font-bold text-base mb-1">الشريحة 1: الغاية والرؤية الكبرى (The Hook)</h3>
-            <p class="text-sm text-mist">عنوان العرض: <strong>«وِراثَة — قرار لا كشف.. إنساني أولاً»</strong>. منصة ذكاء اصطناعي سعودية تعيد صياغة الطب الوقائي وحماية الثروة البشرية الجينية للمملكة.</p>
-          </div>
-          
-          <div class="border-r-2 border-coral pl-4 pr-3">
-            <h3 class="text-coral font-bold text-base mb-1">الشريحة 2: المشكلة والواقع الحالي (The Problem)</h3>
-            <p class="text-sm text-mist">الإحصائيات الصادمة: 57% نسبة زواج الأقارب، و90% من الأزواج الحاملين للجينات المتنحية المشتركة يكملون الزواج نتيجة طبيعة التقارير الجافة وغياب البدائل المشروحة بخصوصية وثقافة محلية.</p>
-          </div>
-
-          <div class="border-r-2 border-teal pl-4 pr-3">
-            <h3 class="text-teal font-bold text-base mb-1">الشريحة 3: الحل والمنصة (The Solution)</h3>
-            <p class="text-sm text-mist">توفير ركيزة استشارية ذكية تفاعلية فورية، تترجم الطفرات، تحسب نسب القرابة والتداخل الوراثي، وتعرض حلولاً علمية بديلة تضمن إنجاب أطفال أصحاء (مثل التلقيح الاصطناعي مع فحص الأجنة الموجه PGT-M).</p>
-          </div>
-
-          <div class="border-r-2 border-cyan pl-4 pr-3">
-            <h3 class="text-cyan font-bold text-base mb-1">الشريحة 4: الأثر المالي والاقتصادي (Market Opportunity)</h3>
-            <p class="text-sm text-mist">حماية ميزانية الدولة من استنزاف ملياري؛ تخفيض النسبة الكلية للزيجات عالية الخطورة يترجم فورياً إلى توفير مئات الملايين سنوياً في بنود الرعاية، الأدوية الفائقة الكلفة، والإنتاجية المفقودة.</p>
-          </div>
-
-          <div class="border-r-2 border-gold2 pl-4 pr-3">
-            <h3 class="text-gold2 font-bold text-base mb-1">الشريحة 5: خطة الانتشار والنمو (Go-To-Market)</h3>
-            <p class="text-sm text-mist">الدمج الكامل كطبقة برمجية استشارية إلزامية داخل بوابات وزارة الصحة، مستشفى صحة الافتراضي، والربط بالملف الصحي الموحد للمواطن لضمان رحلة مستخدم آمنة وسلسة.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-  </div>
-</div>
-
-
-<div id="tabPitch" class="tab-content">
-  <div class="max-w-4xl mx-auto px-4 py-8">
-    <div class="glass-panel p-6 mb-8 text-center">
-      <h2 class="font-head text-2xl text-teal mb-2">محاكي المستثمر التفاعلي السريع</h2>
-      <p class="text-sm text-soft mb-6">اضغط على أحد السيناريوهات الجاهزة أدناه لمشاهدة كيف يعرض محرك "وراثة" الأثر المالي الحقيقي والأثر الاجتماعي الفوري للمستثمرين وأصحاب القرار بنقرة واحدة:</p>
+    <div id="filePitch" class="sub-content glass-panel p-6" style="border-color:#F4B860;">
+      <h2 class="font-head text-2xl text-gold mb-6">العرض التقديمي (Pitch Deck)</h2>
       
-      <div class="grid responsive-grid-3 gap-4 mb-8">
-        <div class="scenario-card text-right" onclick="runScenario('safe')">
-          <span class="badge badge-success mb-2">السيناريو 1</span>
-          <h4 class="text-white font-bold text-sm mb-1">توافق جيني تام</h4>
-          <p class="text-xs text-greyx">فحص سليم وخالٍ من الطفرات المشتركة.</p>
+      <div class="pitch-slide">
+        <h3 class="text-xl text-white font-bold mb-2">1. الرؤية والرسالة</h3>
+        <p class="text-mist">تمكين الأزواج في المملكة العربية السعودية من فهم المخاطر الوراثية بدقة، وتحويل الأرقام المخبرية الجافة إلى مسارات إنجابية آمنة تضمن سلامة الأجيال القادمة (قرار لا كشف.. إنساني أولاً).</p>
+      </div>
+
+      <div class="pitch-slide">
+        <h3 class="text-xl text-white font-bold mb-2">2. المشكلة (الواقع الحالي)</h3>
+        <p class="text-mist">تصل نسبة زواج الأقارب إلى 57%. والمشكلة الأكبر أن 90% من الأزواج عالي الخطورة يكملون الزواج بسبب استلام تقارير جافة ومعقدة تفتقر للشرح الثقافي والخيارات الطبية البديلة.</p>
+      </div>
+
+      <div class="pitch-slide">
+        <h3 class="text-xl text-white font-bold mb-2">3. الحل (منصة وراثة)</h3>
+        <p class="text-mist">طبقة ذكاء اصطناعي تحلل احتمالات الخطر، وتشرح الوراثة المتنحية بخصوصية تامة، وتعرض مسارات إنجابية آمنة مثل فحص الأجنة (PGT-M) مع ربط مباشر بوزارة الصحة.</p>
+      </div>
+
+      <div class="pitch-slide">
+        <h3 class="text-xl text-white font-bold mb-2">4. الأثر المالي (العائد الوقائي)</h3>
+        <p class="text-mist">كلفة المريض الواحد بالأنيميا 182 ألف ريال سنوياً، بينما جرعة علاج ضمور العضلات تكلف 3.95 مليون ريال! المنصة توفر مليارات الريالات للخزينة العامة بمجرد تغيير قرار الزواج أو توجيهه للحقن المجهري.</p>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div id="tabInvestor" class="tab-content main-section">
+  <div class="max-w-4xl px-4 py-8">
+    <div class="glass-panel p-6 text-center mb-6">
+      <h2 class="font-head text-2xl text-teal mb-2">محاكي المستثمر التفاعلي السريع</h2>
+      <p class="text-sm text-soft mb-6">استعرض قوة محرك "وراثة" في حساب الأثر المالي والاجتماعي بضغطة زر من خلال هذه السيناريوهات الجاهزة:</p>
+      
+      <div class="grid grid-3 mb-8">
+        <div class="glass-card p-4 rounded-xl cursor-pointer hover:bg-white/5 transition-all" onclick="runScenario('safe')">
+          <span class="badge badge-success mb-2">سيناريو 1</span>
+          <h4 class="text-white font-bold">توافق جيني تام</h4>
         </div>
-        <div class="scenario-card text-right" onclick="runScenario('carrier')">
-          <span class="badge badge-warning mb-2">السيناريو 2</span>
-          <h4 class="text-white font-bold text-sm mb-1">خطر متنحٍ مشترك</h4>
-          <p class="text-xs text-greyx">كلا الطرفين يحمل طفرة للأنيميا المنجلية.</p>
+        <div class="glass-card p-4 rounded-xl cursor-pointer hover:bg-white/5 transition-all border-coral/30" onclick="runScenario('carrier')">
+          <span class="badge badge-warning mb-2">سيناريو 2</span>
+          <h4 class="text-white font-bold">خطر (أنيميا منجلية)</h4>
         </div>
-        <div class="scenario-card text-right" onclick="runScenario('critical')">
-          <span class="badge badge-danger mb-2">السيناريو 3</span>
-          <h4 class="text-white font-bold text-sm mb-1">تداخل حرج (ضمور عضلات)</h4>
-          <p class="text-xs text-greyx">تداخل جيني عالي الخطورة لضمور العضلات الشوكي.</p>
+        <div class="glass-card p-4 rounded-xl cursor-pointer hover:bg-white/5 transition-all border-coral" onclick="runScenario('critical')">
+          <span class="badge badge-danger mb-2">سيناريو 3</span>
+          <h4 class="text-white font-bold">تداخل حرج (ضمور SMA)</h4>
         </div>
       </div>
 
-      <div class="glass-card p-6 rounded-2xl border border-cyan/20 text-right" id="pitchOutputBox" style="display:none;">
-        <div class="flex justify-between items-center mb-4 border-b border-white/10 pb-3">
-          <h3 class="text-cyan font-head text-lg" id="outTitle">اسم السيناريو</h3>
-          <span id="outBadge">Badge</span>
-        </div>
-        <div class="grid responsive-grid-2 gap-4 mb-6">
+      <div id="investorOutput" class="glass-card p-6 rounded-2xl text-right hidden" style="display:none; border-color:#22D3EE;">
+        <h3 class="text-cyan font-head text-lg mb-4 border-b border-white/10 pb-2" id="invTitle">عنوان السيناريو</h3>
+        <div class="grid grid-2 mb-4">
           <div class="bg-void p-4 rounded-xl">
-            <span class="text-xs text-greyx">الخطر المتوقع على الأطفال</span>
-            <p class="text-xl font-bold mt-1" id="outRisk">0%</p>
+            <span class="text-xs text-greyx block">نسبة الخطر على الأبناء:</span>
+            <strong class="text-xl" id="invRisk">0%</strong>
           </div>
           <div class="bg-void p-4 rounded-xl">
-            <span class="text-xs text-greyx">الأثر المالي المتوقع (كلفة العلاج)</span>
-            <p class="text-xl font-bold text-coral mt-1" id="outCost">0 ر.س</p>
+            <span class="text-xs text-greyx block">الكلفة العلاجية المتوقعة:</span>
+            <strong class="text-xl text-coral bignum" id="invCost">0 ر.س</strong>
           </div>
         </div>
-        <div class="bg-teal/5 border border-teal/20 p-4 rounded-xl mb-4">
-          <h4 class="text-teal font-bold text-sm mb-1">💡 التوجيه الذكي والحل المقترح من منصة وِراثة:</h4>
-          <p class="text-sm text-mist" id="outSolution">الحل يظهر هنا...</p>
-        </div>
-        <div class="bg-cyan/5 border border-cyan/20 p-4 rounded-xl">
-          <h4 class="text-cyan font-bold text-sm mb-1">📉 العائد الاقتصادي الوقائي على الخزينة العامة (ROI):</h4>
-          <p class="text-sm text-emerald-400 font-bold" id="outRoi">الوفورات المالية...</p>
+        <div class="bg-teal/10 p-4 rounded-xl">
+          <strong class="text-teal text-sm">💡 الحل الموجه والتوصية:</strong>
+          <p class="text-sm text-mist mt-1" id="invSolution">التوصية تظهر هنا...</p>
         </div>
       </div>
-
     </div>
   </div>
 </div>
 
-
-<div id="tabSandbox" class="tab-content">
-  <div class="max-w-4xl mx-auto px-4 py-8">
+<div id="tabRealMVP" class="tab-content main-section">
+  <div class="max-w-4xl px-4 py-8">
     
     <div class="glass-panel p-6 mb-6">
       <div class="flex items-center gap-3 mb-2">
-        <svg viewBox="0 0 24 24" style="width:24px; height:24px; stroke:#22D3EE; fill:none; stroke-width:2;"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
-        <h2 class="font-head text-xl text-cyan">دليل تشغيل واختبار منصة "وِراثَة" Sandbox</h2>
+        <svg viewBox="0 0 24 24" style="width:28px; height:28px; stroke:#22D3EE; fill:none; stroke-width:2;"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        <h2 class="font-head text-2xl text-cyan">منصة الاختبار التشغيلية (Real MVP Sandbox)</h2>
       </div>
       <p class="text-sm text-soft leading-relaxed">
-        هذه البيئة المخصصة لوزارة الصحة ومستشفى صحة الافتراضي تتيح لكم حقن واختبار البيانات الطبية والداتا بشكل ديناميكي كامل. يرجى ملء الخانات الطبية أدناه، أو سحب وإفلات ملف التقرير الطبي، ليقوم محرك الذكاء الاصطناعي بحساب التداخلات الجينية الدقيقة، العائد الوقائي، وتوليد تقرير موجه بالكامل.
+        <strong>تعليمات لشركائنا في وزارة الصحة ومستشفى صحة الافتراضي:</strong><br>
+        هذه البيئة التفاعلية تتيح لكم اختبار محرك الذكاء الاصطناعي الخاص بمنصة "وِراثَة" ببيانات حقيقية. 
+        <br>1. قوموا بتعبئة الخانات أدناه لتحديد المدخلات الطبية للمقبلين على الزواج.
+        <br>2. أو استخدموا خاصية "السحب والإفلات" لمحاكاة قراءة ملف فحص مخبري حقيقي (HL7/PDF).
+        <br>3. اضغطوا على "توليد التقرير" لتروا كيف يترجم النظام البيانات المعقدة لتقرير يراعي القرابة ويحسب التكلفة والعائد المالي على الدولة.
       </p>
     </div>
 
-    <div class="grid responsive-grid-2 gap-6 items-start">
-      <div class="glass-panel p-6">
-        <h3 class="font-head text-base text-white mb-4 border-b border-white/10 pb-2">بيانات الفحص والقرابة</h3>
+    <div class="grid grid-2 items-start">
+      
+      <div class="glass-panel p-6 border border-teal/20">
+        <h3 class="font-head text-lg text-white mb-4 border-b border-white/10 pb-2">بيانات الفحص الديموغرافية والطبية</h3>
         
         <div class="input-group">
-          <label class="input-label">رقم الهوية الوطنية (للمحاكاة)</label>
-          <input type="text" class="form-input" id="sbId" value="1092837465" placeholder="أدخل رقم الهوية">
+          <label class="input-label">رقم الهوية الوطنية للطرف الأول (محاكاة)</label>
+          <input type="number" class="form-input" id="realId" placeholder="مثال: 1050000000">
         </div>
 
         <div class="input-group">
-          <label class="input-label">نوع المرض الوراثي المتنحي المراد حقنه</label>
-          <select class="form-select" id="sbDisease">
+          <label class="input-label">المرض الوراثي المحتمل للطرفين</label>
+          <select class="form-select" id="realDisease">
             <option value="sickle">فقر الدم المنجلي (Sickle Cell Anemia)</option>
             <option value="sma">ضمور العضلات الشوكي (SMA)</option>
             <option value="thalassemia">الثلاسيميا الكبرى (Thalassemia)</option>
+            <option value="safe">سليم / لا يوجد طفرات</option>
           </select>
         </div>
 
         <div class="input-group">
-          <label class="input-label">تحديد الطفرات الجينية المشتركة</label>
-          <select class="form-select" id="sbMutation">
-            <option value="yes">نعم — طفرات متطابقة في نفس الجين المشترك</option>
-            <option value="no">لا — طفرات في جينات مختلفة (حامل سليم غير متداخل)</option>
+          <label class="input-label">تطابق الطفرة الجينية المتنحية</label>
+          <select class="form-select" id="realMutation">
+            <option value="matched">نعم - تطابق جيني كامل (خطر مرتفع)</option>
+            <option value="unmatched">لا - طفرات غير متطابقة (حامل سليم)</option>
           </select>
         </div>
 
         <div class="input-group">
           <label class="input-label">درجة القرابة العائلية</label>
-          <select class="form-select" id="sbRelation">
-            <option value="cousin">أبناء عمومة مباشرين (نسبة تداخل جيني مرتفعة جداً)</option>
-            <option value="distant">قرابة بعيدة أو لا توجد قرابة</option>
+          <select class="form-select" id="realKinship">
+            <option value="first">قرابة من الدرجة الأولى (أبناء عمومة مباشرين)</option>
+            <option value="distant">قرابة بعيدة / لا توجد قرابة</option>
           </select>
         </div>
 
-        <div class="input-group">
-          <label class="input-label">ميزانية الرعاية الطبية السنوية المرصودة للحالة (ر.س)</label>
-          <input type="number" class="form-input" id="sbBudget" value="150000">
+        <div class="mb-6">
+          <label class="input-label">قراءة من ملف طبي (Mock Upload)</label>
+          <div class="dropzone" id="dropzoneBox" onclick="simulateFileUpload()">
+            <svg viewBox="0 0 24 24" style="width:32px; height:32px; stroke:#0FB5A8; fill:none; stroke-width:1.5; margin:0 auto 8px;"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+            <span class="text-xs text-mist block" id="dropText">اضغط هنا لمحاكاة سحب ملف المختبر (PDF) وتعبئة الحقول آلياً</span>
+          </div>
+        </div>
+
+        <button class="action-btn" onclick="generateRealReport()">تحليل البيانات وتوليد التقرير الموجه</button>
+      </div>
+
+      <div id="realOutputPanel" class="glass-panel p-6" style="display:none; border-color:#0FB5A8; background:rgba(15,181,168,0.05);">
+        <h3 class="font-head text-lg text-teal mb-4 border-b border-teal/20 pb-2">نتائج محرك وِراثَة (Real-Time Output)</h3>
+        
+        <div class="mb-4">
+          <span class="text-xs text-greyx">رقم الملف الموحد:</span>
+          <p class="font-mono font-bold text-white" id="outDocId">W-0000</p>
         </div>
 
         <div class="mb-4">
-          <label class="input-label mb-1 block">تحميل التقرير الطبي المخبري (سحب وإفلات)</label>
-          <div class="dropzone" id="sbDropzone" onclick="triggerMockUpload()">
-            <svg viewBox="0 0 24 24" style="width:32px; height:32px; stroke:#0FB5A8; fill:none; stroke-width:1.5; margin:0 auto 8px;"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
-            <span class="text-xs text-mist block" id="dropzoneText">اسحب ملف الفحص المخبري هنا أو اضغط للتصفح</span>
-          </div>
+          <span class="text-xs text-greyx">حالة التوافق والمخاطرة الوراثية:</span>
+          <div id="outBadge" class="mt-1"></div>
         </div>
 
-        <button class="action-btn w-full mt-2" onclick="calculateSandboxData()">تشغيل المحاكاة وإصدار التقرير الذكي</button>
-      </div>
+        <div class="mb-4 p-3 bg-void rounded-xl border border-white/5">
+          <span class="text-xs text-cyan">تأثير القرابة (Consanguinity Impact):</span>
+          <p class="text-sm text-mist mt-1" id="outKinshipInfo">جاري التحليل...</p>
+        </div>
 
-      <div class="glass-panel p-6 sticky top-4" id="sandboxResultPanel" style="display:none; border-color:#0FB5A8;">
-        <h3 class="font-head text-base text-teal mb-2 border-b border-white/10 pb-2">تقرير منصة "وِراثَة" الطبي والمالي الموجه</h3>
-        
-        <div class="space-y-4 text-sm text-mist">
-          <div>
-            <span class="text-xs text-greyx">رقم ملف الحالة الموحد:</span>
-            <p class="font-mono text-white font-bold" id="resId">W-1092837465</p>
-          </div>
-          <div>
-            <span class="text-xs text-greyx">حالة التوافق الجيني الوراثي الحقيقي:</span>
-            <div id="resStatusBadge" class="mt-1"></div>
-          </div>
-          <div>
-            <span class="text-xs text-greyx">تحليل نسب التداخل الجيني بناءً على القرابة:</span>
-            <p class="text-white font-bold" id="resRelationAnalysis">تحليل القرابة...</p>
-          </div>
-          <div class="p-3 bg-black/20 rounded-xl">
-            <span class="text-xs text-coral font-bold">الأثر المالي المتوقع على المدى الطويل:</span>
-            <p class="text-xl font-bold text-coral mt-1 bignum" id="resFinancialCost">0 ر.س</p>
-          </div>
-          <div class="p-3 bg-teal/10 rounded-xl border border-teal/30">
-            <span class="text-xs text-cyan font-bold">العائد الاقتصادي الوقائي السنوي الفوري (ROI):</span>
-            <p class="text-lg font-bold text-cyan mt-1 bignum" id="resRoi">0 ر.س</p>
-          </div>
-          <div class="border-t border-white/10 pt-3">
-            <span class="text-xs text-greyx block mb-1">التقرير الذكي الموجه للعيادة وأسرة المريض:</span>
-            <p class="text-xs text-soft leading-relaxed bg-void p-3 rounded-lg border border-white/5" id="resTextReport">
-              التقرير...
-            </p>
-          </div>
+        <div class="mb-4 p-3 bg-red-900/20 rounded-xl border border-coral/20">
+          <span class="text-xs text-coral">الكلفة المتوقعة على القطاع الصحي (Long-term Cost):</span>
+          <p class="text-xl font-bold text-coral bignum mt-1" id="outCostValue">0 ر.س</p>
+        </div>
+
+        <div class="mb-4 p-3 bg-teal-900/20 rounded-xl border border-teal/30">
+          <span class="text-xs text-emerald-400">العائد المالي الوقائي للمنصة (ROI):</span>
+          <p class="text-lg font-bold text-emerald-400 bignum mt-1" id="outROI">0 ر.س</p>
+        </div>
+
+        <div class="border-t border-teal/20 pt-4">
+          <span class="text-xs text-greyx mb-2 block">التقرير الذكي الموجه للزوجين ولعيادة صحة الافتراضي:</span>
+          <p class="text-sm text-white leading-relaxed p-3 bg-black/40 rounded-lg" id="outSmartReport">
+            التقرير سيظهر هنا...
+          </p>
         </div>
       </div>
+
     </div>
-
   </div>
 </div>
 
 
 <script>
-/* ─── Main Tabs Switcher ─── */
+// --- Navigation Logic ---
 function switchMainTab(tabId) {
-  document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
-  document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
-  
-  document.getElementById(tabId).classList.add('active');
-  
-  if(tabId === 'tabSuite') document.getElementById('btnSuite').classList.add('active');
-  if(tabId === 'tabPitch') document.getElementById('btnPitch').classList.add('active');
-  if(tabId === 'tabSandbox') document.getElementById('btnSandbox').classList.add('active');
-  
+  document.querySelectorAll('.main-section').forEach(t => t.style.display = 'none');
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById(tabId).style.display = 'block';
+  if(tabId === 'tabFiles') document.getElementById('btnFiles').classList.add('active');
+  if(tabId === 'tabInvestor') document.getElementById('btnInvestor').classList.add('active');
+  if(tabId === 'tabRealMVP') document.getElementById('btnRealMVP').classList.add('active');
   window.scrollTo({top: 0, behavior: 'smooth'});
 }
 
-/* ─── Inner Sub Tabs Switcher for Tab 1 ─── */
-function switchSubTab(subId) {
-  document.querySelectorAll('.sub-content').forEach(sc => sc.classList.remove('active'));
-  document.querySelectorAll('.sub-btn').forEach(sb => sb.classList.remove('active'));
+function switchSubTab(fileId) {
+  document.querySelectorAll('.sub-content').forEach(s => s.style.display = 'none');
+  document.querySelectorAll('.sub-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById(fileId).style.display = 'block';
   
-  document.getElementById(subId).classList.add('active');
-  const activeBtn = document.querySelector(`[onclick="switchSubTab('${subId}')"]`);
-  if(activeBtn) activeBtn.classList.add('active');
+  const activeBtnMap = {
+    'file1':'btnFile1', 'file2':'btnFile2', 'file3':'btnFile3', 
+    'file4':'btnFile4', 'file5':'btnFile5', 'filePitch':'btnFilePitch'
+  };
+  document.getElementById(activeBtnMap[fileId]).classList.add('active');
 }
 
-/* ─── Scenario Runner for Investor Pitch ─── */
+// --- Investor MVP Logic (Tab 2) ---
 function runScenario(type) {
-  const box = document.getElementById('pitchOutputBox');
-  const title = document.getElementById('outTitle');
-  const badge = document.getElementById('outBadge');
-  const risk = document.getElementById('outRisk');
-  const cost = document.getElementById('outCost');
-  const solution = document.getElementById('outSolution');
-  const roi = document.getElementById('outRoi');
+  const panel = document.getElementById('investorOutput');
+  const title = document.getElementById('invTitle');
+  const risk = document.getElementById('invRisk');
+  const cost = document.getElementById('invCost');
+  const sol = document.getElementById('invSolution');
   
-  box.style.display = 'block';
-  box.style.animation = 'fadeInMaster 0.4s ease';
+  panel.style.display = 'block';
+  panel.style.animation = 'none'; setTimeout(() => panel.style.animation = 'fadeIn 0.4s ease', 10);
 
-  if (type === 'safe') {
-    title.innerText = 'سيناريو: توافق جيني تام وآمن';
-    badge.className = 'badge badge-success';
-    badge.innerText = 'سليم ومتوافق';
-    risk.innerText = '0% خطر انتقال الطفرات';
-    risk.className = 'text-xl font-bold mt-1 text-emerald-400';
-    cost.innerText = '0 ريال سعودي';
-    solution.innerText = 'إصدار شهادة التوافق الفورية تلقائياً دون الحاجة لتدخل مستشفى صحة الافتراضي، مع إتاحة كتيب إرشادي جيني توعوي رقمي للأبناء مستقبلاً.';
-    roi.innerText = 'توفير كلي ومباشر لفرص الرعاية المتخصصة وتوجيه الطاقات للحالات الأكثر حرجاً.';
-  } else if (type === 'carrier') {
-    title.innerText = 'سيناريو: تداخل جيني متنحٍ مشترك (الأنيميا المنجلية)';
-    badge.className = 'badge badge-warning';
-    badge.innerText = 'خطر متنحٍ مشترك';
-    risk.innerText = '25% فرصة إصابة طفل في كل حمل';
-    risk.className = 'text-xl font-bold mt-1 text-orange-400';
-    cost.innerText = '5,250,000 ريال (كلفة مجتمعية تراكمية لأسرة بها 3 أطفال مصابين)';
-    solution.innerText = 'تحويل فوري إلى مسار عيادات الإنجاب بوزارة الصحة لتوجيه الزوجين لخيارات الحقن المجهري وفحص الأجنة الوراثي الموجه (PGT-M) لضمان فصل الأجنة المصابة وإرجاع السليمة.';
-    roi.innerText = 'إنقاذ الأسرة من الكلفة المباشرة البالغة 80,000 ريال سنوياً لكل طفل مصاب بالمنجلية، وتحقيق عائد وقائي فوري يتجاوز 90% من ميزانية الدعم العلاجي المخصصة.';
-  } else if (type === 'critical') {
-    title.innerText = 'سيناريو: تداخل جيني حرج (ضمور العضلات الشوكي SMA)';
-    badge.className = 'badge badge-danger';
-    badge.innerText = 'خطر حرج جداً';
-    risk.innerText = '25% إصابة مؤكدة بضمور العضلات الشوكي';
-    risk.className = 'text-xl font-bold mt-1 text-rose-500';
-    cost.innerText = '3.95 مليون ريال سعودي (لكل جرعة دواء واحدة Spinraza)';
-    solution.innerText = 'تفعيل بروتوكول التدخل العاجل وحظر إصدار الشهادة التقليدية، وتعيين مستشار جيني تفاعلي عبر مستشفى صحة الافتراضي لشرح تداعيات المرض، وعرض مسار الإنجاب البديل الآمن بنسبة 100%.';
-    roi.innerText = 'تجنب صرف جرعات دواء Spinraza البالغة 3.95 مليون ريال للطفل الواحد، مما يعني أن المنصة توفر ملايين الريالات للدولة في حالة وقائية واحدة فقط.';
-  }
-}
-
-/* ─── Mock File Upload for Sandbox ─── */
-function triggerMockUpload() {
-  const dzText = document.getElementById('dropzoneText');
-  dzText.innerText = '⏳ تم قراءة وتوليد البيانات من ملف الفحص المخبري (DNA_Report_Sample.pdf) بنجاح!';
-  document.getElementById('sbDisease').value = 'sma';
-  document.getElementById('sbMutation').value = 'yes';
-  document.getElementById('sbRelation').value = 'cousin';
-}
-
-/* ─── Calculate Dynamic Sandbox Data ─── */
-function calculateSandboxData() {
-  const idVal = document.getElementById('sbId').value;
-  const disease = document.getElementById('sbDisease').value;
-  const mutation = document.getElementById('sbMutation').value;
-  const relation = document.getElementById('sbRelation').value;
-  const budget = parseFloat(document.getElementById('sbBudget').value) || 0;
-  
-  const resPanel = document.getElementById('sandboxResultPanel');
-  resPanel.style.display = 'block';
-  resPanel.style.animation = 'fadeInMaster 0.4s ease';
-  
-  document.getElementById('resId').innerText = 'W-' + (idVal || '1000000000');
-  
-  const bBadge = document.getElementById('resStatusBadge');
-  const rRelation = document.getElementById('resRelationAnalysis');
-  const rCost = document.getElementById('resFinancialCost');
-  const rRoi = document.getElementById('resRoi');
-  const rText = document.getElementById('resTextReport');
-  
-  let calculatedCost = 0;
-  let calculatedRoi = 0;
-  let relationMultiplier = (relation === 'cousin') ? 1.5 : 1.0;
-  
-  if (mutation === 'no') {
-    bBadge.className = 'badge badge-success';
-    bBadge.innerText = 'آمن ومتوافق (طفرات غير متطابقة)';
-    rRelation.innerText = `درجة القرابة تزيد من التنوع الجيني نظراً لعدم تطابق جينات المرض المحقون.`;
-    calculatedCost = 0;
-    calculatedRoi = budget;
-    rText.innerText = 'بناءً على فحص الطفرات المحقونة، لا يوجد خطر وراثي مباشر مشترك بين الطرفين لهذا المرض المحدد. يُنصح بإكمال مسار الزواج الطبيعي وإصدار الشهادة فوراً.';
+  if(type === 'safe') {
+    title.innerText = 'توافق جيني تام (آمن)';
+    risk.innerHTML = '<span class="text-emerald-400">0%</span>';
+    cost.innerText = '0 ريال';
+    sol.innerText = 'استخراج شهادة التوافق الفورية آلياً، مسار الزواج طبيعي ولا يتطلب تدخلات مكلفة.';
+  } else if(type === 'carrier') {
+    title.innerText = 'تداخل خطر (أنيميا منجلية)';
+    risk.innerHTML = '<span class="text-orange-400">25% إصابة مؤكدة لكل حمل</span>';
+    cost.innerText = '5,250,000 ريال (مدى الحياة)';
+    sol.innerText = 'توجيه لمستشفى صحة الافتراضي لاقتراح تقنية فحص الأجنة (PGT-M) قبل الإرجاع. تكلفة التدخل 30 ألف ريال توفر ملايين للوزارة.';
   } else {
-    if (disease === 'sickle') {
-      bBadge.className = 'badge badge-warning';
-      bBadge.innerText = 'عدم توافق (خطر أنيميا منجلية)';
-      calculatedCost = 182000 * 5 * relationMultiplier; // 5 سنوات كلفة افتراضية
-      calculatedRoi = calculatedCost - budget;
-      rRelation.innerText = `زواج الأقارب (أبناء العمومة) يرفع من احتمالية ثبات الطفرة المتنحية المشتركة بنسبة 57% في العائلة.`;
-      rText.innerText = 'تحذير: كلا الطرفين يحملان نفس الطفرة الوراثية لمرض فقر الدم المنجلي. نوصي بشدة بالتحويل لعيادة الإنجاب الرقمية بمستشفى صحة الافتراضي لتجنب كلفة علاج سنوية مباشرة تبلغ 80,000 ريال لكل طفل.';
-    } else if (disease === 'sma') {
-      bBadge.className = 'badge badge-danger';
-      bBadge.innerText = 'خطر حرج (ضمور عضلات شوكي SMA)';
-      calculatedCost = 3950000 * relationMultiplier; 
-      calculatedRoi = calculatedCost - budget;
-      rRelation.innerText = `تداخل جيني حرج مع قرابة من الدرجة الأولى يضاعف معامل الخطورة الجينية التراكمية.`;
-      rText.innerText = 'تنبيه عالي الخطورة: النظام رصد تطابق كامل في طفرات جين ضمور العضلات الشوكي. تكلفة جرعة الدواء الواحدة تبلغ 3.95 مليون ريال. المسار الإلزامي المقترح هو الفحص الوراثي للأجنة PGT-M.';
-    } else {
-      bBadge.className = 'badge badge-danger';
-      bBadge.innerText = 'عدم توافق (الثلاسيميا الكبرى)';
-      calculatedCost = 150000 * 6 * relationMultiplier;
-      calculatedRoi = calculatedCost - budget;
-      rRelation.innerText = `تداخل الطفرات الجينية المتنحية المشتركة يشكل تهديداً مباشراً لسلامة الأجيال القادمة.`;
-      rText.innerText = 'تم رصد عدم توافق جيني لمرض الثلاسيميا. يرجى توجيه الأسرة نحو خيارات الحمل الواعي المتاحة لتفادي الاضطرابات الطبية المزمنة وعمليات نقل الدم المتكررة.';
-    }
+    title.innerText = 'تداخل حرج (ضمور العضلات SMA)';
+    risk.innerHTML = '<span class="text-red-500">خطر وراثي حرج جداً</span>';
+    cost.innerText = '3.95 مليون ريال (الجرعة الواحدة)';
+    sol.innerText = 'إيقاف إصدار الشهادة تلقائياً. تحويل الزوجين لجلسة استشارية ذكية عن بعد لشرح المسارات الإنجابية البديلة لحماية الأجيال والخزينة.';
   }
+}
+
+// --- Real MVP Sandbox Logic (Tab 3) ---
+function simulateFileUpload() {
+  const dropText = document.getElementById('dropText');
+  dropText.innerText = "✅ تم استخراج البيانات المخبرية من الملف بنجاح!";
+  dropText.style.color = "#34D399";
+  document.getElementById('dropzoneBox').style.borderColor = "#34D399";
   
-  rCost.innerText = Math.round(calculatedCost).toLocaleString() + ' ريال سعودي';
-  rRoi.innerText = Math.round(calculatedRoi > 0 ? calculatedRoi : 0).toLocaleString() + ' ريال سعودي سنوي وقائي';
+  // Auto-fill fields based on "mock upload"
+  document.getElementById('realId').value = "1099887766";
+  document.getElementById('realDisease').value = "sickle";
+  document.getElementById('realMutation').value = "matched";
+  document.getElementById('realKinship').value = "first";
+}
+
+function generateRealReport() {
+  const panel = document.getElementById('realOutputPanel');
+  panel.style.display = 'block';
+  panel.style.animation = 'none'; setTimeout(() => panel.style.animation = 'fadeIn 0.4s ease', 10);
+  
+  const id = document.getElementById('realId').value || Math.floor(Math.random() * 1000000000);
+  document.getElementById('outDocId').innerText = "W-" + id;
+
+  const disease = document.getElementById('realDisease').value;
+  const mutation = document.getElementById('realMutation').value;
+  const kinship = document.getElementById('realKinship').value;
+  
+  const badge = document.getElementById('outBadge');
+  const kinInfo = document.getElementById('outKinshipInfo');
+  const costEl = document.getElementById('outCostValue');
+  const roiEl = document.getElementById('outROI');
+  const report = document.getElementById('outSmartReport');
+
+  let cost = 0;
+  let roi = 0;
+
+  if(disease === 'safe' || mutation === 'unmatched') {
+    badge.innerHTML = '<span class="badge badge-success text-sm">آمن للتزاوج (لا طفرات مشتركة)</span>';
+    kinInfo.innerText = kinship === 'first' ? "قرابة الدرجة الأولى موجودة ولكن التنوع الجيني سليم لعدم تطابق الطفرات." : "لا يوجد تأثير سلبي للقرابة.";
+    costEl.innerText = "0 ريال سعودي";
+    roiEl.innerText = "لا توجد أعباء متوقعة";
+    report.innerText = "يتم إصدار التقرير الطبي المعتمد بالموافقة الفورية والمصادقة عليه تقنياً دون الحاجة لمراجعة عيادات الفحص.";
+    return;
+  }
+
+  // If there is a matched mutation
+  let multiplier = kinship === 'first' ? 1.5 : 1.0; 
+  let kinText = kinship === 'first' ? "زواج الأقارب يضاعف من معدل الخطر الوراثي بنسبة 57% ويثبت الجين المعيب في السلالة." : "خطر جيني قائم رغم تباعد القرابة.";
+  kinInfo.innerText = kinText;
+
+  if(disease === 'sickle') {
+    badge.innerHTML = '<span class="badge badge-warning text-sm">عدم توافق (فقر دم منجلي)</span>';
+    cost = 182000 * 5 * multiplier; // 5 years sample
+    roi = cost - 30000; // minus PGT-M IVF cost
+    report.innerText = "المحرك يكتشف تطابق في جين HBB (الأنيميا المنجلية). ننصح الأسرة بإجراء عمليات التلقيح المجهري وفحص الأجنة وراثياً قبل الإرجاع (PGT-M) لضمان إنجاب طفل سليم تماماً وقطع سلسلة المرض في العائلة.";
+  } else if(disease === 'sma') {
+    badge.innerHTML = '<span class="badge badge-danger text-sm">تداخل حرج (ضمور عضلات SMA)</span>';
+    cost = 3950000 * multiplier; // Spinraza injection
+    roi = cost - 40000;
+    report.innerText = "خطر بالغ: تطابق طفرات جين SMN1 للطرفين. يتم حظر إصدار الشهادة آلياً وتصعيد الحالة لمستشفى صحة الافتراضي للتدخل الفوري وتوجيه الزوجين لمسارات آمنة نظراً للتكلفة المليارية للدواء.";
+  } else if(disease === 'thalassemia') {
+    badge.innerHTML = '<span class="badge badge-danger text-sm">عدم توافق (ثلاسيميا كبرى)</span>';
+    cost = 120000 * 5 * multiplier;
+    roi = cost - 30000;
+    report.innerText = "تطابق في طفرات الثلاسيميا مما يعرض الأبناء مستقبلاً لحاجة نقل دم شهري متكرر. التوجيه العيادي الذكي يوصي بخيارات الطب الاتصالي للتوعية بالخيارات الإنجابية.";
+  }
+
+  costEl.innerText = Math.round(cost).toLocaleString('en-US') + " ريال سعودي";
+  roiEl.innerText = "توفير " + Math.round(roi).toLocaleString('en-US') + " ريال للميزانية";
 }
 </script>
-
 </body>
 </html>
