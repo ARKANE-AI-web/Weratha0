@@ -1,1917 +1,1031 @@
+
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>وَراثة WIRATHA — Strategic Suite</title>
-<style>
-/* ═══════════════════════════════════════════════════════════════
-   WIRATHA STRATEGIC SUITE — Unified Offline iOS Application
-   5-in-1: Blueprint | Governance | Cybersecurity | API | Financial
-   ═══════════════════════════════════════════════════════════════ */
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>منصة وَراثة | WIRATHA - دعم القرار الوراثي الذكي</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Reem+Kufi:wght@500;700&family=Tajawal:wght@400;500;700;900&display=swap" rel="stylesheet">
+    
+    <style>
+        /* التنسيقات الهندسية الأساسية والنقية للمنصة (Pure CSS - No CDN) */
+        :root {
+            --bg-deep: #0A2540;
+            --bg-deeper: #06182B;
+            --mint: #0FB5A8;
+            --mint-dark: #0A7D74;
+            --cyan: #22D3EE;
+            --coral: #FF6B6B;
+            --gold: #F4B860;
+            --white: #FFFFFF;
+            --grey-light: #EAF2F4;
+            --grey-text: #9DB0BF;
+        }
 
-/* ─── Reset & Base ─── */
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
-body{
-  font-family:'Tajawal','Segoe UI',sans-serif;
-  background:#06182B;
-  color:#0A2540;
-  overflow-x:hidden;
-  -webkit-font-smoothing:antialiased;
-  line-height:1.6;
-}
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Tajawal', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
 
-/* ─── Fonts ─── */
-@font-face{
-  font-family:'Tajawal';
-  font-style:normal;
-  font-weight:300 900;
-  font-display:swap;
-  src:local('Tajawal'),local('Tajawal Regular'),
-    url(https://fonts.gstatic.com/s/tajawal/v9/Iura6YBj_oCad4k1r5PCrQ.woff2) format('woff2');
-}
-@font-face{
-  font-family:'Reem Kufi';
-  font-style:normal;
-  font-weight:400 700;
-  font-display:swap;
-  src:local('Reem Kufi'),local('Reem Kufi Regular'),
-    url(https://fonts.gstatic.com/s/reemkufi/v15/2sDcZGJLip7W2J7v7wQDbw.woff2) format('woff2');
-}
-@font-face{
-  font-family:'JetBrains Mono';
-  font-style:normal;
-  font-weight:400 700;
-  font-display:swap;
-  src:local('JetBrains Mono'),
-    url(https://fonts.gstatic.com/s/jetbrainsmono/v18/tDbY2o-flEEny0FZhsfKu5WU4zr3E_BX0PnT8RD8yKxTOlOTk6OThhvA.woff2) format('woff2');
-}
+        body {
+            background-color: var(--bg-deep);
+            color: var(--white);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
 
-/* ─── Color Variables (All 5 Themes) ─── */
-:root{
-  /* Core / Blueprint */
-  --deep:#0A2540;--deeper:#06182B;--ink:#0A2540;
-  --teal:#0FB5A8;--tealdk:#0A7D74;--cyan:#22D3EE;
-  --coral:#FF6B6B;--gold:#F4B860;--gold2:#B8893A;
-  --mist:#EAF2F4;--line:#D7E2E6;--greyx:#5B7185;--soft:#9DB0BF;
-  /* Cyber */
-  --void:#040B14;--panel:#0C2236;--gridc:#13304D;
-  /* API */
-  --void2:#0B1220;--deep2:#0E1A2B;--deep3:#13243B;--panel2:#16273E;--card2:#1A2E49;--grid2:#1E3A5F;
-  --violet:#8B7FE8;--emer:#34D399;--sky:#38BDF8;
-  /* Financial */
-  --inkg:#10261C;--deepg:#0C3D2E;--forest:#114B38;--mint:#34D399;
-  --gold3:#C9A227;--goldlt:#E6C757;--paper:#F7F9F6;--lineg:#DCE6DF;--sand:#EEF4EE;--greyg:#5C6F62;
-}
+        h1, h2, h3, .font-head {
+            font-family: 'Reem Kufi', sans-serif;
+        }
 
-/* ─── Typography ─── */
-.font-head{font-family:'Reem Kufi','Tajawal',sans-serif}
-.font-mono{font-family:'JetBrains Mono',monospace}
-.kicker{letter-spacing:.28em}
-.bignum{font-variant-numeric:tabular-nums;line-height:.9}
+        /* شريط التبويبات العلوي الثابت - Sticky Header لمنع تجاهل الملفات */
+        .sticky-header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: linear-gradient(135deg, var(--bg-deeper), var(--bg-deep));
+            border-bottom: 2px solid rgba(34, 211, 238, 0.2);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+            padding: 10px 15px;
+        }
 
-/* ─── Selection ─── */
-::selection{background:#0FB5A8;color:#06182B}
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
 
-/* ═══════════════════════════════════════════════
-   TAB SYSTEM — Core Navigation
-   ═══════════════════════════════════════════════ */
-.tab-content{display:none}
-.tab-content.active{display:block;animation:fadeIn .45s ease}
-@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+        .brand-zone {
+            display: flex;
+            align-items: center;
+            justify-content: justify;
+            width: 100%;
+        }
 
-.tab-bar{
-  position:fixed;
-  bottom:0;left:0;right:0;
-  z-index:9999;
-  background:rgba(6,24,43,.95);
-  backdrop-filter:blur(20px);
-  -webkit-backdrop-filter:blur(20px);
-  border-top:1px solid rgba(15,181,168,.3);
-  display:flex;
-  justify-content:space-around;
-  align-items:center;
-  height:64px;
-  padding-bottom:env(safe-area-inset-bottom,0);
-}
-.tab-btn{
-  flex:1;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
-  gap:3px;
-  height:100%;
-  background:none;
-  border:none;
-  color:#5B7185;
-  font-family:'Tajawal',sans-serif;
-  font-size:10px;
-  font-weight:600;
-  cursor:pointer;
-  transition:all .25s;
-  -webkit-tap-highlight-color:transparent;
-  padding:4px 2px;
-}
-.tab-btn svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0}
-.tab-btn.active{color:#0FB5A8}
-.tab-btn:active{transform:scale(.92)}
+        .brand-title {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--white);
+        }
 
-/* Tab indicator */
-.tab-indicator{
-  position:absolute;
-  top:-1px;
-  height:2px;
-  background:linear-gradient(90deg,transparent,#0FB5A8,transparent);
-  transition:left .3s ease,width .3s ease;
-  pointer-events:none;
-}
+        .brand-title span {
+            color: var(--mint);
+        }
 
-/* ─── Scroll padding for tab bar ─── */
-main{padding-bottom:80px}
+        .badge-status {
+            background: rgba(15, 181, 168, 0.15);
+            border: 1px solid var(--mint);
+            color: var(--mint);
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: bold;
+        }
 
-/* ═══════════════════════════════════════════════
-   REVEAL ANIMATIONS
-   ═══════════════════════════════════════════════ */
-.reveal{opacity:0;transform:translateY(28px);transition:all .8s cubic-bezier(.16,1,.3,1)}
-.reveal.on{opacity:1;transform:none}
+        /* تصميم أزرار التصفح للملفات الاستراتيجية الخمسة */
+        .nav-tabs {
+            display: flex;
+            gap: 8px;
+            overflow-x: auto;
+            width: 100%;
+            padding-bottom: 5px;
+            scrollbar-width: none;
+        }
 
-/* ═══════════════════════════════════════════════
-   SHARED COMPONENTS
-   ═══════════════════════════════════════════════ */
-.hairline{height:1px;background:linear-gradient(90deg,transparent,#0FB5A8,transparent)}
-.glow-teal{background:radial-gradient(circle at 70% 20%,rgba(15,181,168,.25),transparent 55%)}
-.glow-coral{background:radial-gradient(circle at 20% 80%,rgba(255,107,107,.18),transparent 55%)}
-.glow-gold{background:radial-gradient(circle at 80% 20%,rgba(201,162,39,.18),transparent 55%)}
-.glow-cyan{background:radial-gradient(circle at 75% 15%,rgba(34,211,238,.16),transparent 55%)}
-.dots{background-image:radial-gradient(#1E3A5F 1px,transparent 1px);background-size:26px 26px}
-.grid-bg{background-image:linear-gradient(#13304D 1px,transparent 1px),linear-gradient(90deg,#13304D 1px,transparent 1px);background-size:44px 44px}
-.dot-grid{background-image:radial-gradient(#15406b 1px,transparent 1px);background-size:22px 22px}
-.grain{background-image:radial-gradient(rgba(255,255,255,.03) 1px,transparent 1px);background-size:3px 3px}
-.scanline{background:repeating-linear-gradient(180deg,transparent,transparent 2px,rgba(15,181,168,.025) 3px)}
+        .nav-tabs::-webkit-scrollbar {
+            display: none;
+        }
 
-.card-hover{transition:transform .35s cubic-bezier(.16,1,.3,1),box-shadow .35s}
-.card-hover:hover{transform:translateY(-6px)}
-.card-h{transition:transform .35s,box-shadow .35s}
-.card-h:hover{transform:translateY(-5px);box-shadow:0 20px 45px -20px rgba(16,38,28,.35)}
+        .tab-btn {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--grey-text);
+            padding: 8px 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 500;
+            white-space: nowrap;
+            transition: all 0.3s ease;
+        }
 
-.tick{position:relative;padding-right:22px}
-.tick::before{content:"";position:absolute;right:0;top:.55em;width:8px;height:8px;border-radius:99px;background:#0FB5A8}
+        .tab-btn.active, .tab-btn:hover {
+            background: var(--mint);
+            color: var(--bg-deep);
+            border-color: var(--mint);
+            font-weight: 700;
+            box-shadow: 0 0 10px rgba(15, 181, 168, 0.4);
+        }
 
-.phase-line{position:relative;padding-right:32px}
-.phase-line::before{content:"";position:absolute;right:13px;top:0;bottom:0;width:2px;background:linear-gradient(180deg,#0FB5A8,#F4B860,#FF6B6B,#0A2540)}
+        /* بوابة قفل الخصوصية والتوافق الثنائي المشروط (Twin-Consent Gate) */
+        .consent-overlay {
+            position: fixed;
+            inset: 0;
+            background: var(--bg-deeper);
+            z-index: 200;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            transition: all 0.5s ease-in-out;
+        }
 
-.node{transition:all .3s}
-.node:hover{border-color:#0FB5A8;box-shadow:0 0 0 1px #0FB5A8,0 12px 40px -12px rgba(15,181,168,.4)}
-.lock-glow{filter:drop-shadow(0 0 12px rgba(15,181,168,.5))}
-.layer{transition:all .3s}
-.layer:hover{transform:translateX(-4px);border-color:#0FB5A8}
+        .consent-card {
+            background: linear-gradient(145deg, #0e3156, #06182b);
+            border: 2px solid var(--cyan);
+            border-radius: 24px;
+            max-width: 550px;
+            width: 100%;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 0 40px rgba(34, 211, 238, 0.25);
+        }
 
-/* Tables */
-.matrix th,.matrix td{border:1px solid var(--line)}
-table{border-collapse:collapse}
-.bar{transition:width 1.2s cubic-bezier(.16,1,.3,1)}
+        .lock-icon {
+            font-size: 48px;
+            color: var(--cyan);
+            margin-bottom: 15px;
+            animation: pulse 2s infinite;
+        }
 
-/* Code */
-pre{font-family:'JetBrains Mono',monospace;font-size:12.5px;line-height:1.7;overflow-x:auto;-webkit-overflow-scrolling:touch}
-.codecard{background:#0E1A2B;border:1px solid #1E3A5F}
-.k{color:#38BDF8}.s{color:#34D399}.n{color:#F4B860}.c{color:#7089A0}.b{color:#8B7FE8}
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 0.8; }
+            50% { transform: scale(1.05); opacity: 1; }
+            100% { transform: scale(1); opacity: 0.8; }
+        }
 
-/* API method badges */
-.method-get{background:#0F766E;color:#5EEAD4}
-.method-post{background:#1E40AF;color:#93C5FD}
-.method-put{background:#92560E;color:#FCD34D}
+        .consent-title {
+            font-size: 24px;
+            margin-bottom: 12px;
+            color: var(--white);
+        }
 
-/* Chips */
-.chip{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.5px}
+        .consent-desc {
+            color: var(--grey-text);
+            font-size: 14px;
+            margin-bottom: 25px;
+            line-height: 1.8;
+        }
 
-/* Seals */
-.seal{background:linear-gradient(135deg,#0A2540,#0A7D74)}
+        .consent-buttons-pair {
+            display: grid;
+            grid-template-cols: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
 
-/* Key gradients */
-.key-a{background:linear-gradient(135deg,#0FB5A8,#0A7D74)}
-.key-b{background:linear-gradient(135deg,#22D3EE,#0891A7)}
+        .consent-toggle-btn {
+            background: rgba(255, 255, 255, 0.03);
+            border: 2px dashed rgba(34, 211, 238, 0.4);
+            color: var(--white);
+            padding: 15px;
+            border-radius: 14px;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
 
-/* ─── Scroll offset for tab bar ─── */
-.tab-section{padding-bottom:90px}
+        .consent-toggle-btn.checked {
+            background: rgba(15, 181, 168, 0.15);
+            border: 2px solid var(--mint);
+            color: var(--mint);
+            box-shadow: 0 0 15px rgba(15, 181, 168, 0.2);
+        }
 
-/* ═══════════════════════════════════════════════
-   RESPONSIVE UTILITIES
-   ═══════════════════════════════════════════════ */
-@media(max-width:768px){
-  .responsive-grid-2,.responsive-grid-3,.responsive-grid-4,.responsive-grid-5{grid-template-columns:1fr!important}
-  .responsive-flex-col{flex-direction:column!important}
-  .responsive-text-5xl{font-size:2.25rem!important}
-  .responsive-text-4xl{font-size:1.75rem!important}
-  .responsive-text-3xl{font-size:1.5rem!important}
-  .responsive-p-8{padding:1.5rem!important}
-  .responsive-px-8{padding-left:1rem!important;padding-right:1rem!important}
-  .responsive-gap-6{gap:1rem!important}
-}
-@media(min-width:769px){
-  .responsive-grid-2{grid-template-columns:repeat(2,1fr)}
-  .responsive-grid-3{grid-template-columns:repeat(3,1fr)}
-  .responsive-grid-4{grid-template-columns:repeat(4,1fr)}
-  .responsive-grid-5{grid-template-columns:repeat(5,1fr)}
-  .responsive-grid-12{grid-template-columns:repeat(12,1fr)}
-  .md-col-span-5{grid-column:span 5/span 5}
-  .md-col-span-7{grid-column:span 7/span 7}
-  .md-col-span-4{grid-column:span 4/span 4}
-  .md-col-span-3{grid-column:span 3/span 3}
-  .md-col-span-2{grid-column:span 2/span 2}
-  .md-col-span-1{grid-column:span 1/span 1}
-}
+        .consent-notification {
+            background: rgba(244, 184, 96, 0.1);
+            border: 1px solid var(--gold);
+            color: var(--gold);
+            padding: 12px;
+            border-radius: 10px;
+            font-size: 13px;
+            margin-top: 15px;
+            display: none;
+        }
 
-/* ─── Utility Classes ─── */
-.max-w-6xl{max-width:72rem;margin-left:auto;margin-right:auto}
-.max-w-5xl{max-width:64rem;margin-left:auto;margin-right:auto}
-.max-w-4xl{max-width:56rem;margin-left:auto;margin-right:auto}
-.max-w-3xl{max-width:48rem;margin-left:auto;margin-right:auto}
+        /* الهيكل العام للمحتوى */
+        .main-content {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 0 15px 80px 15px;
+        }
 
-.grid{display:grid}
-.flex{display:flex}
-.inline-flex{display:inline-flex}
-.items-center{align-items:center}
-.items-stretch{align-items:stretch}
-.justify-center{justify-content:center}
-.justify-between{justify-content:space-between}
-.flex-col{flex-direction:column}
-.flex-wrap{flex-wrap:wrap}
-.flex-1{flex:1 1 0%}
-.gap-px{gap:1px}
-.gap-2{gap:.5rem}
-.gap-3{gap:.75rem}
-.gap-4{gap:1rem}
-.gap-6{gap:1.5rem}
-.gap-8{gap:2rem}
-.gap-10{gap:2.5rem}
+        /* شاشة اختيار المحركين الأساسيين */
+        .engine-selector {
+            display: grid;
+            grid-template-cols: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
 
-.text-center{text-align:center}
-.text-left{text-align:left}
-.text-right{text-align:right}
+        @media (max-width: 768px) {
+            .engine-selector {
+                grid-template-cols: 1fr;
+            }
+        }
 
-.relative{position:relative}
-.absolute{position:absolute}
-.sticky{position:sticky}
-.top-0{top:0}
-.inset-0{top:0;right:0;bottom:0;left:0}
-.z-40{z-index:40}
-.overflow-hidden{overflow:hidden}
-.overflow-x-auto{overflow-x:auto}
+        .engine-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 16px;
+            padding: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: right;
+        }
 
-.rounded-full{border-radius:9999px}
-.rounded-xl{border-radius:.75rem}
-.rounded-2xl{border-radius:1rem}
-.rounded-3xl{border-radius:1.5rem}
+        .engine-card.active {
+            background: rgba(34, 211, 238, 0.05);
+            border: 2px solid var(--cyan);
+            box-shadow: 0 4px 20px rgba(34, 211, 238, 0.15);
+        }
 
-.border{border-width:1px}
-.border-2{border-width:2px}
-.border-t-4{border-top-width:4px}
-.border-b{border-bottom-width:1px}
-.border-r-2{border-right-width:2px}
-.border-r-4{border-right-width:4px}
-.border-teal{border-color:rgba(15,181,168,.4)}
-.border-emer{border-color:#0E9F6E}
-.border-coral{border-color:rgba(255,107,107,.4)}
-.border-gold{border-color:rgba(201,162,39,.4)}
+        .engine-card h3 {
+            font-size: 18px;
+            color: var(--white);
+            margin-bottom: 5px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
 
-.w-fit{width:fit-content}
-.w-8{width:2rem}
-.w-10{width:2.5rem}
-.w-32{width:8rem}
-.w-40{width:10rem}
-.w-48{width:12rem}
-.w-full{width:100%}
-.h-3{height:.75rem}
-.h-4{height:1rem}
-.h-8{height:2rem}
-.h-10{height:2.5rem}
+        .engine-card.active h3 {
+            color: var(--cyan);
+        }
 
-.min-h-screen{min-height:100vh}
-.min-h-\[78vh\]{min-height:78vh}
-.min-h-\[68vh\]{min-height:68vh}
-.min-h-\[88vh\]{min-height:88vh}
+        .engine-card p {
+            color: var(--grey-text);
+            font-size: 13px;
+        }
 
-.p-3{padding:.75rem}
-.p-4{padding:1rem}
-.p-5{padding:1.25rem}
-.p-6{padding:1.5rem}
-.p-7{padding:1.75rem}
-.p-8{padding:2rem}
-.p-9{padding:2.25rem}
-.p-10{padding:2.5rem}
-.px-3{padding-left:.75rem;padding-right:.75rem}
-.px-4{padding-left:1rem;padding-right:1rem}
-.px-5{padding-left:1.25rem;padding-right:1.25rem}
-.px-7{padding-left:1.75rem;padding-right:1.75rem}
-.px-8{padding-left:2rem;padding-right:2rem}
-.py-2{padding-top:.5rem;padding-bottom:.5rem}
-.py-3{padding-top:.75rem;padding-bottom:.75rem}
-.py-4{padding-top:1rem;padding-bottom:1rem}
-.py-6{padding-top:1.5rem;padding-bottom:1.5rem}
-.py-10{padding-top:2.5rem;padding-bottom:2.5rem}
-.py-14{padding-top:3.5rem;padding-bottom:3.5rem}
-.py-16{padding-top:4rem;padding-bottom:4rem}
-.py-20{padding-top:5rem;padding-bottom:5rem}
-.py-24{padding-top:6rem;padding-bottom:6rem}
-.pt-12{padding-top:3rem}
-.pb-10{padding-bottom:2.5rem}
-.pb-20{padding-bottom:5rem}
-.pb-4{padding-bottom:1rem}
-.pr-10{padding-right:2.5rem}
-.pr-4{padding-right:1rem}
-.pr-5{padding-right:1.25rem}
-.pr-6{padding-right:1.5rem}
-.pl-4{padding-left:1rem}
-.mt-1{margin-top:.25rem}
-.mt-2{margin-top:.5rem}
-.mt-3{margin-top:.75rem}
-.mt-5{margin-top:1.25rem}
-.mt-6{margin-top:1.5rem}
-.mt-7{margin-top:1.75rem}
-.mt-8{margin-top:2rem}
-.mt-10{margin-top:2.5rem}
-.mt-12{margin-top:3rem}
-.mt-14{margin-top:3.5rem}
-.mb-1{margin-bottom:.25rem}
-.mb-2{margin-bottom:.5rem}
-.mb-3{margin-bottom:.75rem}
-.mb-4{margin-bottom:1rem}
-.mb-5{margin-bottom:1.25rem}
-.mb-6{margin-bottom:1.5rem}
-.mb-8{margin-bottom:2rem}
-.mb-10{margin-bottom:2.5rem}
-.mb-12{margin-bottom:3rem}
-.mb-14{margin-bottom:3.5rem}
-.mb-16{margin-bottom:4rem}
-.mb-20{margin-bottom:5rem}
-.mr-auto{margin-right:auto}
-.ml-auto{margin-left:auto}
-.mx-auto{margin-left:auto;margin-right:auto}
+        /* المحرك الأول: محاكي السيناريوهات الاستراتيجية الموجهة */
+        .scenario-container {
+            display: grid;
+            grid-template-cols: 280px 1fr;
+            gap: 20px;
+        }
 
-.text-xs{font-size:.75rem}
-.text-sm{font-size:.875rem}
-.text-base{font-size:1rem}
-.text-lg{font-size:1.125rem}
-.text-xl{font-size:1.25rem}
-.text-2xl{font-size:1.5rem}
-.text-3xl{font-size:1.875rem}
-.text-4xl{font-size:2.25rem}
-.text-5xl{font-size:3rem}
-.text-6xl{font-size:3.75rem}
-.text-7xl{font-size:4.5rem}
-.text-8xl{font-size:6rem}
+        @media (max-width: 768px) {
+            .scenario-container {
+                grid-template-cols: 1fr;
+            }
+        }
 
-.font-light{font-weight:300}
-.font-normal{font-weight:400}
-.font-medium{font-weight:500}
-.font-bold{font-weight:700}
-.font-black{font-weight:900}
-.leading-none{line-height:1}
-.leading-tight{line-height:1.25}
-.leading-relaxed{line-height:1.625}
-.leading-loose{line-height:2}
-.tracking-widest{letter-spacing:.25em}
-.tracking-\[\.5em\]{letter-spacing:.5em}
+        .scenario-sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
 
-.opacity-50{opacity:.5}
-.opacity-60{opacity:.6}
+        .scenario-anchor {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 15px;
+            border-radius: 12px;
+            cursor: pointer;
+            text-align: right;
+            transition: all 0.3s ease;
+        }
 
-.space-y-3>*+*{margin-top:.75rem}
-.space-y-4>*+*{margin-top:1rem}
-.space-y-5>*+*{margin-top:1.25rem}
-.space-y-8>*+*{margin-top:2rem}
+        .scenario-anchor:hover, .scenario-anchor.active {
+            background: rgba(15, 181, 168, 0.08);
+            border-right: 4px solid var(--mint);
+            border-color: rgba(15, 181, 168, 0.3);
+        }
 
-.list-none{list-style:none}
+        .scenario-anchor h4 {
+            font-size: 14px;
+            color: var(--white);
+            margin-bottom: 4px;
+        }
 
-/* ─── Colors ─── */
-.bg-white{background:#fff}
-.bg-white\/10{background:rgba(255,255,255,.1)}
-.bg-white\/5{background:rgba(255,255,255,.05)}
-.bg-black\/20{background:rgba(0,0,0,.2)}
-.bg-mist{background:#EAF2F4}
-.bg-sand{background:#EEF4EE}
-.bg-deep{background:#0A2540}
-.bg-deeper{background:#06182B}
-.bg-ink{background:#10261C}
-.bg-inkg{background:#10261C}
-.bg-forest{background:#114B38}
-.bg-deepg{background:#0C3D2E}
-.bg-paper{background:#F7F9F6}
-.bg-void{background:#040B14}
-.bg-void2{background:#0B1220}
-.bg-panel{background:#0C2236}
-.bg-panel2{background:#16273E}
-.bg-card{background:#fff}
-.bg-card2{background:#1A2E49}
-.bg-\[\#F7FAFB\]{background:#F7FAFB}
+        .scenario-anchor.active h4 {
+            color: var(--mint);
+        }
 
-.text-white{color:#fff}
-.text-mist{color:#EAF2F4}
-.text-greyx{color:#5B7185}
-.text-soft{color:#9DB0BF}
-.text-teal{color:#0FB5A8}
-.text-tealdk{color:#0A7D74}
-.text-cyan{color:#22D3EE}
-.text-coral{color:#FF6B6B}
-.text-gold{color:#F4B860}
-.text-gold2{color:#B8893A}
-.text-gold3{color:#C9A227}
-.text-goldlt{color:#E6C757}
-.text-emer{color:#0E9F6E}
-.text-mint{color:#34D399}
-.text-forest{color:#114B38}
-.text-violet{color:#8B7FE8}
-.text-sky{color:#38BDF8}
-.text-ink{color:#0A2540}
-.text-inkg{color:#10261C}
-.text-greyg{color:#5C6F62}
+        .scenario-anchor p {
+            color: var(--grey-text);
+            font-size: 11px;
+        }
 
-/* ─── iPhone Safe Area ─── */
-@supports(-webkit-touch-callout:none){
-  .tab-bar{padding-bottom:max(env(safe-area-inset-bottom),8px)}
-}
+        /* لوحة عرض النتائج ودعم القرار الأسري والجيني */
+        .display-board {
+            background: linear-gradient(135deg, #0d2a4a, #061c33);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 25px;
+            position: relative;
+        }
 
-/* ─── Print ─── */
-@media print{.no-print{display:none}body{background:#fff}}
-</style>
+        .result-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding-bottom: 15px;
+            margin-bottom: 20px;
+        }
+
+        .status-badge-dynamic {
+            padding: 6px 16px;
+            border-radius: 30px;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        .badge-danger {
+            background: rgba(255, 107, 107, 0.15);
+            border: 1px solid var(--coral);
+            color: var(--coral);
+        }
+
+        .badge-success {
+            background: rgba(15, 181, 168, 0.15);
+            border: 1px solid var(--mint);
+            color: var(--mint);
+        }
+
+        .visual-metrics-grid {
+            display: grid;
+            grid-template-cols: 140px 1fr;
+            gap: 25px;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+
+        @media (max-width: 576px) {
+            .visual-metrics-grid {
+                grid-template-cols: 1fr;
+                text-align: center;
+            }
+        }
+
+        /* دائرة حساب المخاطر الجينية المضيئة */
+        .risk-circle-wrapper {
+            position: relative;
+            width: 130px;
+            height: 130px;
+            margin: 0 auto;
+        }
+
+        .risk-circle-svg {
+            transform: rotate(-90deg);
+            width: 130px;
+            height: 130px;
+        }
+
+        .risk-circle-bg {
+            fill: none;
+            stroke: rgba(255, 255, 255, 0.05);
+            stroke-width: 10;
+        }
+
+        .risk-circle-prime {
+            fill: none;
+            stroke: var(--coral);
+            stroke-width: 10;
+            stroke-dasharray: 345;
+            stroke-dashoffset: 345;
+            stroke-linecap: round;
+            transition: stroke-dashoffset 1s ease-in-out, stroke 0.5s ease;
+        }
+
+        .risk-circle-text {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .risk-value {
+            font-size: 28px;
+            font-weight: 900;
+            color: var(--white);
+        }
+
+        .risk-lbl {
+            font-size: 11px;
+            color: var(--grey-text);
+        }
+
+        /* العداد الاقتصادي الوطني الحي للأثر والـ ROI */
+        .roi-counter-box {
+            background: rgba(6, 24, 43, 0.6);
+            border: 1px solid rgba(244, 184, 96, 0.2);
+            border-radius: 12px;
+            padding: 15px 20px;
+        }
+
+        .roi-label {
+            font-size: 12px;
+            color: var(--gold);
+            font-weight: bold;
+            margin-bottom: 4px;
+        }
+
+        .roi-number {
+            font-family: 'Reem Kufi', sans-serif;
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--white);
+        }
+
+        /* تقرير الإرشاد والدعم النفسي الأسري والقرار الموجه */
+        .counseling-report-card {
+            background: rgba(255, 255, 255, 0.02);
+            border-left: 4px solid var(--cyan);
+            padding: 20px;
+            border-radius: 0 12px 12px 0;
+            margin-bottom: 25px;
+        }
+
+        .counseling-report-card h5 {
+            color: var(--cyan);
+            font-size: 15px;
+            margin-bottom: 8px;
+        }
+
+        .counseling-report-card p {
+            color: var(--grey-light);
+            font-size: 14px;
+            line-height: 1.8;
+            text-align: justify;
+        }
+
+        /* أزرار مسارات الحلول الفورية والربط التشغيلي */
+        .action-pathways-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .pathway-btn {
+            padding: 12px 24px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 14px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            border: none;
+        }
+
+        .btn-mint {
+            background: var(--mint);
+            color: var(--bg-deep);
+        }
+
+        .btn-mint:hover {
+            background: var(--mint-dark);
+            box-shadow: 0 4px 15px rgba(15, 181, 168, 0.3);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: var(--white);
+        }
+
+        .btn-outline:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: var(--white);
+        }
+
+        /* المحرك الثاني: مختبر المعالجة الجينية التفاعلي الحي */
+        .playground-panel {
+            background: linear-gradient(135deg, #09213a, #051526);
+            border: 1px solid rgba(34, 211, 238, 0.2);
+            border-radius: 24px;
+            padding: 30px;
+        }
+
+        .selectors-row {
+            display: grid;
+            grid-template-cols: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 25px;
+        }
+
+        @media (max-width: 576px) {
+            .selectors-row {
+                grid-template-cols: 1fr;
+            }
+        }
+
+        .select-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .select-group label {
+            font-size: 14px;
+            color: var(--grey-text);
+            font-weight: bold;
+        }
+
+        .genetic-select {
+            background: var(--bg-deeper);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            color: var(--white);
+            padding: 12px;
+            border-radius: 10px;
+            font-size: 14px;
+            outline: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .genetic-select:focus {
+            border-color: var(--cyan);
+            box-shadow: 0 0 10px rgba(34, 211, 238, 0.2);
+        }
+
+        .trigger-pilot-btn {
+            width: 100%;
+            background: linear-gradient(90deg, var(--mint), var(--cyan));
+            color: var(--bg-deep);
+            padding: 15px;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 20px rgba(34, 211, 238, 0.25);
+            transition: all 0.3s ease;
+            margin-bottom: 30px;
+        }
+
+        .trigger-pilot-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(34, 211, 238, 0.4);
+        }
+
+        /* التذييل الرسمي للمنصة ومثبت رقم الجوال لحمايته من الانقلاب في الآيفون */
+        .footer-platform {
+            background: var(--bg-deeper);
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 25px 15px;
+            text-align: center;
+            font-size: 13px;
+            color: var(--grey-text);
+            position: relative;
+            width: 100%;
+        }
+
+        .footer-credits {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .phone-fix {
+            direction: ltr;
+            display: inline-block;
+            color: var(--gold);
+            font-weight: bold;
+        }
+    </style>
 </head>
 <body>
 
-<!-- ═══════════════════════════════════════════════════════════════
-     TAB BAR — 5 Navigation Tabs
-     ═══════════════════════════════════════════════════════════════ -->
-<nav class="tab-bar" id="tabBar" aria-label="Navigation">
-  <div class="tab-indicator" id="tabIndicator"></div>
-
-  <button class="tab-btn active" data-tab="tab1" onclick="switchTab('tab1')" aria-label="الملف التنفيذي">
-    <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14,2 14,8 20,8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10,9 9,9 8,9"/></svg>
-    <span>التنفيذي</span>
-  </button>
-  <button class="tab-btn" data-tab="tab2" onclick="switchTab('tab2')" aria-label="الحوكمة">
-    <svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-    <span>الحوكمة</span>
-  </button>
-  <button class="tab-btn" data-tab="tab3" onclick="switchTab('tab3')" aria-label="الأمن السيبراني">
-    <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-    <span>الأمن</span>
-  </button>
-  <button class="tab-btn" data-tab="tab4" onclick="switchTab('tab4')" aria-label="الربط التقني">
-    <svg viewBox="0 0 24 24"><polyline points="16,18 22,12 16,6"/><polyline points="8,6 2,12 8,18"/></svg>
-    <span>الـ APIs</span>
-  </button>
-  <button class="tab-btn" data-tab="tab5" onclick="switchTab('tab5')" aria-label="النموذج المالي">
-    <svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
-    <span>المالي</span>
-  </button>
-</nav>
-
-<!-- ═══════════════════════════════════════════════════════════════
-     TAB 1: الملف التنفيذي والاستراتيجي الشامل
-     ═══════════════════════════════════════════════════════════════ -->
-<div class="tab-content active" id="tab1">
-
-<!-- COVER -->
-<header class="relative min-h-[78vh] overflow-hidden bg-deeper grain" style="background:#06182B">
-  <div class="absolute inset-0 glow-teal"></div>
-  <div class="absolute inset-0 glow-coral"></div>
-  <div class="absolute inset-0 dot-grid" style="opacity:.12"></div>
-  <div class="relative max-w-6xl mx-auto px-8 pt-12">
-    <div class="flex items-center justify-between text-sm responsive-flex-col">
-      <span class="text-teal font-bold kicker">ARKANE&nbsp;AI</span>
-      <span class="text-greyx">وثيقة تنفيذية واستراتيجية · سرّية</span>
-    </div>
-  </div>
-  <div class="relative max-w-6xl mx-auto px-8 flex flex-col justify-center" style="min-height:65vh">
-    <div class="reveal on">
-      <p class="text-teal kicker text-sm mb-6">منصّة دعم القرار الوراثي قبل الزواج</p>
-      <h1 class="font-head text-white text-7xl md:text-8xl font-bold leading-none mb-3 responsive-text-5xl">وَراثة</h1>
-      <p class="text-teal text-xl tracking-[.5em] font-bold mb-8">WIRATHA</p>
-      <div class="hairline w-40 mb-8"></div>
-      <p class="text-mist text-2xl md:text-3xl font-light max-w-3xl leading-relaxed">
-        نحوّل نتيجة الفحص من <span class="text-coral font-medium">رقمٍ مُخيف</span>
-        إلى <span class="text-teal font-medium">قرارٍ واعٍ ومفهوم</span> — بالعربية، وبما يحترم الثقافة.
-      </p>
-    </div>
-    <div class="reveal on mt-14 grid responsive-grid-4 gap-px bg-white/10 max-w-4xl rounded-2xl overflow-hidden">
-      <div class="bg-deep p-6"><p class="bignum text-teal text-4xl font-head font-bold">57%</p><p class="text-greyx text-xs mt-2 leading-relaxed">زواج الأقارب في السعودية</p></div>
-      <div class="bg-deep p-6"><p class="bignum text-teal text-4xl font-head font-bold">90%</p><p class="text-greyx text-xs mt-2 leading-relaxed">من المعرّضين يتزوجون رغم الخطر</p></div>
-      <div class="bg-deep p-6"><p class="bignum text-teal text-4xl font-head font-bold">77%</p><p class="text-greyx text-xs mt-2 leading-relaxed">أمراض متنحّية مرتبطة بالقرابة</p></div>
-      <div class="bg-deep p-6"><p class="bignum text-teal text-4xl font-head font-bold">2</p><p class="text-greyx text-xs mt-2 leading-relaxed">مرضان فقط يغطّيهما الفحص الحالي</p></div>
-    </div>
-  </div>
-  <div class="relative max-w-6xl mx-auto px-8 pb-10 flex justify-between items-center text-xs text-greyx">
-    <span>صحة الافتراضي · وزارة الصحة · رؤية 2030</span>
-    <span style="writing-mode:vertical-rl;letter-spacing:.25em;opacity:.6">SCROLL</span>
-  </div>
-</header>
-
-<main style="background:#EAF2F4">
-
-<!-- 01 الفلسفة -->
-<section class="relative py-24 px-8 tab-section">
-  <div class="max-w-6xl mx-auto">
-    <div class="flex items-center gap-5 mb-3 reveal">
-      <span class="font-head text-teal/30 text-6xl font-bold bignum">01</span>
-      <p class="kicker text-tealdk text-sm font-bold">مفهوم الفكرة وفلسفة الوجود</p>
-    </div>
-    <h2 class="font-head text-ink text-4xl md:text-5xl font-bold leading-tight mb-10 reveal responsive-text-4xl">
-      الفحص يكشف الخطر — لكنه لا يصنع القرار
-    </h2>
-    <div class="grid responsive-grid-2 gap-8 items-start">
-      <div class="reveal">
-        <p class="text-ink text-lg leading-loose mb-5">
-          منذ <span class="font-bold">2003</span> فرضت المملكة الفحص الطبي الإلزامي قبل الزواج — إنجازٌ وقائي رائد.
-          غير أن المنظومة تتوقّف عند حدّ <span class="font-bold text-coral">الكشف والتحذير الجاف</span>: تُسلِّم الزوجين شهادة «توافق / عدم توافق»
-          دون أن تُترجم النتيجة إلى معنىً مفهوم، ولا تعرض الخيارات، ولا تواكب القرار. النتيجة قرارٌ يُتخذ تحت
-          <span class="font-bold">ذعرٍ ثقافي وضغطٍ اجتماعي</span> وغيابِ فهم.
-        </p>
-        <p class="text-ink text-lg leading-loose">
-          <span class="font-bold text-tealdk">«وَراثة»</span> هي طبقة الذكاء التي تجلس فوق الفحص القائم، فتحوّل الأرقام المخبرية والقرابة والتاريخ العائلي
-          إلى <span class="font-bold">احتمالٍ واضح، وخياراتٍ مشروحة، وقرارٍ واعٍ</span> — لا تلغي الفحص الوطني، بل تُكمل نصفه الناقص.
-        </p>
-      </div>
-      <div class="reveal">
-        <div class="bg-deep rounded-3xl p-8 text-white relative overflow-hidden">
-          <div class="absolute -top-10 -left-10 w-40 h-40 rounded-full bg-teal/10" style="filter:blur(40px)"></div>
-          <p class="kicker text-teal text-xs mb-6">من الكشف إلى القرار</p>
-          <div class="space-y-5 relative">
-            <div class="flex items-center justify-between border-b border-white/10 pb-4">
-              <span class="text-mist">اليوم</span><span class="font-bold text-coral">«أنتم غير متوافقين»</span>
+    <div id="consentGate" class="consent-overlay">
+        <div class="consent-card">
+            <div class="lock-icon">🔒</div>
+            <h2 class="consent-title font-head">بوابة الموافقة الثنائية المشفرة</h2>
+            <p class="consent-desc">امتثالاً لنظام حماية البيانات الشخصية السعودي (PDPL) واللوائح الصحية في مجلس الصحة السعودي، تم تعمية وتشفير البيانات الجينية للطرفين. لن تفتح المنصة ولا مسارات القرار إلا بتوقيع رقمي متزامن ومستقل من الخاطب والمخطوبة معاً لمنع التسريب وضمان الخصوصية التامة.</p>
+            
+            <div class="consent-buttons-pair">
+                <button id="suitorBtn" class="consent-toggle-btn" onclick="toggleConsent('suitor')">
+                    <span id="suitorIcon">⭕</span>
+                    <span>موافقة وتوقيع الخاطب</span>
+                </button>
+                <button id="brideBtn" class="consent-toggle-btn" onclick="toggleConsent('bride')">
+                    <span id="brideIcon">⭕</span>
+                    <span>موافقة وتوقيع المخطوبة</span>
+                </button>
             </div>
-            <div class="flex items-center justify-center text-teal text-2xl">↓</div>
-            <div class="flex items-center justify-between">
-              <span class="text-mist">مع وَراثة</span><span class="font-bold text-teal">«إليكم الاحتمال والخيارات»</span>
+
+            <div id="consentNotification" class="consent-notification"></div>
+        </div>
+    </div>
+
+    <header class="sticky-header">
+        <div class="header-container">
+            <div class="brand-zone">
+                <h1 class="brand-title">منصة <span>وَراثة</span> · WIRATHA</h1>
+                <div style="margin-right: auto;" class="badge-status">طبقة ذكاء دعم القرار الوراثي</div>
             </div>
-          </div>
+            <nav class="nav-tabs">
+                <button class="tab-btn active" onclick="switchMainFile('mvp')">📊 محرك الـ MVP التفاعلي</button>
+                <button class="tab-btn" onclick="window.open('https://arkane-ai-web.github.io/Weratha0/', '_blank')">📑 الملف التنفيذي والاستراتيجي</button>
+                <button class="tab-btn" onclick="window.open('https://arkane-ai-web.github.io/Weratha0/', '_blank')">⚖️ وثيقة حوكمة البيانات والامتثال</button>
+                <button class="tab-btn" onclick="window.open('https://arkane-ai-web.github.io/Weratha0/', '_blank')">🛡️ استراتيجية الأمن السيبراني</button>
+                <button class="tab-btn" onclick="window.open('https://arkane-ai-web.github.io/Weratha0/', '_blank')">💸 النموذج المالي وعائد الـ ROI</button>
+            </nav>
         </div>
-      </div>
-    </div>
-  </div>
-</section>
+    </header>
 
-<!-- 02 المشكلة الإنسانية -->
-<section class="relative py-24 px-8 bg-deeper grain text-white overflow-hidden tab-section" style="background:#06182B">
-  <div class="absolute inset-0 glow-coral"></div>
-  <div class="relative max-w-6xl mx-auto">
-    <div class="flex items-center gap-5 mb-3 reveal">
-      <span class="font-head text-coral/40 text-6xl font-bold bignum">02</span>
-      <p class="kicker text-coral text-sm font-bold">صياغة المشكلة — البُعد الإنساني أولاً</p>
-    </div>
-    <h2 class="font-head text-white text-4xl md:text-5xl font-bold leading-tight mb-12 reveal max-w-3xl responsive-text-4xl">
-      كل قرارٍ غير واعٍ قد يكون طفلاً يولد لمعاناةٍ كان يمكن تجنّبها
-    </h2>
-    <div class="grid responsive-grid-3 gap-6 mb-14">
-      <div class="reveal bg-white/[.04] border border-white/10 rounded-2xl p-7">
-        <h3 class="font-head text-coral text-xl mb-3">معاناة الطفل</h3>
-        <p class="text-mist leading-relaxed text-sm">نوبات ألمٍ متكررة، دخول طوارئ، نقل دم، عمليات، ومضاعفاتٌ مزمنة ترافقه مدى الحياة — اعتلالٌ وراثي كان بالإمكان تلافيه قبل أن يبدأ.</p>
-      </div>
-      <div class="reveal bg-white/[.04] border border-white/10 rounded-2xl p-7">
-        <h3 class="font-head text-coral text-xl mb-3">إنهاك الأسرة</h3>
-        <p class="text-mist leading-relaxed text-sm">عبءٌ نفسيٌّ وجسديٌّ ومادي لا يتوقف، اضطراب العلاقة الزوجية، وشعورٌ بالذنب حين يُكتشف أن القرار اتُّخذ دون فهمٍ كافٍ.</p>
-      </div>
-      <div class="reveal bg-white/[.04] border border-white/10 rounded-2xl p-7">
-        <h3 class="font-head text-coral text-xl mb-3">الوصمة الاجتماعية</h3>
-        <p class="text-mist leading-relaxed text-sm">قراراتٌ جافة دون مرافقةٍ تترك الأسرة وحيدة أمام نظرة المجتمع، فيتحوّل الخوف من الوصمة إلى دافعٍ لإخفاء الخطر بدل مواجهته.</p>
-      </div>
-    </div>
-    <div class="grid responsive-grid-3 gap-6 reveal">
-      <div class="text-center md:text-right"><p class="bignum text-teal text-5xl font-head font-bold">١ / ٢٠٠٠</p><p class="text-greyx text-sm mt-2">طفل يولد بمرضٍ نادر — 80% منها وراثية</p></div>
-      <div class="text-center md:text-right"><p class="bignum text-teal text-5xl font-head font-bold">63%</p><p class="text-greyx text-sm mt-2">من الأمراض النادرة تصيب الأطفال</p></div>
-      <div class="text-center md:text-right"><p class="bignum text-teal text-5xl font-head font-bold">مدى الحياة</p><p class="text-greyx text-sm mt-2">رحلة علاجٍ لا تنتهي بالتشخيص</p></div>
-    </div>
-  </div>
-</section>
+    <main class="main-content">
+        
+        <section class="engine-selector">
+            <div id="cardEngine1" class="engine-card active" onclick="activateEngine(1)">
+                <h3>⚙️ المحرك الأول</h3>
+                <p>محاكي السيناريوهات الاستراتيجية الموجهة (لصنّاع القرار والمستثمرين لبيان أثر الحل)</p>
+            </div>
+            <div id="cardEngine2" class="engine-card" onclick="activateEngine(2)">
+                <h3>🧪 المحرك الثاني</h3>
+                <p>مختبر المعالجة والتحليل الجيني التشغيلي الحي (مصفوفة منطقية طبية حقيقية للفرز)</p>
+            </div>
+        </section>
 
-<!-- 03 المشكلة المالية -->
-<section class="relative py-24 px-8 tab-section" style="background:#EAF2F4">
-  <div class="max-w-6xl mx-auto">
-    <div class="flex items-center gap-5 mb-3 reveal">
-      <span class="font-head text-gold2/40 text-6xl font-bold bignum">03</span>
-      <p class="kicker text-gold2 text-sm font-bold">البُعد المالي — فاتورة المعاناة</p>
-    </div>
-    <h2 class="font-head text-ink text-4xl md:text-5xl font-bold leading-tight mb-12 reveal responsive-text-4xl">
-      المعاناة لها كلفة — والقطاع الصحي يدفعها كل عام
-    </h2>
-    <div class="grid responsive-grid-2 gap-6">
-      <div class="reveal">
-        <div class="bg-deep rounded-3xl p-9 flex flex-col justify-center text-white relative overflow-hidden" style="min-height:300px">
-          <div class="absolute -bottom-12 -right-12 w-48 h-48 rounded-full bg-gold/10" style="filter:blur(40px)"></div>
-          <p class="bignum text-gold text-6xl font-head font-bold mb-4">≈ 5.25 مليار</p>
-          <p class="text-mist text-lg leading-relaxed">الكلفة المجتمعية السنوية لمرض فقر الدم المنجلي <span class="font-bold">وحده</span> في السعودية.</p>
-          <p class="text-teal text-sm mt-5 italic">مرضٌ واحد — من آلاف الأمراض الوراثية.</p>
+        <section id="engineSection1">
+            <div class="scenario-container">
+                <div class="scenario-sidebar">
+                    <div id="scenAnchor1" class="scenario-anchor active" onclick="loadScenario(1)">
+                        <h4>1. الخطر الحرج والترجمة الإنسانية</h4>
+                        <p>كلاهما حامل لنفس الصفة المتنحية (الأنيميا المنجلية)</p>
+                    </div>
+                    <div id="scenAnchor2" class="scenario-anchor" onclick="loadScenario(2)">
+                        <h4>2. تداخل المخاطر وزواج الأقارب</h4>
+                        <p>حالات جينية معقدة متقاطعة (توفير مالي وطني هائل)</p>
+                    </div>
+                    <div id="scenAnchor3" class="scenario-anchor" onclick="loadScenario(3)">
+                        <h4>3. التوافق الفوري والأتمتة</h4>
+                        <p>فحص سليم وتكامل رقمي فوري مع منصة صحتي</p>
+                    </div>
+                </div>
+
+                <div class="display-board">
+                    <div class="result-header">
+                        <h3 id="boardTitle" style="font-size: 18px;">المسار التشغيلي: السيناريو الأول</h3>
+                        <span id="boardBadge" class="status-badge-dynamic badge-danger">خطر حرج</span>
+                    </div>
+
+                    <div class="visual-metrics-grid">
+                        <div class="risk-circle-wrapper">
+                            <svg class="risk-circle-svg">
+                                <circle class="risk-circle-bg" cx="65" cy="65" r="55"></circle>
+                                <circle id="boardCircle" class="risk-circle-prime" cx="65" cy="65" r="55"></circle>
+                            </svg>
+                            <div class="risk-circle-text">
+                                <span id="boardRiskValue" class="risk-value">25%</span>
+                                <span class="risk-lbl">احتمال إصابة الأجنة</span>
+                            </div>
+                        </div>
+
+                        <div class="roi-counter-box">
+                            <p class="roi-label">⚖️ العائد الوقائي الوطني المباشر على ميزانية الدولة (ROI):</p>
+                            <p id="boardRoiValue" class="roi-number">0 ريال سعودي</p>
+                        </div>
+                    </div>
+
+                    <div class="counseling-report-card">
+                        <h5 id="reportTitle">تقرير دعم القرار الوراثي الذكي لـ (WIRATHA):</h5>
+                        <p id="boardReportText">التحليل الجيني الدقيق يرصد التقاء طفرتين متطابقتين للأنيميا المنجلية. صفتكما كحاملين لا تعني المرض إطلاقاً، وأنتما سليمان تماماً من الناحية العيادية والجسدية. قصتكم وبناء عائلتكم مستمرة بأمان كامل؛ ترسم لكم وراثة مسار القرار الوطني الحامي: يمكن للزواج أن يستمر وينجح بنسبة 100% عبر الفرز المخبري الجيني للأجنة ما قبل الزرع (PGT-M) لاستبعاد الجينات المصابة من خلال أطفال الأنابيب، وتوليد جيل سليم تماماً بدعم ورعاية حكومية كاملة.</p>
+                    </div>
+
+                    <div id="boardActions" class="action-pathways-container">
+                        <button class="pathway-btn btn-mint">🏥 تفعيل مسار الفرز الجيني وعيادات PGT-M</button>
+                        <button class="pathway-btn btn-outline">🌐 تحويل فوري إلى مستشفى صحة الافتراضي</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="engineSection2" style="display: none;">
+            <div class="playground-panel">
+                <div class="result-header" style="margin-bottom: 25px;">
+                    <h3 style="font-size: 20px; color: var(--cyan);">مختبر التحليل الجيني الحي ومصفوفة المنطق الطبي</h3>
+                    <span class="badge-status">معالجة جافا سكريبت حية</span>
+                </div>
+
+                <div class="selectors-row">
+                    <div class="select-group">
+                        <label>🧬 النمط الوراثي المفحوص للرجل:</label>
+                        <select id="fatherGene" class="genetic-select">
+                            <option value="NORMAL">سليم تماماً (لا يحمل أي صفة متنحية)</option>
+                            <option value="SICKLE_CARRIER">حامل لصفة الأنيميا المنجلية (HbAS)</option>
+                            <option value="THAL_CARRIER">حامل لصفة الثلاسيميا المتنحية (β-Thal)</option>
+                        </select>
+                    </div>
+                    <div class="select-group">
+                        <label>🧬 النمط الوراثي المفحوص للمرأة:</label>
+                        <select id="motherGene" class="genetic-select">
+                            <option value="NORMAL">سليمة تماماً (لا تحمل أي صفة متنحية)</option>
+                            <option value="SICKLE_CARRIER">حاملة لصفة الأنيميا المنجلية (HbAS)</option>
+                            <option value="THAL_CARRIER">حاملة لصفة الثلاسيميا المتنحية (β-Thal)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <button class="trigger-pilot-btn" onclick="executeGeneticLogicMatrix()">💡 تشغيل محرك المطابقة ودعم القرار الوراثي لـ WIRATHA</button>
+
+                <div id="playgroundOutputBox" class="display-board" style="display: none;">
+                    <div class="result-header">
+                        <h3 id="playTitle" style="font-size: 17px;">نتيجة المعالجة الحية للمصفوفة الطبية</h3>
+                        <span id="playBadge" class="status-badge-dynamic badge-success">توافق آمن</span>
+                    </div>
+
+                    <div class="visual-metrics-grid">
+                        <div class="risk-circle-wrapper">
+                            <svg class="risk-circle-svg">
+                                <circle class="risk-circle-bg" cx="65" cy="65" r="55"></circle>
+                                <circle id="playCircle" class="risk-circle-prime" cx="65" cy="65" r="55"></circle>
+                            </svg>
+                            <div class="risk-circle-text">
+                                <span id="playRiskValue" class="risk-value">0%</span>
+                                <span class="risk-lbl">احتمال إصابة الأجنة</span>
+                            </div>
+                        </div>
+
+                        <div class="roi-counter-box">
+                            <p class="roi-label">⚖️ العائد الوقائي الوطني المباشر المحسوب آلياً:</p>
+                            <p id="playRoiValue" class="roi-number">0 ريال سعودي</p>
+                        </div>
+                    </div>
+
+                    <div class="counseling-report-card" id="playReportCard">
+                        <h5 id="playReportTitle">التقرير التوجيهي الذكي المبني على القرار لا الكشف:</h5>
+                        <p id="playReportText">تحديث المعالجة الجينية الدقيقة...</p>
+                    </div>
+
+                    <div id="playActions" class="action-pathways-container">
+                        </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="footer-platform">
+        <div class="footer-credits">
+            <span>حقوق الابتكار والملكية الفكرية محفوظة لمنصة **وَراثة · WIRATHA** والذكاء الاصطناعي لـ ARKANE AI</span>
+            <span>·</span>
+            <span>المطور المسؤول: فيصل</span>
+            <span>·</span>
+            <span>للتواصل المباشر: <span class="phone-fix">+966 56 583 3185</span></span>
         </div>
-      </div>
-      <div class="space-y-4">
-        <div class="reveal card-hover bg-white rounded-2xl p-7 border border-line flex items-center justify-between">
-          <div><p class="bignum font-head text-ink text-3xl font-bold">≈ 182 ألف ريال</p><p class="text-greyx text-sm mt-1">الكلفة المجتمعية السنوية للمريض الواحد (علاج + إنتاجية مفقودة)</p></div>
-        </div>
-        <div class="reveal card-hover bg-white rounded-2xl p-7 border border-line flex items-center justify-between">
-          <div><p class="bignum font-head text-ink text-3xl font-bold">≈ 80 ألف ريال</p><p class="text-greyx text-sm mt-1">التكاليف الصحية المباشرة سنوياً لكل مريض منجلي</p></div>
-        </div>
-        <div class="reveal card-hover bg-white rounded-2xl p-7 border border-coral flex items-center justify-between">
-          <div><p class="bignum font-head text-coral text-3xl font-bold">3.95 مليون ريال</p><p class="text-greyx text-sm mt-1">سعر جرعةٍ واحدة من دواء ضمور العضلات الشوكي (Spinraza)</p></div>
-        </div>
-      </div>
-    </div>
-    <p class="reveal mt-10 text-ink text-base leading-loose max-w-4xl border-r-2 border-gold pr-5">
-      تتضاعف الفاتورة عبر <span class="font-bold">إشغال الأَسِرّة الطبية، تكرار العمليات، ووحدات العناية المركّزة</span>،
-      وتمتد أثراً غير مباشر على <span class="font-bold">الإنتاجية الوطنية</span> عبر انقطاع المرضى ومقدّمي الرعاية عن العمل.
-      كل حالةٍ يُمكن منعها تعني تحريرَ مواردَ لإنفاقها على الوقاية والابتكار.
-    </p>
-  </div>
-</section>
-
-<!-- 04 الحل والأثر -->
-<section class="relative py-24 px-8 bg-white tab-section">
-  <div class="max-w-6xl mx-auto">
-    <div class="flex items-center gap-5 mb-3 reveal">
-      <span class="font-head text-teal/30 text-6xl font-bold bignum">04</span>
-      <p class="kicker text-tealdk text-sm font-bold">الحل الجوهري والأثر المستدام</p>
-    </div>
-    <h2 class="font-head text-ink text-4xl md:text-5xl font-bold leading-tight mb-12 reveal responsive-text-4xl">
-      المترجم الذكي بين النتيجة المخبرية والقرار
-    </h2>
-    <div class="grid responsive-grid-3 gap-6 mb-16">
-      <div class="reveal card-hover bg-mist rounded-3xl p-8 border-t-4" style="border-color:#0FB5A8">
-        <span class="font-head text-line text-4xl font-bold bignum">01</span>
-        <h3 class="font-head text-ink text-2xl mt-3 mb-3">يقرأ ويفهم</h3>
-        <p class="text-greyx leading-relaxed text-sm">يحلّل نتيجة الفحص + نمط القرابة + التاريخ العائلي، ويحدّد الأمراض المتنحّية المحتملة بدقة، آلياً ودون إدخالٍ يدوي.</p>
-      </div>
-      <div class="reveal card-hover bg-mist rounded-3xl p-8 border-t-4" style="border-color:#0FB5A8">
-        <span class="font-head text-line text-4xl font-bold bignum">02</span>
-        <h3 class="font-head text-ink text-2xl mt-3 mb-3">يحسب ويشرح</h3>
-        <p class="text-greyx leading-relaxed text-sm">يحوّل الخطر إلى نسبةٍ واضحة (مثلاً 25% لكل حمل) بلغةٍ بصرية بسيطة تشرح الفرق بين «الحامل» و«المصاب».</p>
-      </div>
-      <div class="reveal card-hover bg-mist rounded-3xl p-8 border-t-4" style="border-color:#0FB5A8">
-        <span class="font-head text-line text-4xl font-bold bignum">03</span>
-        <h3 class="font-head text-ink text-2xl mt-3 mb-3">يوجّه القرار</h3>
-        <p class="text-greyx leading-relaxed text-sm">يعرض الخيارات الإنجابية المتاحة وعواقب كلٍّ منها — دون فرض قرار، بل تمكين الزوجين منه بوعي.</p>
-      </div>
-    </div>
-
-    <!-- الأثر الكمي -->
-    <div class="reveal bg-deep rounded-3xl p-10 text-white relative overflow-hidden">
-      <div class="absolute inset-0 glow-teal" style="opacity:.6"></div>
-      <p class="kicker text-teal text-xs mb-2 relative">الأثر المُقدَّر · فرضيات اقتصادية</p>
-      <h3 class="font-head text-3xl mb-3 relative">من رفع الوعي إلى التوفير الوطني</h3>
-      <p class="text-mist text-sm max-w-3xl mb-8 relative leading-relaxed">
-        أثبتت التجربة الوطنية أن الإلغاء الطوعي للزواج عالي الخطورة قفز من <span class="text-teal font-bold">9% إلى 52%</span>
-        بمجرّد تحسين الفهم. النموذج أدناه يقدّر الأثر على أساسٍ تحفّظي.
-      </p>
-      <div class="grid responsive-grid-4 gap-6 relative">
-        <div><p class="bignum text-teal text-4xl font-head font-bold">~250 ألف</p><p class="text-greyx text-xs mt-2">عقد زواج سنوياً يمرّ عبر القناة</p></div>
-        <div><p class="bignum text-teal text-4xl font-head font-bold">آلاف</p><p class="text-greyx text-xs mt-2">قرارات واعية إضافية متوقّعة سنوياً</p></div>
-        <div><p class="bignum text-teal text-4xl font-head font-bold">مئات</p><p class="text-greyx text-xs mt-2">حالات إصابة يُمكن تفاديها سنوياً</p></div>
-        <div><p class="bignum text-gold text-4xl font-head font-bold">مليارات</p><p class="text-greyx text-xs mt-2">ريال مُحتملة التوفير على المدى الطويل</p></div>
-      </div>
-      <p class="text-greyx text-xs mt-7 relative">* تقديرات افتراضية للتوضيح الاستراتيجي، تُضبط بالداتا الوطنية الفعلية عند التكامل. متوافقة مع <span class="text-teal">برنامج تحوّل القطاع الصحي</span> — مبدأ «الوقاية قبل العلاج».</p>
-    </div>
-  </div>
-</section>
-
-<!-- 05 الداتا والشركاء -->
-<section class="relative py-24 px-8 tab-section" style="background:#EAF2F4">
-  <div class="max-w-6xl mx-auto">
-    <div class="flex items-center gap-5 mb-3 reveal">
-      <span class="font-head text-teal/30 text-6xl font-bold bignum">05</span>
-      <p class="kicker text-tealdk text-sm font-bold">مصادر الداتا الموثوقة وقنوات الشركاء</p>
-    </div>
-    <h2 class="font-head text-ink text-4xl md:text-5xl font-bold leading-tight mb-12 reveal responsive-text-4xl">
-      موثوقيةٌ مصدرها القناة الرسمية — لا الإدخال اليدوي
-    </h2>
-    <div class="grid responsive-grid-2 gap-10">
-      <!-- الداتا -->
-      <div class="reveal">
-        <h3 class="font-head text-tealdk text-xl mb-6 pb-3 border-b border-line">تغذية البيانات</h3>
-        <div class="space-y-5">
-          <div class="tick"><p class="font-bold text-ink">منصة صحتي · المنظومة الصحية</p><p class="text-greyx text-sm mt-1">ربط مباشر بنتيجة الفحص الرسمية عبر نفاذ — صفر إدخال يدوي، صفر تلاعب.</p></div>
-          <div class="tick"><p class="font-bold text-ink">مستشفى الملك فيصل التخصصي ومراكز الجينوم</p><p class="text-greyx text-sm mt-1">مرجعية الطفرات السعودية ومصداقية التفسير السريري.</p></div>
-          <div class="tick"><p class="font-bold text-ink">قواعد جينية عالمية (ClinVar / OMIM)</p><p class="text-greyx text-sm mt-1">طبقة معرفية موثّقة تُسقَط على السياق المحلي.</p></div>
-          <div class="tick"><p class="font-bold text-ink">حوكمة طبية</p><p class="text-greyx text-sm mt-1">لجنة استشاريين وراثيين تعتمد المخرجات؛ الذكاء الاصطناعي مساعدٌ لا بديلٌ عن الطبيب.</p></div>
-        </div>
-      </div>
-      <!-- الشركاء -->
-      <div class="reveal">
-        <h3 class="font-head text-tealdk text-xl mb-6 pb-3 border-b border-line">الشركاء وأدوارهم</h3>
-        <div class="space-y-4">
-          <div class="bg-white rounded-xl p-5 border border-line"><div class="flex justify-between items-center"><span class="font-bold text-ink">وزارة الصحة</span><span class="text-xs text-tealdk bg-teal/10 px-3 py-1 rounded-full">القناة الوطنية</span></div><p class="text-greyx text-sm mt-2">مالك برنامج «الزواج الصحي» — مظلة الإطلاق والتشغيل في العيادات.</p></div>
-          <div class="bg-white rounded-xl p-5 border border-line"><div class="flex justify-between items-center"><span class="font-bold text-ink">مستشفى الصحة الافتراضي</span><span class="text-xs text-tealdk bg-teal/10 px-3 py-1 rounded-full">بيئة التشغيل</span></div><p class="text-greyx text-sm mt-2">الاستشارة الوراثية عن بُعد ومتابعة الزوجين رقمياً على نطاق وطني.</p></div>
-          <div class="bg-white rounded-xl p-5 border border-line"><div class="flex justify-between items-center"><span class="font-bold text-ink">وزارة العدل · المأذونون</span><span class="text-xs text-tealdk bg-teal/10 px-3 py-1 rounded-full">نقطة القرار</span></div><p class="text-greyx text-sm mt-2">ربط الاستشارة بمسار عقد الزواج لضمان وصولها قبل اللحظة الحاسمة.</p></div>
-          <div class="bg-white rounded-xl p-5 border border-line"><div class="flex justify-between items-center"><span class="font-bold text-ink">CCHI · SDAIA / SFDA</span><span class="text-xs text-tealdk bg-teal/10 px-3 py-1 rounded-full">الحوكمة والتغطية</span></div><p class="text-greyx text-sm mt-2">مجلس الضمان الصحي للتغطية، وحوكمة الذكاء الاصطناعي واعتماد الأدوات الصحية الرقمية.</p></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- 06 الإضافات الابتكارية -->
-<section class="relative py-24 px-8 bg-deeper grain text-white overflow-hidden tab-section" style="background:#06182B">
-  <div class="absolute inset-0 glow-teal"></div>
-  <div class="relative max-w-6xl mx-auto">
-    <div class="flex items-center gap-5 mb-3 reveal">
-      <span class="font-head text-teal/40 text-6xl font-bold bignum">06</span>
-      <p class="kicker text-teal text-sm font-bold">إضافات ابتكارية استراتيجية</p>
-    </div>
-    <h2 class="font-head text-white text-4xl md:text-5xl font-bold leading-tight mb-14 reveal max-w-3xl responsive-text-4xl">
-      ما يرفع «وَراثة» من أداةٍ إلى منظومة قرار
-    </h2>
-
-    <div class="grid responsive-grid-2 gap-6 mb-16">
-      <div class="reveal bg-white/[.04] border border-white/10 rounded-2xl p-8">
-        <h3 class="font-head text-teal text-xl mb-3">مقياس الجاهزية النفسية للزوجين</h3>
-        <p class="text-mist text-sm leading-relaxed">تقييمٌ مختصر يقيس مدى استيعاب الزوجين للنتيجة وقدرتهما على اتخاذ قرارٍ هادئ، فيُكيِّف النظام مستوى الشرح والمرافقة — قرارٌ واعٍ لا انفعالي.</p>
-      </div>
-      <div class="reveal bg-white/[.04] border border-white/10 rounded-2xl p-8">
-        <h3 class="font-head text-teal text-xl mb-3">الربط الذكي بالصحة الافتراضي</h3>
-        <p class="text-mist text-sm leading-relaxed">تحويلٌ آلي للحالات عالية الخطورة إلى استشاري وراثة عن بُعد فوراً، مع ملفٍّ مُجهَّز مسبقاً يختصر الوقت ويرفع جودة الاستشارة.</p>
-      </div>
-    </div>
-
-    <!-- خارطة الطريق -->
-    <h3 class="font-head text-white text-2xl mb-8 reveal">خارطة الطريق · من النموذج إلى الأثر الوطني</h3>
-    <div class="relative phase-line pr-10 space-y-8">
-      <div class="reveal relative">
-        <span class="absolute right-[6px] top-2 w-4 h-4 rounded-full bg-teal ring-4" style="--tw-ring-color:#06182B"></span>
-        <div class="bg-white/[.04] border border-white/10 rounded-xl p-6">
-          <div class="flex items-center gap-3 mb-2"><span class="text-teal font-head font-bold">Phase 0</span><span class="text-xs text-greyx">الآن</span></div>
-          <p class="font-bold text-white">النموذج الأولي (MVP)</p>
-          <p class="text-mist text-sm mt-1">محرّك حساب الخطر + واجهة عربية بصرية جاهزة للعرض.</p>
-        </div>
-      </div>
-      <div class="reveal relative">
-        <span class="absolute right-[6px] top-2 w-4 h-4 rounded-full bg-gold ring-4" style="--tw-ring-color:#06182B"></span>
-        <div class="bg-white/[.04] border border-white/10 rounded-xl p-6">
-          <div class="flex items-center gap-3 mb-2"><span class="font-head font-bold" style="color:#F4B860">Phase 1</span><span class="text-xs text-greyx">3–6 أشهر</span></div>
-          <p class="font-bold text-white">تجربة مع شريك</p>
-          <p class="text-mist text-sm mt-1">تكامل مبدئي مع عيادة/مركز وراثي وتوسيع تغطية الأمراض.</p>
-        </div>
-      </div>
-      <div class="reveal relative">
-        <span class="absolute right-[6px] top-2 w-4 h-4 rounded-full bg-coral ring-4" style="--tw-ring-color:#06182B"></span>
-        <div class="bg-white/[.04] border border-white/10 rounded-xl p-6">
-          <div class="flex items-center gap-3 mb-2"><span class="text-coral font-head font-bold">Phase 2</span><span class="text-xs text-greyx">6–12 شهر</span></div>
-          <p class="font-bold text-white">الدمج الرسمي</p>
-          <p class="text-mist text-sm mt-1">الربط مع «الزواج الصحي» والصحة الافتراضي + الاعتماد الطبي والتنظيمي.</p>
-        </div>
-      </div>
-      <div class="reveal relative">
-        <span class="absolute right-[6px] top-2 w-4 h-4 rounded-full bg-white ring-4" style="--tw-ring-color:#06182B"></span>
-        <div class="bg-white/[.04] border border-white/10 rounded-xl p-6">
-          <div class="flex items-center gap-3 mb-2"><span class="text-white font-head font-bold">Phase 3</span><span class="text-xs text-greyx">12 شهر+</span></div>
-          <p class="font-bold text-white">التوسّع الوطني</p>
-          <p class="text-mist text-sm mt-1">تغطية شاملة + لوحة بياناتٍ للجهات الصحية تخدم صنع السياسات.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- TAB 1 FOOTER -->
-<footer class="relative py-20 px-8 bg-deep text-white text-center overflow-hidden" style="background:#0A2540;margin-bottom:80px">
-  <div class="absolute inset-0 glow-teal" style="opacity:.5"></div>
-  <div class="relative max-w-3xl mx-auto">
-    <p class="font-head text-3xl md:text-4xl font-bold mb-3">حمايةٌ تبدأ قبل الولادة</p>
-    <p class="text-teal mb-8">وَراثة · WIRATHA</p>
-    <div class="hairline w-32 mx-auto mb-8"></div>
-    <div class="inline-flex items-center gap-4 bg-white/5 border border-white/10 rounded-full px-8 py-4">
-      <span class="text-teal font-bold">ARKANE AI</span>
-      <span class="text-greyx">·</span>
-      <span>فيصل</span>
-      <span class="text-greyx">·</span>
-      <span style="direction:ltr;display:inline-block;font-weight:700">+966 56 583 3185</span>
-    </div>
-  </div>
-</footer>
-
-</main>
-</div><!-- /tab1 -->
-
-<!-- ═══════════════════════════════════════════════════════════════
-     TAB 2: إطار حوكمة البيانات والامتثال التشريعي
-     ═══════════════════════════════════════════════════════════════ -->
-<div class="tab-content" id="tab2">
-
-<!-- COVER -->
-<header class="relative bg-deeper grain text-white overflow-hidden tab-section" style="background:#06182B">
-  <div class="absolute inset-0 glow-teal" style="opacity:.22"></div>
-  <div class="relative max-w-5xl mx-auto px-8 py-16">
-    <div class="flex items-center justify-between text-xs mb-20 responsive-flex-col">
-      <span class="text-teal font-bold tracking-[.28em]">ARKANE&nbsp;AI</span>
-      <span class="font-mono text-soft text-xs">DOC-REF: WIR-GOV-001 · v1.0</span>
-    </div>
-    <p class="text-teal tracking-[.28em] text-sm mb-5">وثيقة حوكمة وامتثال تشريعي · سرّية</p>
-    <h1 class="font-head text-5xl md:text-6xl font-bold leading-tight mb-5 responsive-text-4xl">
-      إطار حوكمة البيانات والامتثال التشريعي
-    </h1>
-    <p class="text-mist text-xl mb-10 max-w-2xl leading-relaxed">
-      منصّة <span class="text-teal font-bold">وَراثة WIRATHA</span> لدعم القرار الوراثي — معالجة البيانات الجينية بوصفها بياناتٍ حسّاسة وفق نظام حماية البيانات الشخصية السعودي.
-    </p>
-    <div class="grid responsive-grid-4 gap-px bg-white/10 rounded-xl overflow-hidden max-w-3xl">
-      <div class="bg-deep p-5"><p class="font-mono text-xs text-teal mb-1">المرجع النظامي</p><p class="font-bold text-sm">PDPL · م/19</p></div>
-      <div class="bg-deep p-5"><p class="font-mono text-xs text-teal mb-1">الجهة المنظِّمة</p><p class="font-bold text-sm">سدايا · SDAIA</p></div>
-      <div class="bg-deep p-5"><p class="font-mono text-xs text-teal mb-1">التصنيف</p><p class="font-bold text-sm">بيانات حسّاسة</p></div>
-      <div class="bg-deep p-5"><p class="font-mono text-xs text-teal mb-1">النفاذ الكامل</p><p class="font-bold text-sm">14 سبتمبر 2024</p></div>
-    </div>
-    <p class="text-soft text-xs mt-8 max-w-2xl leading-relaxed border-r-2 border-teal/50 pr-4">
-      تنويه: هذه وثيقة حوكمة داخلية للأغراض التشغيلية والتنظيمية، وليست رأياً قانونياً مُلزِماً. يُعتمد نصها النهائي من مستشارٍ قانوني مرخّص قبل الإنفاذ، وتُحدَّث عند صدور أي لائحة تنفيذية أو ضابط جديد عن سدايا أو وزارة الصحة.
-    </p>
-  </div>
-</header>
-
-<main class="max-w-5xl mx-auto px-8 py-16 space-y-20 tab-section" style="background:#F7FAF6">
-
-<!-- SECTION 1: PDPL -->
-<section class="scroll-mt-24">
-  <div class="flex items-center gap-4 mb-2">
-    <span class="font-mono text-teal/40 text-5xl font-bold">01</span>
-    <p class="tracking-[.2em] text-tealdk text-sm font-bold">إطار الامتثال لنظام حماية البيانات الشخصية</p>
-  </div>
-  <h2 class="font-head text-ink text-3xl md:text-4xl font-bold mb-8 responsive-text-3xl">تصنيف البيانات الجينية والأساس النظامي للمعالجة</h2>
-
-  <div class="bg-white rounded-2xl border border-line p-8 mb-6 responsive-p-8">
-    <h3 class="font-head text-tealdk text-xl mb-4">المادة (1-1): التصنيف القانوني للبيانات الجينية</h3>
-    <p class="text-ink leading-loose mb-4">
-      يُعرّف نظام حماية البيانات الشخصية (الصادر بالمرسوم الملكي رقم م/19 وتعديلاته) <span class="font-bold">«البيانات الحسّاسة»</span>
-      بأنها البيانات التي تكشف الأصل العِرقي أو المُعتقَد، والبيانات الجينية والحيوية بغرض تحديد هوية الشخص، والبيانات الصحية.
-      وعليه، تُصنَّف كامل مخرجات منصّة «وَراثة» — نتائج الفحص، حالة حمل المرض، نمط القرابة، تقارير دعم القرار —
-      ضمن أعلى درجات الحماية بوصفها <span class="font-bold text-coral">بياناتٍ صحيةً وجينيةً حسّاسة</span>.
-    </p>
-    <div class="bg-mist rounded-xl p-5 border-r-4" style="border-color:#0FB5A8">
-      <p class="text-sm text-ink leading-relaxed"><span class="font-bold">أثر التصنيف:</span> يُمنع منعاً باتاً اتخاذ «المصلحة المشروعة» أساساً لمعالجة هذه البيانات، وتسقط أي معالجةٍ لاحقة للأغراض التسويقية، ويُحظر اتخاذ قرارٍ آلي كامل دون تدخّل بشري طبي.</p>
-    </div>
-  </div>
-
-  <div class="grid responsive-grid-2 gap-6 mb-6">
-    <div class="bg-white rounded-2xl border border-line p-7">
-      <h3 class="font-head text-tealdk text-lg mb-4">المادة (1-2): الأساس النظامي للمعالجة</h3>
-      <ul class="space-y-3 text-sm text-ink leading-relaxed list-none">
-        <li class="flex gap-2"><span class="text-teal font-bold">أ.</span> <span><span class="font-bold">الموافقة الصريحة</span> المُستنيرة من كلا الطرفين، الموثّقة رقمياً قبل أي معالجة.</span></li>
-        <li class="flex gap-2"><span class="text-teal font-bold">ب.</span> <span><span class="font-bold">حماية الحياة والمصلحة الحيوية</span> للنسل المرتقب — أساسٌ صحيٌّ وقائي.</span></li>
-        <li class="flex gap-2"><span class="text-teal font-bold">ج.</span> <span>التنفيذ ضمن <span class="font-bold">مظلة وزارة الصحة</span> وبرنامج الزواج الصحي بوصفها مهمةً ذات مصلحة عامة.</span></li>
-      </ul>
-    </div>
-    <div class="bg-white rounded-2xl border border-line p-7">
-      <h3 class="font-head text-tealdk text-lg mb-4">المادة (1-3): الالتزامات التنظيمية تجاه سدايا</h3>
-      <ul class="space-y-3 text-sm text-ink leading-relaxed list-none">
-        <li class="flex gap-2"><span class="text-teal font-bold">•</span> التسجيل في السجل الوطني لمتحكِّمي البيانات.</li>
-        <li class="flex gap-2"><span class="text-teal font-bold">•</span> تعيين مسؤول حماية بيانات (DPO) معتمد.</li>
-        <li class="flex gap-2"><span class="text-teal font-bold">•</span> إجراء <span class="font-bold">تقييم أثر المعالجة (DPIA)</span> قبل الإطلاق ودورياً.</li>
-        <li class="flex gap-2"><span class="text-teal font-bold">•</span> إشعار سدايا بأي تسرّبٍ للبيانات خلال المدد النظامية.</li>
-        <li class="flex gap-2"><span class="text-teal font-bold">•</span> توطين البيانات داخل المملكة ومنع نقلها للخارج إلا وفق ضوابط النقل.</li>
-      </ul>
-    </div>
-  </div>
-
-  <div class="seal rounded-2xl p-7 text-white">
-    <p class="font-mono text-xs text-teal mb-2">العقوبات النظامية · رادعٌ للالتزام</p>
-    <div class="grid responsive-grid-3 gap-6">
-      <div><p class="font-head text-2xl font-bold text-white">حتى 5 مليون ريال</p><p class="text-soft text-sm mt-1">غرامة المخالفات العامة، وتُضاعَف عند التكرار.</p></div>
-      <div><p class="font-head text-2xl font-bold text-coral">حتى 3 مليون ريال</p><p class="text-soft text-sm mt-1">إفشاء أو نشر بياناتٍ حسّاسة.</p></div>
-      <div><p class="font-head text-2xl font-bold text-coral">السجن حتى سنتين</p><p class="text-soft text-sm mt-1">عقوبة الإفشاء العمدي للبيانات الحسّاسة.</p></div>
-    </div>
-  </div>
-</section>
-
-<!-- SECTION 2: Consent -->
-<section class="scroll-mt-24">
-  <div class="flex items-center gap-4 mb-2">
-    <span class="font-mono text-teal/40 text-5xl font-bold">02</span>
-    <p class="tracking-[.2em] text-tealdk text-sm font-bold">إدارة وتوثيق موافقة المستخدمين</p>
-  </div>
-  <h2 class="font-head text-ink text-3xl md:text-4xl font-bold mb-8 responsive-text-3xl">الموافقة المستنيرة الثنائية المشروطة</h2>
-
-  <div class="bg-white rounded-2xl border border-line p-8 mb-6 responsive-p-8">
-    <h3 class="font-head text-tealdk text-xl mb-4">المادة (2-1): طبيعة الموافقة</h3>
-    <p class="text-ink leading-loose mb-5">
-      نظراً لأن نتيجة دعم القرار تخصّ <span class="font-bold">الطرفين معاً</span>، تُبنى المعالجة على
-      <span class="font-bold text-tealdk">موافقةٍ ثنائيةٍ مشروطة</span>: لا تُولَّد أي تقرير مشترك ولا يُكشف عنه إلا بعد توقيع
-      الطرفين رقمياً (عبر نفاذ أو توقيعٍ معتمد) بشكلٍ منفصلٍ ومستقل. تكون الموافقة:
-    </p>
-    <div class="grid responsive-grid-4 gap-4">
-      <div class="bg-mist rounded-xl p-4"><p class="font-bold text-teal text-sm mb-1">حرّة</p><p class="text-xs text-greyx">دون إكراهٍ أو ربطٍ بخدمةٍ أخرى.</p></div>
-      <div class="bg-mist rounded-xl p-4"><p class="font-bold text-teal text-sm mb-1">محدّدة</p><p class="text-xs text-greyx">لغرض دعم القرار الوراثي حصراً.</p></div>
-      <div class="bg-mist rounded-xl p-4"><p class="font-bold text-teal text-sm mb-1">مستنيرة</p><p class="text-xs text-greyx">بلغةٍ مبسّطة تشرح الأثر والمخاطر.</p></div>
-      <div class="bg-mist rounded-xl p-4"><p class="font-bold text-teal text-sm mb-1">قابلة للإثبات</p><p class="text-xs text-greyx">موثّقة بختمٍ زمني وسِجلِّ تدقيق.</p></div>
-    </div>
-  </div>
-
-  <div class="grid responsive-grid-2 gap-6 mb-6">
-    <div class="bg-white rounded-2xl border border-line p-7">
-      <h3 class="font-head text-tealdk text-lg mb-4">المادة (2-2): بنود إقرار الموافقة الرقمي</h3>
-      <ul class="space-y-3 text-sm text-ink leading-relaxed list-none">
-        <li class="flex gap-2"><span class="text-teal font-bold">١.</span> أُقرّ بأن بياناتي الجينية حسّاسة وأوافق على معالجتها لغرض دعم القرار فقط.</li>
-        <li class="flex gap-2"><span class="text-teal font-bold">٢.</span> أوافق على ربط نتيجتي مع نتيجة الطرف الآخر لإصدار تقريرٍ مشترك.</li>
-        <li class="flex gap-2"><span class="text-teal font-bold">٣.</span> أُقرّ بأنني فهمت أن المخرجات استرشادية تحت إشرافٍ طبي ولا تُلزمني بقرار.</li>
-        <li class="flex gap-2"><span class="text-teal font-bold">٤.</span> أعلم بحقّي في سحب الموافقة وطلب الإتلاف وفق الأحكام أدناه.</li>
-      </ul>
-    </div>
-    <div class="bg-white rounded-2xl border border-coral p-7">
-      <h3 class="font-head text-coral text-lg mb-4">المادة (2-3): سحب الموافقة وإتلاف سجل الربط</h3>
-      <ul class="space-y-3 text-sm text-ink leading-relaxed list-none">
-        <li class="flex gap-2"><span class="text-coral font-bold">•</span> يحقّ لأيٍّ من الطرفين سحب موافقته في أي وقت دون إبداء سبب.</li>
-        <li class="flex gap-2"><span class="text-coral font-bold">•</span> سحب موافقة أحد الطرفين يُبطل <span class="font-bold">سجل الربط الوراثي المشترك</span> فوراً ويوقف إصدار/عرض التقرير المشترك.</li>
-        <li class="flex gap-2"><span class="text-coral font-bold">•</span> يُتلَف سجل الربط بشكلٍ آمن، مع بقاء بيانات كل طرفٍ الفردية خاضعةً لقراره المنفصل.</li>
-        <li class="flex gap-2"><span class="text-coral font-bold">•</span> لا يؤثر السحب على مشروعية المعالجة التي تمّت قبله.</li>
-      </ul>
-    </div>
-  </div>
-</section>
-
-<!-- SECTION 3: Retention -->
-<section class="scroll-mt-24">
-  <div class="flex items-center gap-4 mb-2">
-    <span class="font-mono text-teal/40 text-5xl font-bold">03</span>
-    <p class="tracking-[.2em] text-tealdk text-sm font-bold">سياسات الاحتفاظ بالبيانات وإتلافها</p>
-  </div>
-  <h2 class="font-head text-ink text-3xl md:text-4xl font-bold mb-8 responsive-text-3xl">المدد النظامية، التشفير، والإتلاف الآمن</h2>
-
-  <div class="bg-white rounded-2xl border border-line overflow-hidden mb-6">
-    <table class="matrix w-full text-sm text-right">
-      <thead style="background:#0A2540;color:#fff">
-        <tr>
-          <th class="p-4 font-head">نوع البيانات</th>
-          <th class="p-4 font-head">مدة الاحتفاظ</th>
-          <th class="p-4 font-head">آلية الحماية</th>
-          <th class="p-4 font-head">الإتلاف</th>
-        </tr>
-      </thead>
-      <tbody class="text-ink">
-        <tr style="background:#fff"><td class="p-4 font-bold">نتيجة الفحص الخام (مرجعية)</td><td class="p-4">لا تُخزَّن — تُقرأ لحظياً من المصدر الرسمي</td><td class="p-4">وصولٌ مؤقت مُشفّر أثناء النقل (TLS)</td><td class="p-4">تُحذَف من الذاكرة فور المعالجة</td></tr>
-        <tr style="background:rgba(234,242,244,.4)"><td class="p-4 font-bold">تقرير دعم القرار المترجَم</td><td class="p-4">مدة محدّدة بالغرض ثم مراجعة دورية (افتراضياً ≤ 24 شهراً)</td><td class="p-4">تشفير عند التخزين AES-256 + مفاتيح مُدارة</td><td class="p-4">إتلافٌ آمن لا رجعة فيه عند انتهاء الغرض</td></tr>
-        <tr style="background:#fff"><td class="p-4 font-bold">سجل الربط الوراثي المشترك</td><td class="p-4">حتى اكتمال الاستشارة أو سحب أحد الطرفين</td><td class="p-4">تشفير + فصلٌ منطقي عن الهويات</td><td class="p-4">إتلاف فوري عند السحب</td></tr>
-        <tr style="background:rgba(234,242,244,.4)"><td class="p-4 font-bold">سجلات التدقيق (Audit Logs)</td><td class="p-4">وفق المتطلب التنظيمي للتدقيق</td><td class="p-4">سجلٌّ غير قابل للتعديل (append-only)</td><td class="p-4">يُحفظ منفصلاً دون بياناتٍ جينية خام</td></tr>
-      </tbody>
-    </table>
-  </div>
-
-  <div class="grid responsive-grid-3 gap-6">
-    <div class="bg-white rounded-2xl border border-line p-6"><h3 class="font-head text-tealdk text-base mb-3">مبدأ تقليل البيانات</h3><p class="text-sm text-greyx leading-relaxed">تُجمَع البيانات اللازمة لغرض دعم القرار فقط، ويُمنع التخزين الاحتياطي غير الضروري للبيانات الجينية الخام.</p></div>
-    <div class="bg-white rounded-2xl border border-line p-6"><h3 class="font-head text-tealdk text-base mb-3">معايير الإتلاف الآمن</h3><p class="text-sm text-greyx leading-relaxed">حذفٌ مُشفَّر (crypto-shredding) عبر إتلاف المفاتيح، وكتابةٌ فوقية للوسائط، مع شهادة إتلافٍ موثّقة في سجل التدقيق.</p></div>
-    <div class="bg-white rounded-2xl border border-line p-6"><h3 class="font-head text-tealdk text-base mb-3">التوطين داخل المملكة</h3><p class="text-sm text-greyx leading-relaxed">تُستضاف البيانات الحسّاسة داخل المملكة، ولا يُسمح بأي نقلٍ خارجي إلا وفق ضوابط نقل البيانات وضمانات سدايا.</p></div>
-  </div>
-</section>
-
-<!-- SECTION 4: Access Control -->
-<section class="scroll-mt-24">
-  <div class="flex items-center gap-4 mb-2">
-    <span class="font-mono text-teal/40 text-5xl font-bold">04</span>
-    <p class="tracking-[.2em] text-tealdk text-sm font-bold">صلاحيات الوصول المقيّدة</p>
-  </div>
-  <h2 class="font-head text-ink text-3xl md:text-4xl font-bold mb-8 responsive-text-3xl">مصفوفة التحكم في الوصول (Access Control Matrix)</h2>
-
-  <div class="bg-white rounded-2xl border border-line overflow-hidden mb-6">
-    <table class="matrix w-full text-sm text-center">
-      <thead style="background:#0A2540;color:#fff">
-        <tr>
-          <th class="p-4 font-head text-right">الدور / الجهة</th>
-          <th class="p-3 font-head">النتيجة الخام</th>
-          <th class="p-3 font-head">التقرير المترجَم</th>
-          <th class="p-3 font-head">سجل الربط المشترك</th>
-          <th class="p-3 font-head">سجلات التدقيق</th>
-        </tr>
-      </thead>
-      <tbody class="text-ink">
-        <tr>
-          <td class="p-4 text-right font-bold">الزوجان (معاً)</td>
-          <td class="p-3 text-coral font-bold">✕</td>
-          <td class="p-3 text-teal font-bold">✓ بعد توقيع الطرفين</td>
-          <td class="p-3 text-teal font-bold">✓ مشترك</td>
-          <td class="p-3 text-coral font-bold">✕</td>
-        </tr>
-        <tr style="background:rgba(234,242,244,.4)">
-          <td class="p-4 text-right font-bold">الطبيب الاستشاري المُحوَّل له</td>
-          <td class="p-3 text-gold2 font-bold">جزئي · للضرورة</td>
-          <td class="p-3 text-teal font-bold">✓ للحالة المُحالة فقط</td>
-          <td class="p-3 text-teal font-bold">✓ للحالة فقط</td>
-          <td class="p-3 text-coral font-bold">✕</td>
-        </tr>
-        <tr>
-          <td class="p-4 text-right font-bold">الإداري / الدعم التشغيلي</td>
-          <td class="p-3 text-coral font-bold">✕</td>
-          <td class="p-3 text-coral font-bold">✕</td>
-          <td class="p-3 text-coral font-bold">✕</td>
-          <td class="p-3 text-gold2 font-bold">بيانات وصفية فقط</td>
-        </tr>
-        <tr style="background:rgba(234,242,244,.4)">
-          <td class="p-4 text-right font-bold">مطوّر النظام / المهندس</td>
-          <td class="p-3 text-coral font-bold">✕ ممنوع</td>
-          <td class="p-3 text-coral font-bold">✕ ممنوع</td>
-          <td class="p-3 text-coral font-bold">✕ ممنوع</td>
-          <td class="p-3 text-gold2 font-bold">بيئة معزولة فقط</td>
-        </tr>
-        <tr>
-          <td class="p-4 text-right font-bold">مسؤول حماية البيانات (DPO)</td>
-          <td class="p-3 text-coral font-bold">✕</td>
-          <td class="p-3 text-coral font-bold">✕</td>
-          <td class="p-3 text-coral font-bold">✕</td>
-          <td class="p-3 text-teal font-bold">✓ رقابي</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-
-  <div class="grid responsive-grid-2 gap-6">
-    <div class="bg-white rounded-2xl border border-line p-7">
-      <h3 class="font-head text-tealdk text-lg mb-4">المادة (4-1): ضوابط الفصل والعزل</h3>
-      <ul class="space-y-3 text-sm text-ink leading-relaxed list-none">
-        <li class="flex gap-2"><span class="text-teal font-bold">•</span> <span class="font-bold">عزل الوصول عن التطوير:</span> يُمنع المطوّرون والإداريون من الوصول إلى البيانات الحيّة؛ يعملون على بياناتٍ تخليقية مُجهّلة الهوية فقط.</li>
-        <li class="flex gap-2"><span class="text-teal font-bold">•</span> <span class="font-bold">مبدأ الحد الأدنى:</span> يُمنح كل دورٍ أقل صلاحيةٍ تكفي لمهمته (least privilege).</li>
-        <li class="flex gap-2"><span class="text-teal font-bold">•</span> <span class="font-bold">الوصول للضرورة:</span> اطّلاع الطبيب مقصورٌ على الحالة المُحالة إليه فعلياً، ولفترةٍ محدّدة.</li>
-      </ul>
-    </div>
-    <div class="bg-white rounded-2xl border border-line p-7">
-      <h3 class="font-head text-tealdk text-lg mb-4">المادة (4-2): الرقابة والمساءلة</h3>
-      <ul class="space-y-3 text-sm text-ink leading-relaxed list-none">
-        <li class="flex gap-2"><span class="text-teal font-bold">•</span> كل عملية وصولٍ تُسجَّل في سجلٍّ غير قابل للتعديل (من، ماذا، متى، لماذا).</li>
-        <li class="flex gap-2"><span class="text-teal font-bold">•</span> مصادقة متعددة العوامل (MFA) إلزامية لكل دورٍ ذي صلاحيةٍ سريرية.</li>
-        <li class="flex gap-2"><span class="text-teal font-bold">•</span> مراجعة دورية للصلاحيات وإلغاءٌ فوري عند انتهاء الحاجة أو الدور.</li>
-        <li class="flex gap-2"><span class="text-teal font-bold">•</span> تنبيهٌ آلي عند أي محاولة وصولٍ خارج النطاق المصرّح.</li>
-      </ul>
-    </div>
-  </div>
-</section>
-
-</main>
-
-<!-- TAB 2 FOOTER -->
-<footer class="seal text-white py-14 px-8" style="margin-bottom:80px">
-  <div class="max-w-5xl mx-auto">
-    <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
-      <div>
-        <p class="font-head text-2xl font-bold mb-1">وَراثة · WIRATHA</p>
-        <p class="text-soft text-sm">إطار حوكمة البيانات والامتثال التشريعي · ARKANE AI</p>
-      </div>
-      <div class="text-right text-sm">
-        <p class="font-mono text-xs text-teal">DOC-REF: WIR-GOV-001 · v1.0</p>
-        <p class="text-soft mt-1">يخضع للمراجعة عند صدور أي ضابطٍ تنظيمي جديد</p>
-      </div>
-    </div>
-    <div class="border-t border-white/10 mt-8 pt-6 text-xs text-soft leading-relaxed">
-      هذه الوثيقة مرجعٌ حوكميٌّ داخلي وليست رأياً قانونياً مُلزِماً. تُعتمد صياغتها النهائية من مستشارٍ قانوني مرخّص، وتُطبَّق بالتوازي مع نظام حماية البيانات الشخصية ولوائحه التنفيذية وأنظمة وزارة الصحة وضوابط سدايا ذات العلاقة.
-    </div>
-  </div>
-</footer>
-
-</div><!-- /tab2 -->
-
-<!-- ═══════════════════════════════════════════════════════════════
-     TAB 3: استراتيجية الأمن السيبراني
-     ═══════════════════════════════════════════════════════════════ -->
-<div class="tab-content" id="tab3">
-
-<!-- HEADER -->
-<header class="relative min-h-[88vh] overflow-hidden grid-bg" style="background:#040B14">
-  <div class="absolute inset-0 glow-cyan"></div>
-  <div class="absolute inset-0 glow-teal" style="opacity:.14;background:radial-gradient(circle at 15% 85%,rgba(15,181,168,.14),transparent 55%)"></div>
-  <div class="relative max-w-6xl mx-auto px-8 pt-12">
-    <div class="flex items-center justify-between text-xs responsive-flex-col">
-      <span class="text-teal font-bold tracking-[.3em]">ARKANE&nbsp;AI</span>
-      <span class="chip text-greyx px-3 py-1 border rounded" style="border-color:#13304D">CLASSIFICATION · RESTRICTED</span>
-    </div>
-  </div>
-  <div class="relative max-w-6xl mx-auto px-8 flex flex-col justify-center" style="min-height:68vh">
-    <p class="chip text-cyan mb-6">CYBERSECURITY STRATEGY · CISO OFFICE</p>
-    <h1 class="font-head text-white text-5xl md:text-6xl font-bold leading-tight mb-5 responsive-text-4xl">استراتيجية الأمن السيبراني<br>لحماية البيانات الجينية</h1>
-    <p class="text-greyx text-xl mb-8 max-w-2xl leading-relaxed">منصّة <span class="text-teal font-bold">وَراثة WIRATHA</span> — دليلٌ أمني وهندسي لحماية أكثر البيانات حساسيةً في القطاع الصحي.</p>
-    <div class="hairline w-48 mb-8"></div>
-    <div class="flex flex-wrap gap-3">
-      <span class="chip text-mist px-4 py-2 border rounded-full" style="border-color:#13304D;background:rgba(12,34,54,.5)">NCA · ECC-1:2018</span>
-      <span class="chip text-mist px-4 py-2 border rounded-full" style="border-color:#13304D;background:rgba(12,34,54,.5)">AES-256</span>
-      <span class="chip text-mist px-4 py-2 border rounded-full" style="border-color:#13304D;background:rgba(12,34,54,.5)">TLS 1.3</span>
-      <span class="chip text-mist px-4 py-2 border rounded-full" style="border-color:#13304D;background:rgba(12,34,54,.5)">ZERO-TRUST</span>
-      <span class="chip text-mist px-4 py-2 border rounded-full" style="border-color:#13304D;background:rgba(12,34,54,.5)">TWIN-CONSENT LOCK</span>
-    </div>
-  </div>
-</header>
-
-<main style="background:#040B14">
-
-<!-- Design Principles -->
-<section class="relative py-20 px-8 border-y" style="border-color:#13304D">
-  <div class="max-w-6xl mx-auto grid responsive-grid-3 gap-6">
-    <div class="reveal node rounded-2xl p-7" style="background:#0C2236;border:1px solid #13304D">
-      <p class="chip text-teal mb-3">SECURITY BY DESIGN</p>
-      <h3 class="font-head text-white text-lg mb-2">الأمن من التصميم</h3>
-      <p class="text-greyx text-sm leading-relaxed">الضوابط الأمنية مدمجة في كل طبقةٍ من المعمارية منذ السطر الأول، لا مُضافة لاحقاً.</p>
-    </div>
-    <div class="reveal node rounded-2xl p-7" style="background:#0C2236;border:1px solid #13304D">
-      <p class="chip text-cyan mb-3">DEFENSE IN DEPTH</p>
-      <h3 class="font-head text-white text-lg mb-2">الدفاع المتعدّد الطبقات</h3>
-      <p class="text-greyx text-sm leading-relaxed">طبقات حماية متراكبة (شبكة، تطبيق، بيانات، هوية) بحيث لا يؤدي اختراق طبقةٍ واحدة لكشف البيانات.</p>
-    </div>
-    <div class="reveal node rounded-2xl p-7" style="background:#0C2236;border:1px solid #13304D">
-      <p class="chip text-gold mb-3">LEAST PRIVILEGE</p>
-      <h3 class="font-head text-white text-lg mb-2">الحدّ الأدنى من الصلاحية</h3>
-      <p class="text-greyx text-sm leading-relaxed">لا أحد — بما فيهم المطوّرون — يصل لبياناتٍ خام دون حاجةٍ مثبتة وصلاحيةٍ مؤقتة.</p>
-    </div>
-  </div>
-</section>
-
-<!-- 01 Encryption -->
-<section class="relative py-24 px-8 tab-section">
-  <div class="max-w-6xl mx-auto">
-    <div class="flex items-center gap-4 mb-3 reveal">
-      <span class="font-mono text-teal/30 text-5xl font-bold">01</span>
-      <p class="chip text-teal">END-TO-END ENCRYPTION</p>
-    </div>
-    <h2 class="font-head text-white text-4xl font-bold mb-12 reveal responsive-text-4xl">هندسة التشفير الشامل (E2EE)</h2>
-
-    <div class="grid responsive-grid-2 gap-6 mb-10">
-      <div class="reveal node rounded-2xl p-8" style="background:#0C2236;border:1px solid #13304D">
-        <div class="flex items-center justify-between mb-4">
-          <h3 class="font-head text-teal text-xl">أثناء الانتقال · In-Transit</h3>
-          <span class="chip text-cyan px-3 py-1 border rounded" style="border-color:rgba(34,211,238,.4)">TLS 1.3</span>
-        </div>
-        <p class="text-greyx text-sm leading-loose mb-4">تُؤمَّن كل اتصالات المنصّة عبر <span class="font-bold" style="color:#C7D6E0">TLS 1.3</span> حصراً، مع تعطيل البروتوكولات الأقدم، وفرض <span style="color:#C7D6E0">HSTS</span> و<span style="color:#C7D6E0">Perfect Forward Secrecy</span> لضمان عدم كشف الجلسات السابقة عند تسرّب أي مفتاح.</p>
-        <ul class="text-greyx text-sm space-y-2 list-none">
-          <li class="font-mono text-xs text-teal">▸ <span class="font-body text-greyx">مجموعات تشفير حديثة فقط (AEAD)</span></li>
-          <li class="font-mono text-xs text-teal">▸ <span class="font-body text-greyx">تثبيت الشهادات Certificate Pinning للتطبيقات</span></li>
-          <li class="font-mono text-xs text-teal">▸ <span class="font-body text-greyx">إنهاء TLS داخل النطاق الموثوق فقط</span></li>
-        </ul>
-      </div>
-      <div class="reveal node rounded-2xl p-8" style="background:#0C2236;border:1px solid #13304D">
-        <div class="flex items-center justify-between mb-4">
-          <h3 class="font-head text-teal text-xl">أثناء السكون · At-Rest</h3>
-          <span class="chip text-cyan px-3 py-1 border rounded" style="border-color:rgba(34,211,238,.4)">AES-256</span>
-        </div>
-        <p class="text-greyx text-sm leading-loose mb-4">تُشفَّر جميع البيانات الجينية المخزّنة بمعيار <span class="font-bold" style="color:#C7D6E0">AES-256-GCM</span>، على مستوى الحقل (Field-Level) للبيانات الأشدّ حساسية، بحيث تبقى مشفّرةً حتى داخل قاعدة البيانات نفسها.</p>
-        <ul class="text-greyx text-sm space-y-2 list-none">
-          <li class="font-mono text-xs text-teal">▸ <span class="font-body text-greyx">تشفير على مستوى الحقل + القرص + النسخ الاحتياطي</span></li>
-          <li class="font-mono text-xs text-teal">▸ <span class="font-body text-greyx">فصل بيانات التعريف عن البيانات الوراثية (Tokenization)</span></li>
-          <li class="font-mono text-xs text-teal">▸ <span class="font-body text-greyx">النسخ الاحتياطي مشفّر ومُختبَر دورياً</span></li>
-        </ul>
-      </div>
-    </div>
-
-    <!-- KMS -->
-    <div class="reveal node rounded-2xl p-8" style="background:linear-gradient(135deg,#0A2540,#0C2236);border:1px solid rgba(15,181,168,.3)">
-      <div class="flex items-center gap-3 mb-4">
-        <span class="chip text-teal px-3 py-1 border rounded" style="border-color:rgba(15,181,168,.4)">KMS</span>
-        <h3 class="font-head text-white text-xl">إدارة مفاتيح التشفير</h3>
-      </div>
-      <div class="grid responsive-grid-3 gap-6 text-sm">
-        <div><p class="text-teal font-bold mb-1">الفصل التام</p><p class="text-greyx leading-relaxed">المفاتيح تُدار في نظام KMS مستقلٍّ معزول عن قواعد البيانات — من يملك البيانات لا يملك المفتاح.</p></div>
-        <div><p class="text-teal font-bold mb-1">التدوير الدوري</p><p class="text-greyx leading-relaxed">تدويرٌ آلي للمفاتيح (Key Rotation) وفق جدولٍ زمني، مع إبطال فوري عند الاشتباه.</p></div>
-        <div><p class="text-teal font-bold mb-1">حارس مزدوج</p><p class="text-greyx leading-relaxed">عمليات المفاتيح الحرجة تتطلّب موافقةَ مسؤولَين (Dual Control) وتُسجَّل بالكامل.</p></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- 02 Zero Trust -->
-<section class="relative py-24 px-8 grid-bg border-y overflow-hidden tab-section" style="background:#06182B;border-color:#13304D">
-  <div class="absolute inset-0 glow-teal" style="opacity:.14"></div>
-  <div class="relative max-w-6xl mx-auto">
-    <div class="flex items-center gap-4 mb-3 reveal">
-      <span class="font-mono text-cyan/30 text-5xl font-bold">02</span>
-      <p class="chip text-cyan">ZERO-TRUST ARCHITECTURE</p>
-    </div>
-    <h2 class="font-head text-white text-4xl font-bold mb-4 reveal responsive-text-4xl">نموذج الثقة الصفرية</h2>
-    <p class="text-greyx max-w-3xl mb-12 reveal leading-relaxed">المبدأ الحاكم: <span class="text-teal font-bold font-mono text-sm">"Never Trust, Always Verify"</span> — لا ثقة ضمنية بأي مستخدمٍ أو خدمةٍ أو شبكة، والتحقق مستمرٌّ عند كل طلب.</p>
-
-    <div class="grid responsive-grid-2 gap-6 mb-8">
-      <div class="reveal node rounded-2xl p-7" style="background:#0C2236;border:1px solid #13304D">
-        <h3 class="font-head text-white text-lg mb-3">التحقق المستمر من الهوية</h3>
-        <p class="text-greyx text-sm leading-loose">ترتبط الهويات بـ <span class="font-bold" style="color:#C7D6E0">نفاذ الوطني الموحّد</span> كمصدرٍ موثوق، مع <span style="color:#C7D6E0">مصادقة متعددة العوامل (MFA)</span> للأدوار الطبية، وتقييمٍ سياقي لكل جلسة (الجهاز، الموقع، السلوك) قبل منح الوصول وأثناءه.</p>
-      </div>
-      <div class="reveal node rounded-2xl p-7" style="background:#0C2236;border:1px solid #13304D">
-        <h3 class="font-head text-white text-lg mb-3">التجزئة الدقيقة Micro-Segmentation</h3>
-        <p class="text-greyx text-sm leading-loose">تُعزَل كل خدمةٍ مصغّرة (Microservice) في نطاقٍ شبكي مستقل، ولا تتصل الخدمات إلا عبر قنواتٍ موثّقة بأقل الصلاحيات — اختراق خدمةٍ لا يفتح الباب لبقيتها.</p>
-      </div>
-    </div>
-
-    <!-- AI Engine Flow -->
-    <div class="reveal node rounded-2xl p-8" style="background:#040B14;border:1px solid #13304D">
-      <p class="chip text-teal mb-6">SECURE DATA FLOW · محرّك الذكاء الاصطناعي</p>
-      <div class="flex flex-col md:flex-row items-stretch gap-3 text-center text-sm">
-        <div class="flex-1 rounded-xl p-4" style="background:#0C2236;border:1px solid #13304D"><p class="font-mono text-xs text-cyan mb-1">INGEST</p><p style="color:#C7D6E0">جلب النتيجة من المصدر الرسمي<br><span class="text-greyx text-xs">قناة موثّقة · صفر إدخال يدوي</span></p></div>
-        <div class="flex items-center justify-center text-teal text-2xl">←</div>
-        <div class="flex-1 rounded-xl p-4" style="background:#0C2236;border:1px solid #13304D"><p class="font-mono text-xs text-cyan mb-1">PROCESS</p><p style="color:#C7D6E0">محرّك AI في بيئةٍ معزولة<br><span class="text-greyx text-xs">بيانات مشفّرة · بلا تخزين دائم</span></p></div>
-        <div class="flex items-center justify-center text-teal text-2xl">←</div>
-        <div class="flex-1 rounded-xl p-4" style="background:#0C2236;border:1px solid #13304D"><p class="font-mono text-xs text-cyan mb-1">OUTPUT</p><p style="color:#C7D6E0">تقرير مشفّر<br><span class="text-greyx text-xs">يُفك فقط بمفتاحَي الطرفين</span></p></div>
-      </div>
-      <p class="text-greyx text-xs mt-6 leading-relaxed">حماية نقاط الاتصال (Endpoints): كل واجهة برمجية (API) محميّة بـ <span style="color:#C7D6E0">بوابةٍ موحّدة (API Gateway)</span> تفرض المصادقة، تحديد المعدّل (Rate Limiting)، وفحص المدخلات قبل وصولها لمحرّك الـ AI.</p>
-    </div>
-  </div>
-</section>
-
-<!-- 03 Twin-Consent Lock -->
-<section class="relative py-24 px-8 tab-section">
-  <div class="max-w-6xl mx-auto">
-    <div class="flex items-center gap-4 mb-3 reveal">
-      <span class="font-mono text-gold/40 text-5xl font-bold">03</span>
-      <p class="chip text-gold">CRYPTOGRAPHIC TWIN-CONSENT LOCK</p>
-    </div>
-    <h2 class="font-head text-white text-4xl font-bold mb-4 reveal responsive-text-4xl">بروتوكول قفل الموافقة الثنائي</h2>
-    <p class="text-greyx max-w-3xl mb-12 reveal leading-relaxed">ابتكارٌ تقني جوهري: التقرير المشترك <span class="text-gold font-bold">لا يُفكّ تشفيره إلا بدمج مفتاحَي موافقة الطرفين معاً</span> — لا طرفٌ منفرد، ولا النظام نفسه، يستطيع فتحه وحده.</p>
-
-    <div class="grid responsive-grid-5 gap-6 items-center mb-10" style="grid-template-columns:1fr auto 1fr auto 1fr">
-      <!-- مفتاح أ -->
-      <div class="reveal">
-        <div class="key-a rounded-2xl p-6 text-center lock-glow">
-          <p class="font-mono text-xs font-bold mb-2">KEY · PARTNER A</p>
-          <p class="font-head text-2xl font-bold" style="color:#040B14">مفتاح الطرف (أ)</p>
-          <p class="text-xs mt-2" style="color:#040B14;opacity:.8">يُولَّد عند توقيعه عبر نفاذ</p>
-        </div>
-      </div>
-      <!-- زائد -->
-      <div class="reveal text-center text-teal text-4xl font-bold">+</div>
-      <!-- مفتاح ب -->
-      <div class="reveal">
-        <div class="key-b rounded-2xl p-6 text-center lock-glow">
-          <p class="font-mono text-xs font-bold mb-2">KEY · PARTNER B</p>
-          <p class="font-head text-2xl font-bold" style="color:#040B14">مفتاح الطرف (ب)</p>
-          <p class="text-xs mt-2" style="color:#040B14;opacity:.8">يُولَّد عند توقيعه عبر نفاذ</p>
-        </div>
-      </div>
-      <!-- يساوي -->
-      <div class="reveal text-center text-teal text-4xl font-bold">=</div>
-      <!-- التقرير -->
-      <div class="reveal">
-        <div class="rounded-2xl p-6 text-center lock-glow" style="background:#0C2236;border:2px solid #0FB5A8">
-          <p class="font-mono text-xs text-teal font-bold mb-2">UNLOCKED REPORT</p>
-          <p class="font-head text-white text-xl font-bold">التقرير المشترك</p>
-          <p class="text-greyx text-xs mt-2">يُفكّ تشفيره فقط عند اكتمال المفتاحين</p>
-        </div>
-      </div>
-    </div>
-
-    <!-- Technical Explanation -->
-    <div class="reveal node rounded-2xl p-8" style="background:#040B14;border:1px solid #13304D">
-      <p class="chip text-teal mb-5">TECHNICAL MECHANISM · المبدأ التقني</p>
-      <div class="grid responsive-grid-3 gap-6 text-sm">
-        <div>
-          <p class="font-mono text-xs text-cyan mb-2">01 · SPLIT-KEY</p>
-          <p class="text-greyx leading-loose">يُشفَّر مفتاح التقرير ويُقسَّم عبر <span class="font-bold" style="color:#C7D6E0">مشاركة السرّ (Secret Sharing)</span> إلى جزأين، كلٌّ مرتبطٌ بموافقة طرفٍ موثّقة رقمياً.</p>
-        </div>
-        <div>
-          <p class="font-mono text-xs text-cyan mb-2">02 · DUAL-AUTH DECRYPT</p>
-          <p class="text-greyx leading-loose">لا تكتمل عملية فكّ التشفير إلا بدمج الجزأين معاً في بيئةٍ آمنة، فيتعذّر الفتح بمفتاحٍ واحد أو من طرفٍ ثالث.</p>
-        </div>
-        <div>
-          <p class="font-mono text-xs text-cyan mb-2">03 · REVOCATION</p>
-          <p class="text-greyx leading-loose">سحب موافقة أحد الطرفين <span class="font-bold" style="color:#C7D6E0">يُبطِل جزأه</span> فوراً، فيصبح التقرير غير قابلٍ للفتح نهائياً — تطبيقٌ تقني لمبدأ الموافقة المشروطة.</p>
-        </div>
-      </div>
-      <div class="mt-6 rounded-xl p-4 font-mono text-xs text-greyx leading-relaxed" style="background:#06182B;border:1px solid #13304D">
-        <span class="text-teal">report_key</span> = encrypt(report, K) <br>
-        <span class="text-teal">K</span> → split → [ <span class="text-gold">share_A</span> ⊕ consent_A , <span class="text-cyan">share_B</span> ⊕ consent_B ] <br>
-        <span class="text-coral">decrypt(report)</span> requires → reconstruct(K) ⟸ ( <span class="text-gold">share_A</span> + <span class="text-cyan">share_B</span> )
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- 04 Incident Response -->
-<section class="relative py-24 px-8 grid-bg border-t overflow-hidden tab-section" style="background:#06182B;border-color:#13304D">
-  <div class="absolute inset-0 glow-cyan"></div>
-  <div class="relative max-w-6xl mx-auto">
-    <div class="flex items-center gap-4 mb-3 reveal">
-      <span class="font-mono text-coral/40 text-5xl font-bold">04</span>
-      <p class="chip text-coral">INCIDENT RESPONSE & MONITORING</p>
-    </div>
-    <h2 class="font-head text-white text-4xl font-bold mb-12 reveal responsive-text-4xl">الاستجابة للحوادث والمراقبة</h2>
-
-    <!-- Response Cycle -->
-    <div class="grid responsive-grid-5 gap-3 mb-12">
-      <div class="reveal node rounded-xl p-5 text-center" style="background:#0C2236;border:1px solid #13304D"><p class="font-mono text-xs text-teal mb-2">PREPARE</p><p style="color:#C7D6E0" class="text-sm font-bold mb-1">التأهّب</p><p class="text-greyx text-xs leading-relaxed">سياسات وفرق وأدوات جاهزة</p></div>
-      <div class="reveal node rounded-xl p-5 text-center" style="background:#0C2236;border:1px solid #13304D"><p class="font-mono text-xs text-cyan mb-2">DETECT</p><p style="color:#C7D6E0" class="text-sm font-bold mb-1">الكشف</p><p class="text-greyx text-xs leading-relaxed">مراقبة وتنبيه آلي 24/7</p></div>
-      <div class="reveal node rounded-xl p-5 text-center" style="background:#0C2236;border:1px solid #13304D"><p class="font-mono text-xs text-gold mb-2">CONTAIN</p><p style="color:#C7D6E0" class="text-sm font-bold mb-1">الاحتواء</p><p class="text-greyx text-xs leading-relaxed">عزل فوري لمنع الانتشار</p></div>
-      <div class="reveal node rounded-xl p-5 text-center" style="background:#0C2236;border:1px solid #13304D"><p class="font-mono text-xs text-coral mb-2">ERADICATE</p><p style="color:#C7D6E0" class="text-sm font-bold mb-1">الإزالة</p><p class="text-greyx text-xs leading-relaxed">استئصال السبب الجذري</p></div>
-      <div class="reveal node rounded-xl p-5 text-center" style="background:#0C2236;border:1px solid #13304D"><p class="font-mono text-xs text-teal mb-2">RECOVER</p><p style="color:#C7D6E0" class="text-sm font-bold mb-1">التعافي</p><p class="text-greyx text-xs leading-relaxed">استعادة آمنة + دروس مستفادة</p></div>
-    </div>
-
-    <div class="grid responsive-grid-2 gap-6 mb-8">
-      <div class="reveal node rounded-2xl p-7" style="background:#0C2236;border:1px solid #13304D">
-        <h3 class="font-head text-white text-lg mb-3">المراقبة والتدقيق</h3>
-        <ul class="text-greyx text-sm space-y-3 list-none">
-          <li class="flex gap-2"><span class="text-teal font-mono">▸</span> <span><span class="font-bold" style="color:#C7D6E0">SIEM</span> لتجميع السجلّات وتحليلها وربط الأحداث آلياً.</span></li>
-          <li class="flex gap-2"><span class="text-teal font-mono">▸</span> <span>سجلّات تدقيق <span style="color:#C7D6E0">غير قابلة للتعديل</span> لكل اطّلاعٍ على بياناتٍ حساسة.</span></li>
-          <li class="flex gap-2"><span class="text-teal font-mono">▸</span> <span>كشف الشذوذ السلوكي (Anomaly Detection) لرصد الوصول غير المعتاد.</span></li>
-          <li class="flex gap-2"><span class="text-teal font-mono">▸</span> <span>اختبارات اختراق دورية (Pen-Testing) وفحص الثغرات.</span></li>
-        </ul>
-      </div>
-      <div class="reveal node rounded-2xl p-7" style="background:#0C2236;border:1px solid #13304D">
-        <h3 class="font-head text-white text-lg mb-3">الالتزام مع الهيئة الوطنية للأمن السيبراني</h3>
-        <p class="text-greyx text-sm leading-loose mb-4">تلتزم المنصّة بضوابط <span class="font-bold" style="color:#C7D6E0">ECC-1:2018</span> باعتبارها نظاماً يعالج بياناتٍ حساسة، ويشمل ذلك:</p>
-        <ul class="text-greyx text-sm space-y-2 list-none">
-          <li class="flex gap-2"><span class="text-teal font-mono">▸</span> حوكمة الأمن السيبراني وإدارة المخاطر.</li>
-          <li class="flex gap-2"><span class="text-teal font-mono">▸</span> تعزيز الأمن في الأصول والشبكات والتطبيقات.</li>
-          <li class="flex gap-2"><span class="text-teal font-mono">▸</span> الإبلاغ عن الحوادث للجهات المختصّة ضمن المدد المقرّرة.</li>
-          <li class="flex gap-2"><span class="text-teal font-mono">▸</span> أمن الأطراف الخارجية والحوسبة السحابية.</li>
-        </ul>
-      </div>
-    </div>
-
-    <!-- ECC Matrix -->
-    <div class="reveal node rounded-2xl p-7" style="background:#040B14;border:1px solid #13304D">
-      <p class="chip text-teal mb-5">ECC-1:2018 · ربط الضوابط</p>
-      <div class="grid responsive-grid-4 gap-4 text-sm">
-        <div class="rounded-xl p-4" style="background:#0C2236;border:1px solid #13304D"><p class="font-mono text-xs text-cyan mb-2">1 · GOVERNANCE</p><p style="color:#C7D6E0" class="font-bold mb-1">حوكمة الأمن</p><p class="text-greyx text-xs">سياسات، أدوار، ومراجعة دورية.</p></div>
-        <div class="rounded-xl p-4" style="background:#0C2236;border:1px solid #13304D"><p class="font-mono text-xs text-cyan mb-2">2 · DEFENSE</p><p style="color:#C7D6E0" class="font-bold mb-1">تعزيز الحماية</p><p class="text-greyx text-xs">تشفير، هويات، تجزئة شبكية.</p></div>
-        <div class="rounded-xl p-4" style="background:#0C2236;border:1px solid #13304D"><p class="font-mono text-xs text-cyan mb-2">3 · RESILIENCE</p><p style="color:#C7D6E0" class="font-bold mb-1">الصمود</p><p class="text-greyx text-xs">استمرارية واستعادة بعد الكوارث.</p></div>
-        <div class="rounded-xl p-4" style="background:#0C2236;border:1px solid #13304D"><p class="font-mono text-xs text-cyan mb-2">4 · THIRD-PARTY</p><p style="color:#C7D6E0" class="font-bold mb-1">الأطراف الخارجية</p><p class="text-greyx text-xs">أمن المورّدين والسحابة.</p></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-</main>
-
-<!-- TAB 3 FOOTER -->
-<footer class="text-center py-10" style="background:#040B14;border-top:1px solid #13304D;margin-bottom:80px">
-  <p class="font-head text-teal text-lg mb-1">وَراثة WIRATHA</p>
-  <p class="chip text-greyx">CYBERSECURITY STRATEGY · ARKANE AI · NCA ECC-1:2018 ALIGNED</p>
-</footer>
-
-</div><!-- /tab3 -->
-
-<!-- ═══════════════════════════════════════════════════════════════
-     TAB 4: مخطط الربط التقني والـ APIs الطبية
-     ═══════════════════════════════════════════════════════════════ -->
-<div class="tab-content" id="tab4">
-
-<!-- HEADER -->
-<header class="relative overflow-hidden dots" style="background:#0B1220">
-  <div class="absolute inset-0" style="background:radial-gradient(circle at 80% 10%,rgba(56,189,248,.12),transparent 50%),radial-gradient(circle at 10% 90%,rgba(15,181,168,.12),transparent 50%)"></div>
-  <div class="relative max-w-6xl mx-auto px-8 pt-12 pb-20">
-    <div class="flex items-center justify-between text-xs mb-16 responsive-flex-col">
-      <span class="text-teal font-bold tracking-[.3em]">ARKANE&nbsp;AI</span>
-      <span class="chip text-greyx px-3 py-1 border rounded" style="border-color:#1E3A5F">DEVELOPER REFERENCE · v1.0</span>
-    </div>
-    <p class="chip text-cyan mb-5">HEALTH INTEROPERABILITY · HL7 FHIR R4</p>
-    <h1 class="font-head text-white text-4xl md:text-5xl font-bold leading-tight mb-5 responsive-text-4xl">مخطط الربط التقني القياسي<br>والـ APIs الطبية</h1>
-    <p class="text-greyx text-lg max-w-2xl leading-relaxed mb-8">دليلٌ هندسي للمطوّرين لربط منصّة <span class="text-teal font-bold">وَراثة WIRATHA</span> آلياً بالأنظمة الصحية الوطنية وفق معايير التشغيل البيني العالمية.</p>
-    <div class="hairline w-48 mb-8"></div>
-    <div class="flex flex-wrap gap-3">
-      <span class="chip text-mist px-4 py-2 border rounded-full" style="border-color:#1E3A5F;background:rgba(22,39,62,.6)">HL7 FHIR R4</span>
-      <span class="chip text-mist px-4 py-2 border rounded-full" style="border-color:#1E3A5F;background:rgba(22,39,62,.6)">RESTful</span>
-      <span class="chip text-mist px-4 py-2 border rounded-full" style="border-color:#1E3A5F;background:rgba(22,39,62,.6)">OAuth 2.0</span>
-      <span class="chip text-mist px-4 py-2 border rounded-full" style="border-color:#1E3A5F;background:rgba(22,39,62,.6)">mTLS</span>
-      <span class="chip text-mist px-4 py-2 border rounded-full" style="border-color:#1E3A5F;background:rgba(22,39,62,.6)">JSON</span>
-    </div>
-  </div>
-</header>
-
-<main style="background:#0B1220">
-
-<!-- System Topology -->
-<section class="relative py-20 px-8 border-y tab-section" style="background:#0E1A2B;border-color:#1E3A5F">
-  <div class="max-w-6xl mx-auto">
-    <p class="chip text-teal mb-8 reveal">SYSTEM TOPOLOGY · معمارية الربط</p>
-    <div class="grid responsive-grid-3 gap-4 items-stretch">
-      <div class="reveal layer codecard rounded-2xl p-6">
-        <p class="chip text-cyan mb-2">SOURCES</p>
-        <h3 class="font-head text-white text-lg mb-3">الأنظمة المصدر</h3>
-        <ul class="text-greyx text-sm space-y-2 list-none">
-          <li class="font-mono text-xs text-emer">● <span class="font-body text-greyx">منصة صحتي / المنظومة الصحية</span></li>
-          <li class="font-mono text-xs text-emer">● <span class="font-body text-greyx">سيرفرات وزارة الصحة (الزواج الصحي)</span></li>
-          <li class="font-mono text-xs text-emer">● <span class="font-body text-greyx">سجلات مجلس الضمان الصحي CCHI</span></li>
-        </ul>
-      </div>
-      <div class="reveal layer codecard rounded-2xl p-6" style="border-color:rgba(15,181,168,.4)">
-        <p class="chip text-teal mb-2">INTEGRATION LAYER</p>
-        <h3 class="font-head text-white text-lg mb-3">طبقة الربط · WIRATHA</h3>
-        <ul class="text-greyx text-sm space-y-2 list-none">
-          <li class="font-mono text-xs text-teal">▸ <span class="font-body text-greyx">FHIR Façade / API Gateway</span></li>
-          <li class="font-mono text-xs text-teal">▸ <span class="font-body text-greyx">محرّك تحليل الخطر (AI)</span></li>
-          <li class="font-mono text-xs text-teal">▸ <span class="font-body text-greyx">خدمة الموافقة Consent Service</span></li>
-        </ul>
-      </div>
-      <div class="reveal layer codecard rounded-2xl p-6">
-        <p class="chip text-violet mb-2">CONSUMERS</p>
-        <h3 class="font-head text-white text-lg mb-3">المستهلكون</h3>
-        <ul class="text-greyx text-sm space-y-2 list-none">
-          <li class="font-mono text-xs text-violet">◆ <span class="font-body text-greyx">واجهة الزوجين</span></li>
-          <li class="font-mono text-xs text-violet">◆ <span class="font-body text-greyx">الطبيب الاستشاري (الصحة الافتراضي)</span></li>
-          <li class="font-mono text-xs text-violet">◆ <span class="font-body text-greyx">لوحة الجهات الصحية (مُخفاة الهوية)</span></li>
-        </ul>
-      </div>
-    </div>
-    <p class="reveal text-greyx text-sm mt-6 font-mono text-center">SOURCES → <span class="text-teal">[ mTLS + OAuth2 ]</span> → INTEGRATION LAYER → <span class="text-violet">[ Scoped Access ]</span> → CONSUMERS</p>
-  </div>
-</section>
-
-<!-- 01 Endpoints -->
-<section class="relative py-24 px-8 tab-section">
-  <div class="max-w-6xl mx-auto">
-    <div class="flex items-center gap-4 mb-3 reveal">
-      <span class="font-mono text-teal/30 text-5xl font-bold">01</span>
-      <p class="chip text-teal">RESTful API · ENDPOINTS</p>
-    </div>
-    <h2 class="font-head text-white text-4xl font-bold mb-4 reveal responsive-text-4xl">بنية الـ API ونقاط الربط</h2>
-    <p class="text-greyx mb-8 reveal font-mono text-sm">Base URL: <span class="text-cyan">https://api.wiratha.sa/fhir/r4</span> · جميع الطلبات موثّقة ومقيّدة النطاق (scoped)</p>
-
-    <div class="space-y-3">
-      <div class="reveal ep-row codecard rounded-xl p-5 flex flex-col md:flex-row md:items-center gap-3">
-        <span class="method-get chip font-bold px-3 py-1 rounded inline-block w-fit">GET</span>
-        <code class="font-mono text-mist text-sm flex-1">/Patient/{nationalId}/$verify-identity</code>
-        <span class="text-greyx text-sm">التحقق من هوية المستخدم عبر نفاذ قبل أي معالجة</span>
-      </div>
-      <div class="reveal ep-row codecard rounded-xl p-5 flex flex-col md:flex-row md:items-center gap-3">
-        <span class="method-get chip font-bold px-3 py-1 rounded inline-block w-fit">GET</span>
-        <code class="font-mono text-mist text-sm flex-1">/DiagnosticReport?patient={id}&category=GE</code>
-        <span class="text-greyx text-sm">استرجاع نتيجة الفحص الوراثي آلياً من المصدر الرسمي</span>
-      </div>
-      <div class="reveal ep-row codecard rounded-xl p-5 flex flex-col md:flex-row md:items-center gap-3">
-        <span class="method-get chip font-bold px-3 py-1 rounded inline-block w-fit">GET</span>
-        <code class="font-mono text-mist text-sm flex-1">/Coverage?patient={id}</code>
-        <span class="text-greyx text-sm">جلب بيانات التغطية من مجلس الضمان الصحي CCHI</span>
-      </div>
-      <div class="reveal ep-row codecard rounded-xl p-5 flex flex-col md:flex-row md:items-center gap-3">
-        <span class="method-post chip font-bold px-3 py-1 rounded inline-block w-fit">POST</span>
-        <code class="font-mono text-mist text-sm flex-1">/Consent</code>
-        <span class="text-greyx text-sm">تسجيل الموافقة المستنيرة الموقّعة لكل طرف</span>
-      </div>
-      <div class="reveal ep-row codecard rounded-xl p-5 flex flex-col md:flex-row md:items-center gap-3">
-        <span class="method-post chip font-bold px-3 py-1 rounded inline-block w-fit">POST</span>
-        <code class="font-mono text-mist text-sm flex-1">/RiskAssessment/$compute</code>
-        <span class="text-greyx text-sm">تشغيل محرّك حساب الخطر المتنحّي المشترك للطرفين</span>
-      </div>
-      <div class="reveal ep-row codecard rounded-xl p-5 flex flex-col md:flex-row md:items-center gap-3">
-        <span class="method-get chip font-bold px-3 py-1 rounded inline-block w-fit">GET</span>
-        <code class="font-mono text-mist text-sm flex-1">/RiskAssessment/{id}/$decision-report</code>
-        <span class="text-greyx text-sm">جلب تقرير دعم القرار (يتطلّب مفتاحَي الطرفين)</span>
-      </div>
-      <div class="reveal ep-row codecard rounded-xl p-5 flex flex-col md:flex-row md:items-center gap-3">
-        <span class="method-put chip font-bold px-3 py-1 rounded inline-block w-fit">PUT</span>
-        <code class="font-mono text-mist text-sm flex-1">/Consent/{id}/$revoke</code>
-        <span class="text-greyx text-sm">سحب الموافقة وإبطال مفتاح فكّ التشفير فوراً</span>
-      </div>
-    </div>
-    <p class="reveal text-greyx text-xs mt-6 font-mono">* الربط آلي ومقيّد (machine-to-machine) — لا إدخال يدوي للبيانات الوراثية في أي مرحلة.</p>
-  </div>
-</section>
-
-<!-- 02 FHIR Payload -->
-<section class="relative py-24 px-8 dots border-y tab-section" style="background:#0E1A2B;border-color:#1E3A5F">
-  <div class="absolute inset-0" style="background:radial-gradient(circle at 80% 10%,rgba(56,189,248,.12),transparent 50%),radial-gradient(circle at 10% 90%,rgba(15,181,168,.12),transparent 50%)"></div>
-  <div class="relative max-w-6xl mx-auto">
-    <div class="flex items-center gap-4 mb-3 reveal">
-      <span class="font-mono text-cyan/30 text-5xl font-bold">02</span>
-      <p class="chip text-cyan">FHIR GENOMICS · PAYLOAD SCHEMA</p>
-    </div>
-    <h2 class="font-head text-white text-4xl font-bold mb-4 reveal responsive-text-4xl">توصيف حزمة البيانات الجينية</h2>
-    <p class="text-greyx mb-10 reveal max-w-3xl leading-relaxed">تمثيلٌ متوافق مع <span class="text-cyan font-bold">HL7 FHIR R4 Genomics</span> لنتيجة الفحص الوراثي، مبني على موارد <span class="font-mono text-sm text-mist">DiagnosticReport</span> و<span class="font-mono text-sm text-mist">Observation</span> (molecular-sequence)، تُسترجَع آلياً دون تدخّل بشري.</p>
-
-    <div class="grid responsive-grid-2 gap-6">
-      <!-- DiagnosticReport -->
-      <div class="reveal codecard rounded-2xl overflow-hidden">
-        <div class="flex items-center justify-between px-5 py-3 border-b" style="background:#16273E;border-color:#1E3A5F">
-          <span class="font-mono text-xs text-cyan">DiagnosticReport — نتيجة الفحص</span>
-          <span class="chip text-greyx">application/fhir+json</span>
-        </div>
-<pre class="p-5" style="color:#C7D6E0">{
-  <span class="k">"resourceType"</span>: <span class="s">"DiagnosticReport"</span>,
-  <span class="k">"id"</span>: <span class="s">"genetic-screen-001"</span>,
-  <span class="k">"status"</span>: <span class="s">"final"</span>,
-  <span class="k">"category"</span>: [{
-    <span class="k">"coding"</span>: [{
-      <span class="k">"system"</span>: <span class="s">"http://terminology.hl7.org/..."</span>,
-      <span class="k">"code"</span>: <span class="s">"GE"</span>,
-      <span class="k">"display"</span>: <span class="s">"Genetics"</span>
-    }]
-  }],
-  <span class="k">"code"</span>: {
-    <span class="k">"coding"</span>: [{
-      <span class="k">"system"</span>: <span class="s">"http://loinc.org"</span>,
-      <span class="k">"code"</span>: <span class="s">"81247-9"</span>,
-      <span class="k">"display"</span>: <span class="s">"Master HL7 genetic panel"</span>
-    }]
-  },
-  <span class="k">"subject"</span>: { <span class="k">"reference"</span>: <span class="s">"Patient/partner-A"</span> },
-  <span class="k">"result"</span>: [
-    { <span class="k">"reference"</span>: <span class="s">"Observation/hbb-variant"</span> }
-  ]
-}</pre>
-      </div>
-
-      <!-- Observation -->
-      <div class="reveal codecard rounded-2xl overflow-hidden">
-        <div class="flex items-center justify-between px-5 py-3 border-b" style="background:#16273E;border-color:#1E3A5F">
-          <span class="font-mono text-xs text-emer">Observation — حالة الجين والطفرة</span>
-          <span class="chip text-greyx">genomics profile</span>
-        </div>
-<pre class="p-5" style="color:#C7D6E0">{
-  <span class="k">"resourceType"</span>: <span class="s">"Observation"</span>,
-  <span class="k">"id"</span>: <span class="s">"hbb-variant"</span>,
-  <span class="k">"status"</span>: <span class="s">"final"</span>,
-  <span class="k">"code"</span>: {
-    <span class="k">"coding"</span>: [{
-      <span class="k">"system"</span>: <span class="s">"http://loinc.org"</span>,
-      <span class="k">"code"</span>: <span class="s">"69548-6"</span>,
-      <span class="k">"display"</span>: <span class="s">"Genetic variant assessment"</span>
-    }]
-  },
-  <span class="k">"valueCodeableConcept"</span>: {
-    <span class="k">"coding"</span>: [{
-      <span class="k">"code"</span>: <span class="s">"LA6576-8"</span>,
-      <span class="k">"display"</span>: <span class="s">"Carrier — حامل"</span>
-    }]
-  },
-  <span class="k">"component"</span>: [
-    {
-      <span class="k">"code"</span>: { <span class="k">"text"</span>: <span class="s">"gene"</span> },
-      <span class="k">"valueCodeableConcept"</span>: {
-        <span class="k">"coding"</span>: [{ <span class="k">"system"</span>:<span class="s">"HGNC"</span>,
-          <span class="k">"code"</span>:<span class="s">"HGNC:4827"</span>, <span class="k">"display"</span>:<span class="s">"HBB"</span> }]
-      }
-    },
-    {
-      <span class="k">"code"</span>: { <span class="k">"text"</span>: <span class="s">"zygosity"</span> },
-      <span class="k">"valueString"</span>: <span class="s">"heterozygous"</span>
-    },
-    {
-      <span class="k">"code"</span>: { <span class="k">"text"</span>: <span class="s">"inheritance"</span> },
-      <span class="k">"valueString"</span>: <span class="s">"autosomal-recessive"</span>
-    }
-  ]
-}</pre>
-      </div>
-    </div>
-
-    <!-- RiskAssessment -->
-    <div class="reveal codecard rounded-2xl overflow-hidden mt-6">
-      <div class="flex items-center justify-between px-5 py-3 border-b" style="background:#16273E;border-color:#1E3A5F">
-        <span class="font-mono text-xs text-gold">RiskAssessment — مخرَج محرّك الخطر</span>
-        <span class="chip text-greyx">computed · AI engine</span>
-      </div>
-<pre class="p-5" style="color:#C7D6E0">{
-  <span class="k">"resourceType"</span>: <span class="s">"RiskAssessment"</span>,
-  <span class="k">"status"</span>: <span class="s">"final"</span>,
-  <span class="k">"subject"</span>: { <span class="k">"reference"</span>: <span class="s">"Group/couple-AB"</span> },
-  <span class="k">"basis"</span>: [
-    { <span class="k">"reference"</span>: <span class="s">"Observation/partner-A-HBB"</span> },
-    { <span class="k">"reference"</span>: <span class="s">"Observation/partner-B-HBB"</span> }
-  ],
-  <span class="k">"prediction"</span>: [{
-    <span class="k">"outcome"</span>: { <span class="k">"text"</span>: <span class="s">"Affected offspring — طفل مصاب"</span> },
-    <span class="k">"probabilityDecimal"</span>: <span class="n">0.25</span>,
-    <span class="k">"qualitativeRisk"</span>: { <span class="k">"coding"</span>:[{ <span class="k">"code"</span>:<span class="s">"high"</span> }] }
-  }],
-  <span class="k">"note"</span>: [{ <span class="k">"text"</span>: <span class="s">"كلا الطرفين حامل — 25% لكل حمل"</span> }]
-}</pre>
-    </div>
-  </div>
-</section>
-
-<!-- 03 Security & Auth -->
-<section class="relative py-24 px-8 tab-section">
-  <div class="max-w-6xl mx-auto">
-    <div class="flex items-center gap-4 mb-3 reveal">
-      <span class="font-mono text-violet/40 text-5xl font-bold">03</span>
-      <p class="chip text-violet">SECURITY · MUTUAL AUTHENTICATION</p>
-    </div>
-    <h2 class="font-head text-white text-4xl font-bold mb-10 reveal responsive-text-4xl">بروتوكول الأمان والتوثيق المتبادل</h2>
-
-    <div class="grid responsive-grid-2 gap-6 mb-8">
-      <div class="reveal codecard rounded-2xl p-7">
-        <div class="flex items-center justify-between mb-4">
-          <h3 class="font-head text-white text-lg">OAuth 2.0 · التفويض</h3>
-          <span class="chip text-cyan px-3 py-1 border rounded" style="border-color:rgba(34,211,238,.4)">SMART on FHIR</span>
-        </div>
-        <p class="text-greyx text-sm leading-loose mb-4">تفويضٌ مقيّد النطاق عبر <span class="font-bold" style="color:#C7D6E0">Client Credentials</span> للربط الآلي بين الأنظمة، مع رموز وصول (Access Tokens) قصيرة العمر ونطاقاتٍ دقيقة.</p>
-        <div class="rounded-lg p-3 font-mono text-xs text-greyx leading-relaxed border" style="background:#0E1A2B;border-color:#1E3A5F">
-          <span class="c"># scope مقيّد لكل غرض</span><br>
-          scope: <span class="s">patient/DiagnosticReport.read</span><br>
-          scope: <span class="s">patient/Consent.write</span><br>
-          token_lifetime: <span class="n">300s</span>
-        </div>
-      </div>
-      <div class="reveal codecard rounded-2xl p-7">
-        <div class="flex items-center justify-between mb-4">
-          <h3 class="font-head text-white text-lg">mTLS · التوثيق المتبادل</h3>
-          <span class="chip text-teal px-3 py-1 border rounded" style="border-color:rgba(15,181,168,.4)">X.509</span>
-        </div>
-        <p class="text-greyx text-sm leading-loose mb-4">يُثبِت كلا الطرفين (المنصّة والنظام الحكومي) هويته بشهادةٍ رقمية موثّقة — فلا يتصل بالسيرفرات الرسمية إلا طرفٌ معتمد، ما يمنع التزوير وانتحال الهوية.</p>
-        <div class="rounded-lg p-3 font-mono text-xs text-greyx leading-relaxed border" style="background:#0E1A2B;border-color:#1E3A5F">
-          <span class="c"># كلا الطرفين يقدّم شهادة</span><br>
-          client_cert: <span class="s">verified ✓</span><br>
-          server_cert: <span class="s">verified ✓</span><br>
-          channel: <span class="b">TLS 1.3 + mTLS</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- Auth Flow -->
-    <div class="reveal codecard rounded-2xl p-8">
-      <p class="chip text-teal mb-6">AUTH FLOW · تسلسل التوثيق الآمن</p>
-      <div class="space-y-3 font-mono text-sm">
-        <div class="flex items-center gap-3"><span class="text-violet w-8">1</span><span class="text-greyx flex-1">إنشاء قناة <span class="text-teal">mTLS</span> بشهادتين متبادلتين بين WIRATHA والنظام الحكومي</span></div>
-        <div class="flex items-center gap-3"><span class="text-violet w-8">2</span><span class="text-greyx flex-1">طلب رمز وصول <span class="text-cyan">OAuth2</span> بنطاقٍ مقيّد للغرض المحدّد</span></div>
-        <div class="flex items-center gap-3"><span class="text-violet w-8">3</span><span class="text-greyx flex-1">التحقق من هوية المستخدم عبر <span style="color:#C7D6E0">نفاذ</span> قبل أي استرجاع</span></div>
-        <div class="flex items-center gap-3"><span class="text-violet w-8">4</span><span class="text-greyx flex-1">استرجاع مورد <span class="text-emer">FHIR</span> مشفّراً + توقيعٍ رقمي لإثبات السلامة</span></div>
-        <div class="flex items-center gap-3"><span class="text-violet w-8">5</span><span class="text-greyx flex-1">تسجيل العملية في <span class="text-gold">سجلّ تدقيق</span> غير قابل للتعديل</span></div>
-      </div>
-      <div class="mt-6 grid responsive-grid-3 gap-4 text-sm">
-        <div class="rounded-lg p-4 border" style="background:#0E1A2B;border-color:#1E3A5F"><p class="text-teal font-bold mb-1">سلامة البيانات</p><p class="text-greyx text-xs leading-relaxed">توقيع رقمي (Digital Signature) على كل حزمة لكشف أي تلاعب.</p></div>
-        <div class="rounded-lg p-4 border" style="background:#0E1A2B;border-color:#1E3A5F"><p class="text-teal font-bold mb-1">منع التكرار</p><p class="text-greyx text-xs leading-relaxed">Nonce + ختم زمني لمنع هجمات إعادة الإرسال (Replay).</p></div>
-        <div class="rounded-lg p-4 border" style="background:#0E1A2B;border-color:#1E3A5F"><p class="text-teal font-bold mb-1">تحديد المعدّل</p><p class="text-greyx text-xs leading-relaxed">Rate Limiting على البوابة لصدّ الاستنزاف والإساءة.</p></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-</main>
-
-<!-- TAB 4 FOOTER -->
-<footer class="text-center py-10" style="background:#0B1220;border-top:1px solid #1E3A5F;margin-bottom:80px">
-  <p class="font-head text-teal text-lg mb-1">وَراثة WIRATHA</p>
-  <p class="chip text-greyx">API INTEGRATION SCHEMA · ARKANE AI · HL7 FHIR R4 COMPLIANT</p>
-</footer>
-
-</div><!-- /tab4 -->
-
-<!-- ═══════════════════════════════════════════════════════════════
-     TAB 5: النموذج المالي والتجاري وعائد الاستثمار
-     ═══════════════════════════════════════════════════════════════ -->
-<div class="tab-content" id="tab5">
-
-<!-- HEADER -->
-<header class="relative overflow-hidden grain text-white" style="background:#10261C">
-  <div class="absolute inset-0" style="background:radial-gradient(circle at 80% 20%,rgba(201,162,39,.18),transparent 55%)"></div>
-  <div class="relative max-w-6xl mx-auto px-8 pt-12 pb-20">
-    <div class="flex items-center justify-between text-xs mb-16 responsive-flex-col">
-      <span class="text-gold font-bold tracking-[.3em]">ARKANE&nbsp;AI</span>
-      <span style="color:rgba(255,255,255,.4)">تقرير جدوى مالي وتجاري · سرّي</span>
-    </div>
-    <p class="kicker text-gold text-sm mb-5">النموذج المالي والتجاري · ROI</p>
-    <h1 class="font-head text-4xl md:text-5xl font-bold leading-tight mb-5 responsive-text-4xl">النموذج المالي والتجاري المستدام</h1>
-    <p class="text-white/70 text-xl max-w-2xl leading-relaxed mb-8">منصّة <span class="text-mint font-bold">وَراثة WIRATHA</span> — اقتصادٌ صحي وقائي يحوّل تكلفة المعاناة إلى عائدٍ وطني.</p>
-    <div class="hairline w-48 mb-10"></div>
-    <div class="grid responsive-grid-4 gap-px bg-white/10 rounded-2xl overflow-hidden max-w-4xl">
-      <div class="p-5" style="background:#10261C"><p class="bignum text-mint text-3xl font-bold">~250K</p><p class="text-white/50 text-xs mt-2">عقد زواج / سنة (السوق)</p></div>
-      <div class="p-5" style="background:#10261C"><p class="bignum text-mint text-3xl font-bold">182K</p><p class="text-white/50 text-xs mt-2">ريال كلفة المريض / سنة</p></div>
-      <div class="p-5" style="background:#10261C"><p class="bignum text-gold text-3xl font-bold">5.25B</p><p class="text-white/50 text-xs mt-2">ريال كلفة مرض واحد / سنة</p></div>
-      <div class="p-5" style="background:#10261C"><p class="bignum text-mint text-3xl font-bold">B2B+B2G</p><p class="text-white/50 text-xs mt-2">نموذج الإيراد المزدوج</p></div>
-    </div>
-  </div>
-</header>
-
-<div style="background:rgba(201,162,39,.1);border-bottom:1px solid rgba(201,162,39,.3)">
-  <div class="max-w-6xl mx-auto px-8 py-3 text-xs leading-relaxed" style="color:#10261C">
-    <span class="font-bold text-gold">منهجية:</span> جميع الأرقام فرضيات تخطيطية بالريال السعودي لأغراض الجدوى الاستراتيجية، تُضبط بالداتا الفعلية عند التعاقد. الأرقام المرجعية (كلفة الأمراض) مستندة لدراسات منشورة عن السوق السعودي.
-  </div>
-</div>
-
-<main class="max-w-6xl mx-auto px-8 py-20 space-y-24 tab-section" style="background:#F7F9F6">
-
-<!-- 01 Cost Structure -->
-<section class="reveal">
-  <div class="flex items-center gap-4 mb-3">
-    <span class="bignum text-emer/30 text-5xl font-bold">01</span>
-    <p class="kicker text-emer text-sm font-bold">COST STRUCTURE · هيكل التكاليف</p>
-  </div>
-  <h2 class="font-head text-3xl md:text-4xl font-bold mb-10 responsive-text-3xl" style="color:#10261C">تكاليف البنية التحتية التشغيلية</h2>
-
-  <div class="overflow-x-auto mb-8">
-    <table class="w-full text-sm bg-white rounded-2xl overflow-hidden" style="border:1px solid #DCE6DF">
-      <thead>
-        <tr style="background:#114B38;color:#fff">
-          <th class="p-4 font-bold">بند التكلفة</th>
-          <th class="p-4 font-bold">الوصف</th>
-          <th class="p-4 font-bold text-left">تقدير سنوي (ريال)</th>
-        </tr>
-      </thead>
-      <tbody style="color:#10261C">
-        <tr style="border-bottom:1px solid #DCE6DF"><td class="p-4 font-bold">محركات ونماذج الذكاء الاصطناعي</td><td class="p-4" style="color:#5C6F62">تشغيل واستدلال (Inference) محرّك حساب الخطر + تحديث النماذج</td><td class="p-4 bignum text-left font-bold">450,000</td></tr>
-        <tr style="border-bottom:1px solid #DCE6DF;background:#EEF4EE"><td class="p-4 font-bold">الحوسبة السحابية الآمنة</td><td class="p-4" style="color:#5C6F62">استضافة متوافقة مع سدايا داخل المملكة + التخزين المشفّر</td><td class="p-4 bignum text-left font-bold">600,000</td></tr>
-        <tr style="border-bottom:1px solid #DCE6DF"><td class="p-4 font-bold">صيانة وتشغيل الـ APIs</td><td class="p-4" style="color:#5C6F62">بوابة الربط، تكامل FHIR، المراقبة والدعم</td><td class="p-4 bignum text-left font-bold">320,000</td></tr>
-        <tr style="border-bottom:1px solid #DCE6DF;background:#EEF4EE"><td class="p-4 font-bold">الأمن السيبراني والامتثال</td><td class="p-4" style="color:#5C6F62">SIEM، اختبارات اختراق، تدقيق ECC، إدارة المفاتيح KMS</td><td class="p-4 bignum text-left font-bold">380,000</td></tr>
-        <tr style="border-bottom:1px solid #DCE6DF"><td class="p-4 font-bold">الفريق التقني والطبي</td><td class="p-4" style="color:#5C6F62">هندسة، استشاريون وراثيون، حوكمة بيانات</td><td class="p-4 bignum text-left font-bold">1,500,000</td></tr>
-        <tr style="border-bottom:1px solid #DCE6DF;background:#EEF4EE"><td class="p-4 font-bold">عمليات وإدارة وتسويق</td><td class="p-4" style="color:#5C6F62">تطوير الأعمال، الشراكات، الدعم التشغيلي</td><td class="p-4 bignum text-left font-bold">450,000</td></tr>
-        <tr style="background:rgba(17,75,56,.1);font-weight:bold"><td class="p-4" colspan="2">إجمالي التكلفة التشغيلية السنوية التقديرية (OpEx)</td><td class="p-4 bignum text-left" style="color:#114B38;font-size:1.125rem">≈ 3,700,000</td></tr>
-      </tbody>
-    </table>
-  </div>
-  <div class="grid responsive-grid-3 gap-4">
-    <div class="bg-white border rounded-xl p-5 card-h" style="border-color:#DCE6DF"><p class="text-emer font-bold text-sm mb-1">التكلفة الحدّية المنخفضة</p><p class="text-greyg text-sm leading-relaxed">بنية SaaS تجعل تكلفة خدمة كل زوجٍ إضافي ضئيلة — هامش يتسع مع التوسّع.</p></div>
-    <div class="bg-white border rounded-xl p-5 card-h" style="border-color:#DCE6DF"><p class="text-emer font-bold text-sm mb-1">رأس مال تأسيسي (CapEx)</p><p class="text-greyg text-sm leading-relaxed">استثمار أولي للتطوير والاعتماد التنظيمي يُقدَّر بنحو <span class="bignum font-bold" style="color:#10261C">2–3 مليون</span> ريال للمرحلتين 0–1.</p></div>
-    <div class="bg-white border rounded-xl p-5 card-h" style="border-color:#DCE6DF"><p class="text-emer font-bold text-sm mb-1">قابلية التوسّع</p><p class="text-greyg text-sm leading-relaxed">نفس البنية تخدم وطنياً دون زيادةٍ خطّية في التكلفة — رافعة الربحية الأساسية.</p></div>
-  </div>
-</section>
-
-<!-- 02 Revenue Streams -->
-<section class="reveal">
-  <div class="flex items-center gap-4 mb-3">
-    <span class="bignum text-gold2/40 text-5xl font-bold">02</span>
-    <p class="kicker text-sm font-bold" style="color:#A8851F">REVENUE STREAMS · نماذج الإيراد</p>
-  </div>
-  <h2 class="font-head text-3xl md:text-4xl font-bold mb-10 responsive-text-3xl" style="color:#10261C">مصادر الإيراد المستدامة</h2>
-
-  <div class="grid responsive-grid-2 gap-6 mb-10">
-    <!-- B2B -->
-    <div class="bg-white border-t-4 border-emer rounded-2xl p-8 border card-h" style="border-color:#DCE6DF;border-top-color:#0E9F6E">
-      <div class="flex items-center justify-between mb-4">
-        <h3 class="font-head text-2xl" style="color:#10261C">نموذج B2B</h3>
-        <span class="bignum text-xs text-emer px-3 py-1 rounded-full" style="background:rgba(14,159,110,.1)">SaaS</span>
-      </div>
-      <p class="text-greyg text-sm leading-loose mb-5">طبقة دعم القرار كخدمة مدمجة في أنظمة المستشفيات والعيادات الخاصة ومراكز الفحص.</p>
-      <div class="space-y-3 text-sm">
-        <div class="flex justify-between border-b pb-2" style="border-color:#DCE6DF"><span style="color:#10261C">اشتراك المنشأة / سنوياً</span><span class="bignum font-bold" style="color:#10261C">60K – 250K</span></div>
-        <div class="flex justify-between border-b pb-2" style="border-color:#DCE6DF"><span style="color:#10261C">رسم لكل حالة دعم قرار</span><span class="bignum font-bold" style="color:#10261C">150 – 400</span></div>
-        <div class="flex justify-between"><span style="color:#10261C">باقات تكامل ودعم</span><span class="bignum font-bold" style="color:#10261C">حسب النطاق</span></div>
-      </div>
-      <p class="text-greyg text-xs mt-5">إيراد متكرّر يبني قيمةً تشغيلية مستقرة ويسرّع التبنّي القطاعي.</p>
-    </div>
-    <!-- B2G -->
-    <div class="bg-white border-t-4 border-gold rounded-2xl p-8 border card-h" style="border-color:#DCE6DF;border-top-color:#C9A227">
-      <div class="flex items-center justify-between mb-4">
-        <h3 class="font-head text-2xl" style="color:#10261C">نموذج B2G</h3>
-        <span class="bignum text-xs px-3 py-1 rounded-full" style="color:#C9A227;background:rgba(201,162,39,.1)">National</span>
-      </div>
-      <p class="text-greyg text-sm leading-loose mb-5">شراكة استراتيجية مدفوعة مع وزارة الصحة وشركات التأمين كأداةٍ وقائية وطنية تخفض المخاطر.</p>
-      <div class="space-y-3 text-sm">
-        <div class="flex justify-between border-b pb-2" style="border-color:#DCE6DF"><span style="color:#10261C">عقد تشغيل وطني / سنوياً</span><span class="bignum font-bold" style="color:#10261C">ملايين</span></div>
-        <div class="flex justify-between border-b pb-2" style="border-color:#DCE6DF"><span style="color:#10261C">رسم لكل عقد زواج مُعالَج</span><span class="bignum font-bold" style="color:#10261C">20 – 50</span></div>
-        <div class="flex justify-between"><span style="color:#10261C">مشاركة في الوفورات</span><span class="bignum font-bold" style="color:#10261C">% من التوفير</span></div>
-      </div>
-      <p class="text-greyg text-xs mt-5">يربط الإيراد بالأثر: كلما وفّرت المنصّة أكثر، زاد العائد للطرفين.</p>
-    </div>
-  </div>
-
-  <!-- Revenue Trajectory -->
-  <div class="text-white rounded-2xl p-8 grain relative overflow-hidden" style="background:#10261C">
-    <div class="absolute inset-0" style="background:radial-gradient(circle at 80% 20%,rgba(201,162,39,.18),transparent 55%);opacity:.6"></div>
-    <p class="kicker text-gold text-xs mb-6 relative">REVENUE TRAJECTORY · مسار الإيراد التقديري</p>
-    <div class="relative space-y-5">
-      <div>
-        <div class="flex justify-between text-sm mb-1"><span>السنة 1 · تجربة + B2B مبكر</span><span class="bignum text-mint font-bold">≈ 1.2M ريال</span></div>
-        <div class="h-3 bg-white/10 rounded-full overflow-hidden"><div class="bar h-full bg-mint rounded-full" style="width:0" data-w="18%"></div></div>
-      </div>
-      <div>
-        <div class="flex justify-between text-sm mb-1"><span>السنة 2 · توسّع B2B + B2G أولي</span><span class="bignum text-mint font-bold">≈ 4.5M ريال</span></div>
-        <div class="h-3 bg-white/10 rounded-full overflow-hidden"><div class="bar h-full bg-mint rounded-full" style="width:0" data-w="45%"></div></div>
-      </div>
-      <div>
-        <div class="flex justify-between text-sm mb-1"><span>السنة 3 · عقد وطني B2G</span><span class="bignum text-gold font-bold">≈ 12M+ ريال</span></div>
-        <div class="h-3 bg-white/10 rounded-full overflow-hidden"><div class="bar h-full bg-gold rounded-full" style="width:0" data-w="92%"></div></div>
-      </div>
-    </div>
-    <p class="text-white/50 text-xs mt-6 relative">نقطة التعادل المتوقّعة خلال السنة الثانية مع تفعيل أول عقد B2G أو توسّع B2B كافٍ.</p>
-  </div>
-</section>
-
-<!-- 03 ROI -->
-<section class="reveal">
-  <div class="flex items-center gap-4 mb-3">
-    <span class="bignum text-coral/40 text-5xl font-bold">03</span>
-    <p class="kicker text-coral text-sm font-bold">HEALTHCARE ROI · العائد الوقائي الوطني</p>
-  </div>
-  <h2 class="font-head text-3xl md:text-4xl font-bold mb-4 responsive-text-3xl" style="color:#10261C">حاسبة العائد الاقتصادي الوقائي</h2>
-  <p class="text-greyg mb-10 max-w-3xl leading-relaxed">المعادلة الجوهرية: كلفة منع حالةٍ واحدة عبر «وَراثة» <span class="font-bold" style="color:#10261C">زهيدة</span> مقابل كلفة علاجٍ ورعايةٍ مزمنة <span class="font-bold text-coral">مليونية مدى الحياة</span>. الفرق هو العائد.</p>
-
-  <!-- Comparison -->
-  <div class="grid responsive-grid-3 gap-6 items-stretch mb-10">
-    <!-- Prevention Cost -->
-    <div class="col-span-5 md:col-span-5 bg-white border-2 rounded-2xl p-7 card-h" style="border-color:#0E9F6E">
-      <p class="kicker text-emer text-xs mb-3">التكلفة عبر وَراثة</p>
-      <h3 class="font-head text-xl mb-5" style="color:#10261C">منع الحالة (وقاية)</h3>
-      <div class="space-y-3 text-sm">
-        <div class="flex justify-between border-b pb-2" style="border-color:#DCE6DF"><span style="color:#5C6F62">دعم قرار للزوجين</span><span class="bignum font-bold">~300</span></div>
-        <div class="flex justify-between border-b pb-2" style="border-color:#DCE6DF"><span style="color:#5C6F62">استشارة وراثية</span><span class="bignum font-bold">~700</span></div>
-        <div class="flex justify-between border-b pb-2" style="border-color:#DCE6DF"><span style="color:#5C6F62">فحوصات تأكيدية (عند الحاجة)</span><span class="bignum font-bold">~2,000</span></div>
-        <div class="flex justify-between pt-1"><span class="font-bold" style="color:#10261C">الإجمالي التقديري للحالة</span><span class="bignum font-bold text-emer text-lg">≈ 3,000</span></div>
-      </div>
-    </div>
-    <!-- VS -->
-    <div class="col-span-2 md:col-span-2 flex items-center justify-center">
-      <div class="text-center">
-        <p class="font-head text-lg mb-1" style="color:#5C6F62">مقابل</p>
-        <p class="bignum text-coral text-4xl font-bold">VS</p>
-      </div>
-    </div>
-    <!-- Treatment Cost -->
-    <div class="col-span-5 md:col-span-5 bg-white border-2 rounded-2xl p-7 card-h" style="border-color:#FF6B6B">
-      <p class="kicker text-coral text-xs mb-3">التكلفة دون وقاية</p>
-      <h3 class="font-head text-xl mb-5" style="color:#10261C">علاج حالة مزمنة (مدى الحياة)</h3>
-      <div class="space-y-3 text-sm">
-        <div class="flex justify-between border-b pb-2" style="border-color:#DCE6DF"><span style="color:#5C6F62">كلفة سنوية للمريض</span><span class="bignum font-bold">~182,000</span></div>
-        <div class="flex justify-between border-b pb-2" style="border-color:#DCE6DF"><span style="color:#5C6F62">عدد سنوات الرعاية (تقديري)</span><span class="bignum font-bold">× 40+</span></div>
-        <div class="flex justify-between border-b pb-2" style="border-color:#DCE6DF"><span style="color:#5C6F62">أدوية متخصّصة (قد تبلغ)</span><span class="bignum font-bold">ملايين</span></div>
-        <div class="flex justify-between pt-1"><span class="font-bold" style="color:#10261C">الإجمالي التقديري مدى الحياة</span><span class="bignum font-bold text-coral text-lg">ملايين الريالات</span></div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ROI Formula -->
-  <div class="text-white rounded-2xl p-8 grain relative overflow-hidden mb-8" style="background:#114B38">
-    <div class="absolute inset-0" style="background:radial-gradient(circle at 80% 20%,rgba(201,162,39,.18),transparent 55%);opacity:.5"></div>
-    <p class="kicker text-goldlt text-xs mb-5 relative">ROI FORMULA · معادلة العائد الوقائي</p>
-    <div class="relative rounded-xl p-6 bignum text-center text-lg leading-loose mb-6" style="background:rgba(0,0,0,.2)">
-      <span class="text-mint">العائد الوقائي</span> = ( <span class="text-coral">كلفة العلاج مدى الحياة</span> − <span class="text-goldlt">كلفة المنع</span> ) × <span class="text-mint">عدد الحالات الممنوعة</span>
-    </div>
-    <div class="grid responsive-grid-3 gap-6 relative text-center">
-      <div><p class="bignum text-goldlt text-3xl font-bold">~3,000</p><p class="text-white/60 text-xs mt-1">ريال لمنع الحالة</p></div>
-      <div><p class="bignum text-mint text-3xl font-bold">×100+</p><p class="text-white/60 text-xs mt-1">ضعف عائد تقديري لكل حالة مُنِعت</p></div>
-      <div><p class="bignum text-goldlt text-3xl font-bold">مليارات</p><p class="text-white/60 text-xs mt-1">وفورات وطنية محتملة تراكمياً</p></div>
-    </div>
-    <p class="text-white/50 text-xs mt-6 relative text-center">كل ريالٍ يُنفق على الوقاية عبر «وَراثة» يوفّر — تقديرياً — أضعافه على خزينة الدولة وشركات التأمين.</p>
-  </div>
-
-  <div class="grid responsive-grid-3 gap-4">
-    <div class="rounded-xl p-5" style="background:#EEF4EE"><p class="font-bold mb-1" style="color:#114B38">للدولة</p><p class="text-greyg text-sm leading-relaxed">تحرير موارد القطاع الصحي وتوجيهها للابتكار — تماشياً مع برنامج تحوّل القطاع الصحي.</p></div>
-    <div class="rounded-xl p-5" style="background:#EEF4EE"><p class="font-bold mb-1" style="color:#114B38">لشركات التأمين</p><p class="text-greyg text-sm leading-relaxed">خفض المطالبات المزمنة عالية التكلفة عبر أداةٍ وقائية قابلة للقياس.</p></div>
-    <div class="rounded-xl p-5" style="background:#EEF4EE"><p class="font-bold mb-1" style="color:#114B38">للمجتمع</p><p class="text-greyg text-sm leading-relaxed">عائدٌ إنساني لا يُقدَّر بمال: أطفالٌ أصحّاء وأسرٌ أقل معاناة.</p></div>
-  </div>
-</section>
-
-<!-- Investment Thesis -->
-<section class="reveal text-white rounded-3xl p-10 grain relative overflow-hidden" style="background:#10261C">
-  <div class="absolute inset-0" style="background:radial-gradient(circle at 80% 20%,rgba(201,162,39,.18),transparent 55%)"></div>
-  <div class="relative">
-    <p class="kicker text-gold text-xs mb-4">INVESTMENT THESIS · خلاصة الاستثمار</p>
-    <h2 class="font-head text-3xl font-bold mb-5 max-w-3xl">نموذجٌ مزدوج الإيراد، منخفض التكلفة الحدّية، وعائدٌ وقائي وطني هائل</h2>
-    <p class="text-white/70 leading-loose max-w-3xl mb-8">«وَراثة» تجمع بين إيرادٍ تجاري متكرّر (B2B/B2G) وأثرٍ اقتصادي وقائي يُقاس بالمليارات. التكلفة التشغيلية محدودة وقابلة للتوسّع، بينما القيمة المُولّدة — إنسانياً ومالياً — تتضاعف مع كل حالةٍ تُمنع.</p>
-    <div class="inline-flex items-center gap-4 bg-white/5 border border-white/10 rounded-full px-7 py-4 text-sm">
-      <span class="text-gold font-bold">ARKANE AI</span><span class="text-white/40">·</span><span>فيصل</span><span class="text-white/40">·</span><span class="bignum" style="direction:ltr;display:inline-block">+966 56 583 3185</span>
-    </div>
-  </div>
-</section>
-
-</main>
-
-<!-- TAB 5 FOOTER -->
-<footer class="text-white/50 text-center py-8 text-xs" style="background:#0C3D2E;margin-bottom:80px">
-  <p>وَراثة WIRATHA · النموذج المالي والتجاري وعائد الاستثمار · ARKANE AI — أرقام تخطيطية تُضبط بالداتا الفعلية</p>
-</footer>
-
-</div><!-- /tab5 -->
-
-<!-- ═══════════════════════════════════════════════════════════════
-     JAVASCRIPT — Tab Engine + Reveal Animations
-     ═══════════════════════════════════════════════════════════════ -->
-<script>
-/* ─── Tab Switching Engine ─── */
-function switchTab(tabId){
-  // Deactivate all tabs
-  document.querySelectorAll('.tab-content').forEach(t=>t.classList.remove('active'));
-  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
-  // Activate target tab
-  document.getElementById(tabId).classList.add('active');
-  const btn = document.querySelector('[data-tab="'+tabId+'"]');
-  if(btn) btn.classList.add('active');
-  // Move indicator
-  updateIndicator(btn);
-  // Scroll to top
-  window.scrollTo({top:0,behavior:'smooth'});
-  // Trigger bar animations
-  setTimeout(animateBars,350);
-}
-
-function updateIndicator(btn){
-  const ind = document.getElementById('tabIndicator');
-  if(!ind||!btn) return;
-  const bar = document.getElementById('tabBar');
-  const barRect = bar.getBoundingClientRect();
-  const btnRect = btn.getBoundingClientRect();
-  ind.style.left = (btnRect.left - barRect.left)+'px';
-  ind.style.width = btnRect.width+'px';
-}
-
-/* ─── Reveal on Scroll ─── */
-const io = new IntersectionObserver((entries)=>{
-  entries.forEach(e=>{
-    if(e.isIntersecting){
-      e.target.classList.add('on');
-      // Animate bars inside
-      e.target.querySelectorAll('.bar').forEach(b=>{
-        setTimeout(()=>{b.style.width=b.dataset.w||b.getAttribute('data-w')},200);
-      });
-      io.unobserve(e.target);
-    }
-  });
-},{threshold:.08,rootMargin:'0px 0px -40px 0px'});
-
-/* ─── Animate all bars ─── */
-function animateBars(){
-  document.querySelectorAll('.bar').forEach(b=>{
-    setTimeout(()=>{b.style.width=b.dataset.w||b.getAttribute('data-w')},200);
-  });
-}
-
-/* ─── Init ─── */
-document.addEventListener('DOMContentLoaded',function(){
-  // Observe reveals
-  document.querySelectorAll('.reveal').forEach((el,i)=>{
-    el.style.transitionDelay=(i%4*60)+'ms';
-    io.observe(el);
-  });
-  // Set initial indicator
-  const activeBtn = document.querySelector('.tab-btn.active');
-  if(activeBtn) updateIndicator(activeBtn);
-  // Animate bars
-  animateBars();
-});
-
-/* ─── Handle resize ─── */
-window.addEventListener('resize',function(){
-  const activeBtn = document.querySelector('.tab-btn.active');
-  if(activeBtn) updateIndicator(activeBtn);
-});
-</script>
-
+    </footer>
+
+    <script>
+        // إعدادات تفعيل موافقات الخصوصية والحوكمة
+        let consentState = { suitor: false, bride: false };
+
+        function toggleConsent(side) {
+            consentState[side] = !consentState[side];
+            const btn = document.getElementById(side + 'Btn');
+            const icon = document.getElementById(side + 'Icon');
+            const notify = document.getElementById('consentNotification');
+
+            if (consentState[side]) {
+                btn.classList.add('checked');
+                icon.innerText = '✅';
+            } else {
+                btn.classList.remove('checked');
+                icon.innerText = '⭕';
+            }
+
+            // التحقق من حالة التوافق الثنائي
+            if (consentState.suitor && !consentState.bride) {
+                notify.style.display = 'block';
+                notify.innerText = '📢 إشعار أمني: تم تشفير وتعمية بيانات الخاطب بنجاح؛ بموجب نظام حماية البيانات الشخصية (PDPL)، ننتظر موافقة وتوقيع الطرف الآخر للبدء في إجراء مطابقة الرابط الوراثي المشترك وحماية عائلتكم.';
+            } else if (!consentState.suitor && consentState.bride) {
+                notify.style.display = 'block';
+                notify.innerText = '📢 إشعار أمني: تم تشفير وتعمية بيانات المخطوبة بنجاح؛ بموجب نظام حماية البيانات الشخصية (PDPL)، ننتظر موافقة وتوقيع الطرف الآخر للبدء في إجراء مطابقة الرابط الوراثي المشترك وحماية عائلتكم.';
+            } else if (consentState.suitor && consentState.bride) {
+                notify.style.display = 'block';
+                notify.style.background = 'rgba(15, 181, 168, 0.1)';
+                notify.style.borderColor = 'var(--mint)';
+                notify.style.color = 'var(--mint)';
+                notify.innerText = '⚡ تم اكتمال التوقيع الثنائي المتزامن والمصادقة الأمنية الرقمية الجارية... جاري سحب وتدقيق الحزم الجينية المشفرة عبر الـ APIs الطبية الآمنة من منصة صحتي وسيرفرات وزارة الصحة السعودية...';
+                
+                // أنيميشن الاختفاء للبوابة والولوج للمنصة الحية بعد ثانية ونصف
+                setTimeout(() => {
+                    const gate = document.getElementById('consentGate');
+                    gate.style.opacity = '0';
+                    setTimeout(() => {
+                        gate.style.display = 'none';
+                        // إطلاق أنيميشن العداد المالي الأول فور الدخول للسيناريوهات الموجهة
+                        animateFinancialCounter('boardRoiValue', 5000000, 1500);
+                        updateRadialRiskCircle('boardCircle', 25);
+                    }, 500);
+                }, 1800);
+            } else {
+                notify.style.display = 'none';
+            }
+        }
+
+        // التبديل بين المحركين الأساسيين في الشاشة
+        function activateEngine(engineId) {
+            const card1 = document.getElementById('cardEngine1');
+            const card2 = document.getElementById('cardEngine2');
+            const sec1 = document.getElementById('engineSection1');
+            const sec2 = document.getElementById('engineSection2');
+
+            if (engineId === 1) {
+                card1.classList.add('active');
+                card2.classList.remove('active');
+                sec1.style.display = 'block';
+                sec2.style.display = 'none';
+                loadScenario(1);
+            } else {
+                card1.classList.remove('active');
+                card2.classList.add('active');
+                sec1.style.display = 'none';
+                sec2.style.display = 'block';
+                executeGeneticLogicMatrix(); // تشغيل افتراضي للمختبر
+            }
+        }
+
+        // محاكاة وتحديث أنيميشن رسم دائرة المخاطر الوراثية
+        function updateRadialRiskCircle(circleId, riskPercentage) {
+            const circle = document.getElementById(circleId);
+            if (!circle) return;
+            const radius = circle.r.baseVal.value;
+            const circumference = 2 * Math.PI * radius;
+            
+            // حساب الإزاحة بناءً على النسبة المئوية
+            const offset = circumference - (riskPercentage / 100) * circumference;
+            circle.style.strokeDasharray = circumference;
+            circle.style.strokeDashoffset = offset;
+            
+            // تغيير لون الدائرة بناء على طبيعة النتيجة
+            if (riskPercentage > 0) {
+                circle.style.stroke = 'var(--coral)';
+            } else {
+                circle.style.stroke = 'var(--mint)';
+            }
+        }
+
+        // محرك أنيميشن تصاعد العداد المالي لإظهار الأثر الاستثماري والـ ROI الحقيقي أمام المسؤول
+        function animateFinancialCounter(elementId, targetValue, duration) {
+            const element = document.getElementById(elementId);
+            if (!element) return;
+            let startValue = 0;
+            let stepTime = Math.abs(Math.floor(duration / (targetValue / 100000)));
+            if(stepTime < 20) stepTime = 20; // حماية سرعة المتصفح
+            
+            let timer = setInterval(() => {
+                startValue += 100000;
+                if (startValue >= targetValue) {
+                    startValue = targetValue;
+                    clearInterval(timer);
+                }
+                element.innerText = startValue.toLocaleString('ar-SA') + ' ريال سعودي';
+            }, stepTime);
+        }
+
+        // المحرك الأول: بيانات السيناريوهات الاستراتيجية الموجهة
+        const scenariosData = {
+            1: {
+                title: "المسار التشغيلي: السيناريو الأول (الخطر الحرج والترجمة الإنسانية)",
+                badgeClass: "status-badge-dynamic badge-danger",
+                badgeText: "خطر حرج",
+                risk: 25,
+                roi: 5000000,
+                reportTitle: "تقرير دعم القرار الوراثي الذكي لـ (WIRATHA):",
+                reportText: "التحليل الجيني الدقيق يرصد التقاء طفرتين متطابقتين للأنيميا المنجلية المتنحية. صفتكما كحاملين لا تعني المرض إطلاقاً، وأنتما سليمان تماماً من الناحية العيادية والجسدية. قصتكم وبناء عائلتكم مستمرة بأمان كامل؛ ترسم لكم وراثة مسار القرار الوطني الحامي: يمكن للزواج أن يستمر وينجح بنسبة 100% عبر الفرز المخبري الجيني للأجنة ما قبل الزرع (PGT-M) لاستبعاد الجينات المصابة من خلال أطفال الأنابيب وتوليد جيل سليم تماماً بدعم ورعاية حكومية شاملة.",
+                actions: `<button class="pathway-btn btn-mint">🏥 تفعيل مسار الفرز الجيني وعيادات PGT-M</button>
+                          <button class="pathway-btn btn-outline">🌐 تحويل فوري إلى مستشفى صحة الافتراضي</button>`
+            },
+            2: {
+                title: "المسار التشغيلي: السيناريو الثاني (تداخل المخاطر وزواج الأقارب المتراكم 57%)",
+                badgeClass: "status-badge-dynamic badge-danger",
+                badgeText: "تعدد جيني حرج",
+                risk: 50,
+                roi: 10000000,
+                reportTitle: "تقرير معالجة تداخل مخاطر صلة القرابة ومستشفى صحة الافتراضي:",
+                reportText: "نتيجة فحص صلة القرابة الوثيقة، تم اكتشاف تداخل طفرات جينية متعددة متقاطعة تؤدي لمخاطر تراكمية عالية على الأبناء. هنا لا تكتفي منصة وراثة بإعطاء نسب صامتة؛ بل يتدخل محرك الأثر التوجيهي ليفعل فوراً مسار التدخل والفرز الجيني الموسع متعدد التتبع، مع ربط السجل الجيني مباشرة بـ (المجلس الطبي المشترك بمستشفى صحة الافتراضي) لتنسيق بروتوكول حماية جيل العائلة القادم، مما يحمي الدولة من تكلفة رعاية ممتدة ومستدامة تفوق 10 ملايين ريال.",
+                actions: `<button class="pathway-btn btn-mint">🤝 تحويل لعيادة الإرشاد الوراثي المتقدم بالوزارة</button>
+                          <button class="pathway-btn btn-outline">🗂️ عرض ملف محاكاة الـ JSON API الطبي</button>`
+            },
+            3: {
+                title: "المسار التشغيلي: السيناريو الثالث (التوافق الفوري والأتمتة الكلية)",
+                badgeClass: "status-badge-dynamic badge-success",
+                badgeText: "توافق آمن ومكتمل",
+                risk: 0,
+                roi: 0,
+                reportTitle: "إشعار الأتمتة والربط الفوري وتطبيق (صحتي):",
+                reportText: "تهانينا، تم رصد توافق جيني كلي كامل بين الطرفين وخلو الملف المشترك من أي مخاطر وراثية متنحية متطابقة. قام نظام وراثة آلياً بإصدار وتوثيق شهادة الزواج الصحي الفورية الرقمية المعتمدة وتحديث الحالة مباشرة في تطبيق (صحتي) لتمكين العائلة من إتمام حجز المأذون والربط مع وزارة العدل فوراً ودون حاجة لمراجعة أي منشأة صحية.",
+                actions: `<button class="pathway-btn btn-mint">📥 تحميل شهادة التوافق الرقمية الفورية المعتمدة</button>`
+            }
+        };
+
+        function loadScenario(id) {
+            // تحديث الأنكورات النشطة
+            for (let i = 1; i <= 3; i++) {
+                document.getElementById('scenAnchor' + i).classList.remove('active');
+            }
+            document.getElementById('scenAnchor' + id).classList.add('active');
+
+            const data = scenariosData[id];
+            document.getElementById('boardTitle').innerText = data.title;
+            document.getElementById('boardBadge').className = data.badgeClass;
+            document.getElementById('boardBadge').innerText = data.badgeText;
+            document.getElementById('boardRiskValue').innerText = data.risk + "%";
+            document.getElementById('reportTitle').innerText = data.reportTitle;
+            document.getElementById('boardReportText').innerText = data.reportText;
+            document.getElementById('boardActions').innerHTML = data.actions;
+
+            // تحديث الأنيميشن للدائرة والعداد المالي
+            updateRadialRiskCircle('boardCircle', data.risk);
+            animateFinancialCounter('boardRoiValue', data.roi, 1000);
+        }
+
+        // ================= المحرك الثاني: مصفوفة المعالجة والمنطق الطبي التفاعلي الحي (JS ENGINE) =================
+        function executeGeneticLogicMatrix() {
+            const father = document.getElementById('fatherGene').value;
+            const mother = document.getElementById('motherGene').value;
+            
+            const outBox = document.getElementById('playgroundOutputBox');
+            const playTitle = document.getElementById('playTitle');
+            const playBadge = document.getElementById('playBadge');
+            const playRisk = document.getElementById('playRiskValue');
+            const playRoi = document.getElementById('playRoiValue');
+            const playReportText = document.getElementById('playReportText');
+            const playActions = document.getElementById('playActions');
+
+            outBox.style.display = 'block';
+
+            // الحالة 1: التقاء نفس الطفرة المتنحية للأنيميا المنجلية (حرج)
+            if (father === 'SICKLE_CARRIER' && mother === 'SICKLE_CARRIER') {
+                playTitle.innerText = "معالجة حية: (حامل أنيميا منجلية ✖ حاملة أنيميا منجلية)";
+                playBadge.className = "status-badge-dynamic badge-danger";
+                playBadge.innerText = "خطر حرج (25%)";
+                playRisk.innerText = "25%";
+                playReportText.innerText = "رصد محرك التحليل التقاء صفتين متنحيتين متطابقتين للأنيميا المنجلية. لغة وراثة الإنسانية تقرر: أنتما سليمان تماماً وحمل الصفة ليس مرضاً؛ زواجكما آمن وقصتكم مستمرة بنجاح كلي عبر تفعيل مسار الفرز الجيني المخبري للأجنة (PGT-M) مع أطفال الأنابيب لعزل الطفرة وولادة جيل سليم 100% مغطى حكومياً بالكامل وتوجيهكم لعيادة مستشفى صحة الافتراضي فوراً.";
+                playActions.innerHTML = `<button class="pathway-btn btn-mint">🏥 حجز فوري لمسار فرز الأجنة وعيادة PGT-M</button>
+                                          <button class="pathway-btn btn-outline">🌐 اتصال مرئي مع مستشفى صحة الافتراضي</button>`;
+                
+                updateRadialRiskCircle('playCircle', 25);
+                animateFinancialCounter('playRoiValue', 5000000, 800);
+            }
+            // الحالة 2: التقاء طفرتين متنحيتين متطابقتين للثلاسيميا (حرج)
+            else if (father === 'THAL_CARRIER' && mother === 'THAL_CARRIER') {
+                playTitle.innerText = "معالجة حية: (حامل ثلاسيميا ✖ حاملة ثلاسيميا)";
+                playBadge.className = "status-badge-dynamic badge-danger";
+                playBadge.innerText = "خطر حرج (25%)";
+                playRisk.innerText = "25%";
+                playReportText.innerText = "تم رصد تطابق وراثي حرج لصفة الثلاسيميا المتنحية مما يرفع خطر إصابة الأجنة لـ 25%. محرك القرار لمنصة وراثة يتدخل لحماية استقرار الأسرة النفسي والاجتماعي فورا: الزواج يمكن أن يستمر بكفاءة عيادية مطلقة عبر تفعيل بروتوكول التشخيص وفرز الأجنة المخبري الجيني (PGT-M)، حيث يتم فرز الحيوانات المنوية والبويضات لضمان ولادة أطفال أصحاء مع توفير رعاية مستدامة تبلغ 5 ملايين ريال على الدولة.";
+                playActions.innerHTML = `<button class="pathway-btn btn-mint">🏥 الانتقال الفوري لمركز الفرز الجيني المعتمد</button>`;
+                
+                updateRadialRiskCircle('playCircle', 25);
+                animateFinancialCounter('playRoiValue', 5000000, 800);
+            }
+            // الحالة 3: عبقرية الابتكار الطبي لوراثة وفصل الصفات المختلفة وتصحيح فخ عام 2004!
+            else if ((father === 'SICKLE_CARRIER' && mother === 'THAL_CARRIER') || (father === 'THAL_CARRIER' && mother === 'SICKLE_CARRIER')) {
+                playTitle.innerText = "معالجة حية: (حامل أنيميا منجلية ✖ حاملة ثلاسيميا) - فصل الجينات الابتكاري";
+                playBadge.className = "status-badge-dynamic badge-success";
+                playBadge.innerText = "توافق جيني آمن ومكتمل";
+                playRisk.innerText = "0%";
+                playReportText.innerText = "هنا يتجلى جوهر ابتكار منصة وراثة وتفوقها العلمي على الفحص التقليدي القديم لعام 2004! على الرغم من أن الطرفين يحملان صفات وراثية متنحية، إلا أن التحليل المنطقي والحيوي يثبت أن الطفرات تقع على جينات مختلفة تماماً (Non-allelic heterogeneity). علمياً وطبياً: زواجكما متوافق وآمن تماماً، ولن يصاب أي طفل من أطفالكم بأي من المرضين إطلاقاً! النظام يصدر لكم شهادة التوافق الفورية ويمنع إلغاء الزواج الشائع والناتج عن الفهم الخاطئ للنتائج المخبرية الجافة.";
+                playActions.innerHTML = `<button class="pathway-btn btn-mint">📥 إصدار شهادة التوافق الفورية والربط مع صحتي</button>
+                                          <button class="pathway-btn btn-outline">📄 عرض وثيقة التفسير العلمي الجيني الحديث</button>`;
+                
+                updateRadialRiskCircle('playCircle', 0);
+                animateFinancialCounter('playRoiValue', 0, 100);
+            }
+            // الحالة 4: التوافق الطبي الطبيعي (أحدهما سليم تماماً أو كلاهما سليم)
+            else {
+                playTitle.innerText = "معالجة حية: توافق جيني كلي فوري ونقل البيانات آلياً";
+                playBadge.className = "status-badge-dynamic badge-success";
+                playBadge.innerText = "توافق آمن ومكتمل";
+                playRisk.innerText = "0%";
+                playReportText.innerText = "المطابقة الحية تؤكد خلو السجل الجيني للزوجين من أي صفات متنحية متطابقة أو متداخلة. تم التحقق والمصادقة وإرسال حزمة التوافق الآمن رقمياً إلى تطبيق صحتي الحكومي وإصدار شهادة الزواج المعتمدة فورا دون أي إجراءات إضافية.";
+                playActions.innerHTML = `<button class="pathway-btn btn-mint">📥 تحميل شهادة التوافق الزواجي الفورية</button>`;
+                
+                updateRadialRiskCircle('playCircle', 0);
+                animateFinancialCounter('playRoiValue', 0, 100);
+            }
+        }
+
+        // دالة شكلية في حال رغب العميل بالتبديل مستقبلاً
+        function switchMainFile(mode) {
+            if(mode === 'mvp') {
+                activateEngine(1);
+            }
+        }
+    </script>
 </body>
 </html>
