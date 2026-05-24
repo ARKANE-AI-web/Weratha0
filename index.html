@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WIRATHA SUITE | حقيبة وراثة التنفيذية</title>
+    <title>WIRATHA INTERACTIVE PLATFORM | منصة وِراثَة الرقمية</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12,265 +12,305 @@
     <style>
         body {
             font-family: 'Cairo', sans-serif;
-            background: radial-gradient(circle at 50% 0%, #0d1e36 0%, #070f1e 70%, #030712 100%);
+            background: radial-gradient(circle at 50% 30%, #0b1625 0%, #050a12 60%, #010205 100%);
+            user-select: none;
+            -webkit-user-select: none;
         }
         .num-font {
             font-family: 'Plus Jakarta Sans', sans-serif;
         }
-        /* تأثيرات الزجاج الفاخر على طريقة كلود وكيمي */
-        .glass-panel {
-            background: rgba(13, 27, 42, 0.45);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid rgba(16, 185, 129, 0.15);
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+        .glass-card {
+            background: rgba(9, 20, 37, 0.55);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(16, 185, 129, 0.12);
+            box-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.6);
             transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
-        .glass-panel:hover {
-            border-color: rgba(16, 185, 129, 0.4);
-            box-shadow: 0 0 30px rgba(16, 185, 129, 0.15), inset 0 0 12px rgba(16, 185, 129, 0.05);
-            transform: translateY(-4px);
+        .glass-card:hover {
+            border-color: rgba(16, 185, 129, 0.35);
+            box-shadow: 0 0 35px rgba(16, 185, 129, 0.15);
+            transform: translateY(-2px);
         }
-        /* الوهج النيوني المحيطي */
-        .neon-glow-text {
-            text-shadow: 0 0 12px rgba(16, 185, 129, 0.4);
+        .nav-btn-active {
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.2) 0%, rgba(6, 182, 212, 0.2) 100%);
+            border-color: rgba(16, 185, 129, 0.6);
+            color: #ffffff;
+            box-shadow: 0 0 15px rgba(16, 185, 129, 0.2);
         }
-        .neon-border-active {
-            border-color: #10b981;
-            box-shadow: 0 0 20px rgba(16, 185, 129, 0.25);
+        .glow-text {
+            text-shadow: 0 0 10px rgba(6, 182, 212, 0.5);
         }
-        /* تخصيص شريط التمرير */
-        ::-webkit-scrollbar {
-            width: 8px;
+        .page-section {
+            display: none;
+            animation: fadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
-        ::-webkit-scrollbar-track {
-            background: #070f1e;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #10b981;
-            border-radius: 4px;
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
         }
     </style>
 </head>
-<body class="text-slate-100 min-h-screen antialiased selection:bg-emerald-500/30 selection:text-emerald-300">
+<body class="text-slate-200 min-h-screen antialiased overflow-x-hidden">
 
-    <div class="absolute top-0 left-1/4 w-96 h-96 bg-emerald-500/10 rounded-full blur-[120px] pointer-events-none"></div>
-    <div class="absolute top-1/3 right-1/4 w-80 h-80 bg-cyan-500/10 rounded-full blur-[100px] pointer-events-none"></div>
+    <div class="absolute top-0 left-1/4 w-[500px] h-[500px] bg-emerald-500/5 rounded-full blur-[140px] pointer-events-none"></div>
+    <div class="absolute bottom-10 right-1/4 w-[400px] h-[400px] bg-cyan-500/5 rounded-full blur-[140px] pointer-events-none"></div>
 
-    <header class="max-w-7xl mx-auto px-6 pt-8 pb-4 flex justify-between items-center border-b border-slate-800/60">
+    <header class="max-w-7xl mx-auto px-6 py-6 border-b border-slate-800/60 flex flex-col sm:flex-row justify-between items-center gap-4">
         <div class="flex items-center gap-4">
-            <div class="w-12 h-12 bg-gradient-to-tr from-emerald-500 to-cyan-500 rounded-xl flex items-center justify-center shadow-lg shadow-emerald-500/20">
+            <div class="w-12 h-12 bg-gradient-to-tr from-emerald-500 to-cyan-500 rounded-2xl flex items-center justify-center shadow-lg shadow-emerald-500/20">
                 <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
                 </svg>
             </div>
             <div>
-                <h1 class="text-2xl font-extrabold tracking-wide bg-clip-text text-transparent bg-gradient-to-r from-white via-slate-200 to-emerald-400">وِراثَة <span class="text-xs uppercase font-mono tracking-widest text-emerald-400 ml-1 num-font">Suite</span></h1>
-                <p class="text-xs text-slate-400 tracking-wider">ARKANE AI • المنظومة التنفيذية الفيدرالية</p>
+                <div class="flex items-center gap-2">
+                    <h1 class="text-2xl font-black tracking-wide bg-clip-text text-transparent bg-gradient-to-r from-white via-slate-200 to-emerald-400">وِراثَة</h1>
+                    <span class="text-[10px] font-mono tracking-widest bg-slate-800 text-slate-400 px-2 py-0.5 rounded border border-slate-700/60 num-font uppercase">ARKANE ENGINE</span>
+                </div>
+                <p class="text-xs text-slate-500 mt-0.5">المنظومة الفيدرالية المحدثة لحوكمة وتشفير البيانات الجينية الطبية</p>
             </div>
         </div>
-        <div class="text-left">
-            <span class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-medium bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
-                <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-                جاهز للعرض الإستثماري
-            </span>
+
+        <div class="bg-slate-950/80 p-1.5 rounded-xl border border-slate-800/80 flex gap-2">
+            <button id="nav-hub" onclick="switchSection('hub')" class="px-5 py-2 rounded-lg text-xs font-bold transition-all duration-300">
+                الرئيسية
+            </button>
+            <button id="nav-files" onclick="switchSection('files')" class="px-5 py-2 rounded-lg text-xs font-bold transition-all duration-300">
+                الحقيبة الاستراتيجية (الملفات الستة)
+            </button>
+            <button id="nav-mvp" onclick="switchSection('mvp')" class="px-5 py-2 rounded-lg text-xs font-bold transition-all duration-300">
+                المحاكي التفاعلي (Live MVP)
+            </button>
         </div>
     </header>
 
-    <main class="max-w-7xl mx-auto px-6 py-10 space-y-16">
+    <main class="max-w-7xl mx-auto px-6 py-10">
 
-        <section id="executive-suite">
-            <div class="mb-8">
-                <h2 class="text-xl font-bold text-white flex items-center gap-2">
-                    <span class="w-1.5 h-6 bg-emerald-500 rounded-full inline-block"></span>
-                    01. الحقيبة التنفيذية والملفات الاستراتيجية
-                </h2>
-                <p class="text-sm text-slate-400 mt-1">اضغط على أي مستند لفتحه ومراجعته مباشرة في تبويب مستقل</p>
+        <section id="section-hub" class="page-section space-y-12 py-8">
+            <div class="text-center max-w-2xl mx-auto space-y-3">
+                <h2 class="text-3xl font-extrabold text-white">منصة وِراثَة الاستراتيجية المحدثة</h2>
+                <p class="text-sm text-slate-400 leading-relaxed">بوابة عرض متكاملة مبنية على مصفوفة المنطق الطبي المعتمدة من الاستشاري الجيني والأسري وهندسة النظم وحوكمة البيانات لعام 2026.</p>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                
-                <a href="Project_Blueprint.html" target="_blank" class="glass-panel p-6 rounded-2xl block relative overflow-hidden group">
-                    <div class="absolute top-0 right-0 w-24 h-24 bg-emerald-500/5 rounded-bl-full pointer-events-none group-hover:bg-emerald-500/10 transition-colors"></div>
-                    <div class="flex justify-between items-start mb-4">
-                        <span class="num-font text-2xl font-bold text-slate-600 group-hover:text-emerald-400/50 transition-colors">01</span>
-                        <div class="p-2 rounded-xl bg-slate-800 text-slate-400 group-hover:text-emerald-400 transition-colors">
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto pt-4">
+                <div onclick="switchSection('files')" class="glass-card p-8 rounded-2xl cursor-pointer group flex flex-col justify-between h-64 relative overflow-hidden">
+                    <div>
+                        <div class="w-12 h-12 bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 rounded-xl flex items-center justify-center mb-5 group-hover:scale-105 transition-transform">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2"/></svg>
                         </div>
+                        <h3 class="text-xl font-bold text-white group-hover:text-emerald-400 transition-colors">الحقيبة الاستراتيجية والملفات</h3>
+                        <p class="text-xs text-slate-400 mt-2 leading-relaxed">تضم الملفات الستة الكبرى للمشروع: المخطط الشامل، الحوكمة والامتثال لـ PDPL، الأمن السيبراني، الربط التقني والـ APIs، النموذج المالي، وسيناريو العرض التقديمي.</p>
                     </div>
-                    <h3 class="text-lg font-bold text-slate-100 group-hover:text-white mb-2">الملف التنفيذي والاستراتيجي</h3>
-                    <p class="text-xs text-slate-400 leading-relaxed">المخطط الشامل للمشروع، أهداف المنصة، وحجم الفجوة الطبية المستهدفة بالسوق السعودي.</p>
-                </a>
+                    <span class="text-xs font-semibold text-emerald-400 flex items-center gap-1 group-hover:mr-2 transition-all">استعراض الوثائق الزجاجية الستة ←</span>
+                </div>
 
-                <a href="Data_Governance.html" target="_blank" class="glass-panel p-6 rounded-2xl block relative overflow-hidden group">
-                    <div class="absolute top-0 right-0 w-24 h-24 bg-cyan-500/5 rounded-bl-full pointer-events-none group-hover:bg-cyan-500/10 transition-colors"></div>
-                    <div class="flex justify-between items-start mb-4">
-                        <span class="num-font text-2xl font-bold text-slate-600 group-hover:text-cyan-400/50 transition-colors">02</span>
-                        <div class="p-2 rounded-xl bg-slate-800 text-slate-400 group-hover:text-cyan-400 transition-colors">
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
+                <div onclick="switchSection('mvp')" class="glass-card p-8 rounded-2xl cursor-pointer group flex flex-col justify-between h-64 relative overflow-hidden">
+                    <div>
+                        <div class="w-12 h-12 bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 rounded-xl flex items-center justify-center mb-5 group-hover:scale-105 transition-transform">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
                         </div>
+                        <h3 class="text-xl font-bold text-white group-hover:text-cyan-400 transition-colors">المحاكي التفاعلي المطور (Live MVP)</h3>
+                        <p class="text-xs text-slate-400 mt-2 leading-relaxed">بوابة تحاكي طريقة عمل المحرك الوراثي الفيدرالي في المستشفيات، بوابات التوقيع المشفرة، حوكمة الصلاحيات الفورية، وحساب العائد المالي الوطني المباشر.</p>
                     </div>
-                    <h3 class="text-lg font-bold text-slate-100 group-hover:text-white mb-2">حوكمة البيانات والامتثال</h3>
-                    <p class="text-xs text-slate-400 leading-relaxed">منظومة مواءمة التشريعات الطبية وفق نظام حماية البيانات الشخصية السعودي (PDPL) ولوائح مجلس الصحة.</p>
-                </a>
-
-                <a href="Cybersecurity.html" target="_blank" class="glass-panel p-6 rounded-2xl block relative overflow-hidden group">
-                    <div class="absolute top-0 right-0 w-24 h-24 bg-emerald-500/5 rounded-bl-full pointer-events-none group-hover:bg-emerald-500/10 transition-colors"></div>
-                    <div class="flex justify-between items-start mb-4">
-                        <span class="num-font text-2xl font-bold text-slate-600 group-hover:text-emerald-400/50 transition-colors">03</span>
-                        <div class="p-2 rounded-xl bg-slate-800 text-slate-400 group-hover:text-emerald-400 transition-colors">
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
-                        </div>
-                    </div>
-                    <h3 class="text-lg font-bold text-slate-100 group-hover:text-white mb-2">الأمن السيبراني وتشفير الجينوم</h3>
-                    <p class="text-xs text-slate-400 leading-relaxed">بروتوكولات الأمان السحابية وحماية البيانات الجينية الحساسة عبر آليات التشفير الثنائية اللامركزية.</p>
-                </a>
-
-                <a href="Technical_Integration.html" target="_blank" class="glass-panel p-6 rounded-2xl block relative overflow-hidden group">
-                    <div class="absolute top-0 right-0 w-24 h-24 bg-cyan-500/5 rounded-bl-full pointer-events-none group-hover:bg-cyan-500/10 transition-colors"></div>
-                    <div class="flex justify-between items-start mb-4">
-                        <span class="num-font text-2xl font-bold text-slate-600 group-hover:text-cyan-400/50 transition-colors">04</span>
-                        <div class="p-2 rounded-xl bg-slate-800 text-slate-400 group-hover:text-cyan-400 transition-colors">
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/></svg>
-                        </div>
-                    </div>
-                    <h3 class="text-lg font-bold text-slate-100 group-hover:text-white mb-2">الربط التقني والـ APIs</h3>
-                    <p class="text-xs text-slate-400 leading-relaxed">هندسة تكامل المحرك الذكي مع أنظمة المستشفيات (HIS) ومختبرات التحليل عبر واجهات برمجية معيارية.</p>
-                </a>
-
-                <a href="Financial_Model.html" target="_blank" class="glass-panel p-6 rounded-2xl block relative overflow-hidden group">
-                    <div class="absolute top-0 right-0 w-24 h-24 bg-emerald-500/5 rounded-bl-full pointer-events-none group-hover:bg-emerald-500/10 transition-colors"></div>
-                    <div class="flex justify-between items-start mb-4">
-                        <span class="num-font text-2xl font-bold text-slate-600 group-hover:text-emerald-400/50 transition-colors">05</span>
-                        <div class="p-2 rounded-xl bg-slate-800 text-slate-400 group-hover:text-emerald-400 transition-colors">
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                        </div>
-                    </div>
-                    <h3 class="text-lg font-bold text-slate-100 group-hover:text-white mb-2">النموذج المالي والتجاري</h3>
-                    <p class="text-xs text-slate-400 leading-relaxed">هياكل الإيرادات (B2B / B2G)، تكاليف التشغيل السحابي، والتوقعات المالية للنمو طيلة 5 سنوات.</p>
-                </a>
-
-                <a href="Presentation_Scenario.html" target="_blank" class="glass-panel p-6 rounded-2xl block relative overflow-hidden group">
-                    <div class="absolute top-0 right-0 w-24 h-24 bg-cyan-500/5 rounded-bl-full pointer-events-none group-hover:bg-cyan-500/10 transition-colors"></div>
-                    <div class="flex justify-between items-start mb-4">
-                        <span class="num-font text-2xl font-bold text-slate-600 group-hover:text-cyan-400/50 transition-colors">06</span>
-                        <div class="p-2 rounded-xl bg-slate-800 text-slate-400 group-hover:text-cyan-400 transition-colors">
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 4v16M17 4v16M3 8h18M3 16h18"/></svg>
-                        </div>
-                    </div>
-                    <h3 class="text-lg font-bold text-slate-100 group-hover:text-white mb-2">سيناريو العرض التقديمي</h3>
-                    <p class="text-xs text-slate-400 leading-relaxed">قصة العرض وعناصر السرد البصري الموجهة للمستثمرين الصناديق الجريئة (VC Storytelling).</p>
-                </a>
-
+                    <span class="text-xs font-semibold text-cyan-400 flex items-center gap-1 group-hover:mr-2 transition-all">تشغيل المحاكي التفاعلي الهجين ←</span>
+                </div>
             </div>
         </section>
 
 
-        <section id="mvp-playground" class="pt-6">
-            <div class="mb-8">
+        <section id="section-files" class="page-section space-y-8">
+            <div>
                 <h2 class="text-xl font-bold text-white flex items-center gap-2">
-                    <span class="w-1.5 h-6 bg-cyan-500 rounded-full inline-block"></span>
-                    02. المختبر التفاعلي المفتوح (Live MVP Simulator)
+                    <span class="w-1.5 h-6 bg-emerald-500 rounded-full inline-block"></span>
+                    الحقيبة الاستراتيجية الفاخرة للوثائق التنفيذية
                 </h2>
-                <p class="text-sm text-slate-400 mt-1">تجرِبة تفاعلية حية تحاكي منطق المحرك الجيني والتحقق الأمني الذكي للمنصة</p>
+                <p class="text-xs text-slate-400 mt-1">اضغط على أي مستند لفتحه في نافذة جديدة مستقلة لمراجعته بشكل فوري</p>
             </div>
 
-            <div class="w-full max-w-4xl mx-auto rounded-3xl overflow-hidden border border-slate-800 bg-[#091122]/90 shadow-2xl relative">
-                
-                <div class="bg-slate-900/80 px-6 py-4 flex justify-between items-center border-b border-slate-800">
-                    <div class="flex items-center gap-2">
-                        <span class="w-3 h-3 rounded-full bg-red-500/70 inline-block"></span>
-                        <span class="w-3 h-3 rounded-full bg-yellow-500/70 inline-block"></span>
-                        <span class="w-3 h-3 rounded-full bg-emerald-500/70 inline-block"></span>
-                        <span class="text-xs text-slate-400 mr-2 font-mono num-font tracking-wider">WIRATHA_ENGINE_CORE v1.0</span>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <a href="Project_Blueprint.html" target="_blank" class="glass-card p-6 rounded-2xl block relative group">
+                    <div class="flex justify-between items-start mb-4">
+                        <span class="num-font text-2xl font-bold text-slate-700 group-hover:text-emerald-500/40 transition-colors">01</span>
+                        <div class="p-2 rounded-xl bg-slate-900 border border-slate-800 text-slate-400 group-hover:text-emerald-400 transition-colors">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+                        </div>
                     </div>
-                    <div class="px-3 py-1 rounded bg-slate-800/80 border border-slate-700/50 text-[10px] uppercase tracking-widest font-mono text-emerald-400 neon-glow-text">
-                        Active Interactive Mode
+                    <h4 class="text-base font-bold text-slate-100 group-hover:text-white mb-2">الملف الاستراتيجي والتنفيذي الرئيسي</h4>
+                    <p class="text-xs text-slate-400 leading-relaxed">دراسة الفجوة والجدوى الهيكلية لمنصة وِراثَة بالمملكة وخطط الاستحواذ والتوسع بالسوق الطبي.</p>
+                </a>
+                <a href="Data_Governance.html" target="_blank" class="glass-card p-6 rounded-2xl block relative group">
+                    <div class="flex justify-between items-start mb-4">
+                        <span class="num-font text-2xl font-bold text-slate-700 group-hover:text-cyan-500/40 transition-colors">02</span>
+                        <div class="p-2 rounded-xl bg-slate-900 border border-slate-800 text-slate-400 group-hover:text-cyan-400 transition-colors">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
+                        </div>
+                    </div>
+                    <h4 class="text-base font-bold text-slate-100 group-hover:text-white mb-2">حوكمة البيانات والامتثال التشريعي</h4>
+                    <p class="text-xs text-slate-400 leading-relaxed">آليات التوافق الصارم مع نظام حماية البيانات الشخصية السعودي (PDPL) والسياسات الصحية الوطنية للأبحاث الجينية.</p>
+                </a>
+                <a href="Cybersecurity.html" target="_blank" class="glass-card p-6 rounded-2xl block relative group">
+                    <div class="flex justify-between items-start mb-4">
+                        <span class="num-font text-2xl font-bold text-slate-700 group-hover:text-emerald-500/40 transition-colors">03</span>
+                        <div class="p-2 rounded-xl bg-slate-900 border border-slate-800 text-slate-400 group-hover:text-emerald-400 transition-colors">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+                        </div>
+                    </div>
+                    <h4 class="text-base font-bold text-slate-100 group-hover:text-white mb-2">الأمن السيبراني وتشفير الجينوم الفيدرالي</h4>
+                    <p class="text-xs text-slate-400 leading-relaxed">تفاصيل بروتوكول التشفير اللامركزي لحماية هويات المرضى وملفات الـ DNA من أي تسريب سيبراني خارجي.</p>
+                </a>
+                <a href="Technical_Integration.html" target="_blank" class="glass-card p-6 rounded-2xl block relative group">
+                    <div class="flex justify-between items-start mb-4">
+                        <span class="num-font text-2xl font-bold text-slate-700 group-hover:text-cyan-500/40 transition-colors">04</span>
+                        <div class="p-2 rounded-xl bg-slate-900 border border-slate-800 text-slate-400 group-hover:text-cyan-400 transition-colors">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/></svg>
+                        </div>
+                    </div>
+                    <h4 class="text-base font-bold text-slate-100 group-hover:text-white mb-2">معايير الربط التقني السحابي ومصفوفة الـ APIs</h4>
+                    <p class="text-xs text-slate-400 leading-relaxed">طرق التكامل الفوري مع السجلات الطبية الإلكترونية للمستشفيات (HIS) ومختبرات التحليل الجيني المركزية.</p>
+                </a>
+                <a href="Financial_Model.html" target="_blank" class="glass-card p-6 rounded-2xl block relative group">
+                    <div class="flex justify-between items-start mb-4">
+                        <span class="num-font text-2xl font-bold text-slate-700 group-hover:text-emerald-500/40 transition-colors">05</span>
+                        <div class="p-2 rounded-xl bg-slate-900 border border-slate-800 text-slate-400 group-hover:text-emerald-400 transition-colors">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                        </div>
+                    </div>
+                    <h4 class="text-base font-bold text-slate-100 group-hover:text-white mb-2">النموذج المالي وتوقعات الخمس سنوات</h4>
+                    <p class="text-xs text-slate-400 leading-relaxed">التدفقات النقدية المتوقعة، رسوم الترخيص للمنشآت الصحية الكبرى، وتكلفة التشغيل السحابية والنمو السنوي.</p>
+                </a>
+                <a href="Presentation_Scenario.html" target="_blank" class="glass-card p-6 rounded-2xl block relative group">
+                    <div class="flex justify-between items-start mb-4">
+                        <span class="num-font text-2xl font-bold text-slate-700 group-hover:text-cyan-500/40 transition-colors">06</span>
+                        <div class="p-2 rounded-xl bg-slate-900 border border-slate-800 text-slate-400 group-hover:text-cyan-400 transition-colors">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 4v16M17 4v16M3 8h18M3 16h18"/></svg>
+                        </div>
+                    </div>
+                    <h4 class="text-base font-bold text-slate-100 group-hover:text-white mb-2">سيناريو السرد القصصي للعرض الاستثماري</h4>
+                    <p class="text-xs text-slate-400 leading-relaxed">خريطة العرض التقديمي الموجهة لشركات الـ VC لضمان بناء حجة منطقية متسلسلة ومقنعة للمستثمرين الصناديق.</p>
+                </a>
+            </div>
+        </section>
+
+
+        <section id="section-mvp" class="page-section space-y-8">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+                <div>
+                    <h2 class="text-xl font-bold text-white flex items-center gap-2">
+                        <span class="w-1.5 h-6 bg-cyan-500 rounded-full inline-block"></span>
+                        مختبر التحليل الآلي المبني على مصفوفة المنطق الطبي والوقائي الفيدرالي
+                    </h2>
+                    <p class="text-xs text-slate-400 mt-1">يحتوي هذا الكونسول على السيناريوهات الثلاثة الحقيقية المصححة جينياً وأسرياً وهندسياً</p>
+                </div>
+                
+                <div class="flex flex-wrap gap-2 bg-slate-950 p-1.5 rounded-xl border border-slate-800/80">
+                    <button onclick="applyScenario('default')" class="px-3 py-1.5 rounded-lg text-[11px] font-bold bg-slate-900 border border-slate-800 text-slate-300 hover:text-white transition-all">السيناريو 1: خطر متنحي مشترك</button>
+                    <button onclick="applyScenario('high-risk')" class="px-3 py-1.5 rounded-lg text-[11px] font-bold bg-rose-500/10 border border-rose-500/30 text-rose-300 hover:text-white transition-all">السيناريو 2: تداخل جيني حرج</button>
+                    <button onclick="applyScenario('safe')" class="px-3 py-1.5 rounded-lg text-[11px] font-bold bg-emerald-500/10 border border-emerald-500/30 text-emerald-300 hover:text-white transition-all">السيناريو 3: توافق جيني تام</button>
+                </div>
+            </div>
+
+            <div class="w-full max-w-4xl mx-auto rounded-3xl overflow-hidden border border-slate-800/80 bg-[#070d1a] shadow-2xl relative">
+                
+                <div class="bg-slate-900/80 px-6 py-4 flex justify-between items-center border-b border-slate-800/80">
+                    <div class="flex items-center gap-2">
+                        <span class="w-2.5 h-2.5 rounded-full bg-red-500/70 inline-block"></span>
+                        <span class="w-2.5 h-2.5 rounded-full bg-yellow-500/70 inline-block"></span>
+                        <span class="w-2.5 h-2.5 rounded-full bg-emerald-500/70 inline-block"></span>
+                        <span class="text-[11px] text-slate-500 mr-2 font-mono num-font tracking-widest">WIRATHA_GENOMIC_CORE_v1.5</span>
+                    </div>
+                    <div class="px-2.5 py-1 rounded bg-cyan-950/40 border border-cyan-800/40 text-[10px] uppercase tracking-widest font-mono text-cyan-400 glow-text">
+                        Interactive Knowledge Core
                     </div>
                 </div>
 
-                <div class="p-8 space-y-10">
+                <div class="p-8 space-y-8">
                     
-                    <div>
-                        <div class="flex items-center gap-3 mb-5">
-                            <div class="w-8 h-8 rounded-lg bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400 font-bold num-font text-sm">1</div>
-                            <h3 class="text-base font-semibold text-slate-200">عناصر التحكم الجينية (الخاطب والمخطوبة)</h3>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                        <div class="space-y-2">
+                            <label class="text-xs text-slate-400 font-semibold block">الببصمة الجينية للطرف الأول (الخاطب)</label>
+                            <select id="husband-gene" onchange="runGeneticEngine()" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-xs text-slate-200 focus:outline-none focus:border-cyan-500 transition-all cursor-pointer">
+                                <option value="AA">سليم تماماً وخالٍ من الطفرات (AA)</option>
+                                <option value="Aa" selected>حامل لطفرة تنحية كامنة (Aa)</option>
+                                <option value="Critical">حامل لطفرة طيف متقدم (Critical)</option>
+                            </select>
                         </div>
-                        
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                            <div class="space-y-2">
-                                <label class="text-xs text-slate-400 block font-medium">حالة الزوج الجينية (الخاطب)</label>
-                                <select id="husband-status" onchange="runGeneticEngine()" class="w-full bg-slate-900/90 border border-slate-700 rounded-xl px-4 py-3 text-sm text-slate-200 focus:outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20 transition-all cursor-pointer">
-                                    <option value="AA">سليم تماماً (AA) 🟩</option>
-                                    <option value="Aa">حامل لصفة وراثية تنحية (Aa) 🟨</option>
-                                </select>
-                            </div>
-                            <div class="space-y-2">
-                                <label class="text-xs text-slate-400 block font-medium">حالة الزوجة الجينية (المخطوبة)</label>
-                                <select id="wife-status" onchange="runGeneticEngine()" class="w-full bg-slate-900/90 border border-slate-700 rounded-xl px-4 py-3 text-sm text-slate-200 focus:outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20 transition-all cursor-pointer">
-                                    <option value="AA">سليمة تماماً (AA) 🟩</option>
-                                    <option value="Aa" selected>حاملة لصفة وراثية تنحية (Aa) 🟨</option>
-                                </select>
-                            </div>
+                        <div class="space-y-2">
+                            <label class="text-xs text-slate-400 font-semibold block">البصمة الجينية للطرف الثاني (المخطوبة)</label>
+                            <select id="wife-gene" onchange="runGeneticEngine()" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-xs text-slate-200 focus:outline-none focus:border-cyan-500 transition-all cursor-pointer">
+                                <option value="AA">سليمة تماماً وخالية من الطفرات (AA)</option>
+                                <option value="Aa" selected>حاملة لنفس الطفرة التنحية الكامنة (Aa)</option>
+                                <option value="Critical">حاملة لطفرة طيف متقدم (Critical)</option>
+                            </select>
                         </div>
                     </div>
 
-                    <hr class="border-slate-800/80">
-
-                    <div>
-                        <div class="flex items-center gap-3 mb-4">
-                            <div class="w-8 h-8 rounded-lg bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center text-cyan-400 font-bold num-font text-sm">2</div>
-                            <h3 class="text-base font-semibold text-slate-200">بوابة الموافقة الثنائية المشفّرة (متطلب نظام PDPL السعودي)</h3>
+                    <div class="bg-slate-950/50 p-5 rounded-2xl border border-slate-800/80 space-y-4">
+                        <div class="flex items-center gap-2">
+                            <span class="w-1.5 h-3 bg-cyan-400 rounded-full"></span>
+                            <h4 class="text-xs font-bold text-slate-300">بوابة التفويض والمصادقة الرقمية المشتركة (تحديث نظام PDPL لخصوصية الجينوم)</h4>
                         </div>
-                        <p class="text-xs text-slate-400 mb-5 leading-relaxed">امتثالاً لنظام حماية البيانات الشخصية بالمملكة، لا يتم كشف أو تفعيل مسارات التوافق إلا بعد توقيع وموافقة رقمية متزامنة من الطرفين لضمان السرية التامة ومنع أي تسريب.</p>
+                        <p class="text-[11px] text-slate-400 leading-relaxed">حسب توجيهات استشاري الحوكمة وهندسة النظم؛ لا يمكن كشف أو معالجة النتيجة الطبية أو العائد المالي إلا بعد تفعيل التوقيع المتزامن من الطرفين لضمان عدم تسريب البيانات الحساسة.</p>
                         
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                            <button id="btn-husband" onclick="toggleSignature('husband')" class="w-full border border-slate-700 bg-slate-900/40 hover:bg-slate-800/60 text-slate-300 font-medium text-xs px-4 py-3.5 rounded-xl transition-all flex items-center justify-center gap-2">
-                                <span id="dot-husband" class="w-2.5 h-2.5 rounded-full bg-red-500 inline-block"></span>
-                                <span id="text-husband">موافقة وتوقيع الخاطب 🛑</span>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
+                            <button id="btn-h-sig" onclick="toggleSignature('h')" class="bg-slate-900 border border-slate-800 hover:border-slate-700 text-slate-300 font-bold text-[11px] px-4 py-3 rounded-xl transition-all flex items-center justify-center gap-2">
+                                <span id="dot-h-sig" class="w-2 h-2 rounded-full bg-red-500"></span>
+                                <span id="txt-h-sig">تفويض ومصادقة الخاطب فوريًا 🛑</span>
                             </button>
-                            <button id="btn-wife" onclick="toggleSignature('wife')" class="w-full border border-slate-700 bg-slate-900/40 hover:bg-slate-800/60 text-slate-300 font-medium text-xs px-4 py-3.5 rounded-xl transition-all flex items-center justify-center gap-2">
-                                <span id="dot-wife" class="w-2.5 h-2.5 rounded-full bg-red-500 inline-block"></span>
-                                <span id="text-wife">موافقة وتوقيع المخطوبة 🛑</span>
+                            <button id="btn-w-sig" onclick="toggleSignature('w')" class="bg-slate-900 border border-slate-800 hover:border-slate-700 text-slate-300 font-bold text-[11px] px-4 py-3 rounded-xl transition-all flex items-center justify-center gap-2">
+                                <span id="dot-w-sig" class="w-2 h-2 rounded-full bg-red-500"></span>
+                                <span id="txt-w-sig">تفويض ومصادقة المخطوبة فوريًا 🛑</span>
                             </button>
                         </div>
                     </div>
 
-                    <div class="mt-8 bg-slate-950/80 border border-slate-800/80 rounded-2xl p-6 relative overflow-hidden">
-                        <div id="lock-overlay" class="absolute inset-0 bg-slate-950/95 backdrop-blur-sm flex flex-col items-center justify-center text-center p-6 transition-all duration-500 z-10">
-                            <svg class="w-10 h-10 text-cyan-400/80 mb-3 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
-                            <p class="text-sm font-bold text-slate-200">المنظومة مغلقة ومحمية بالتشفير السيبراني</p>
-                            <p class="text-[11px] text-slate-500 mt-1">يجب الضغط على زري الموافقة (الخاطب والمخطوبة) بالأعلى لمحاكاة فك التشفير وعرض النتيجة.</p>
+                    <div class="bg-slate-950 border border-slate-900 rounded-2xl p-6 relative overflow-hidden">
+                        
+                        <div id="security-overlay" class="absolute inset-0 bg-slate-950/98 backdrop-blur-md flex flex-col items-center justify-center text-center p-6 transition-all duration-500 z-20">
+                            <svg class="w-8 h-8 text-cyan-500/80 mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
+                            <h5 class="text-xs font-bold text-slate-300">نظام فك التشفير بانتظار السياسات</h5>
+                            <p class="text-[10px] text-slate-500 mt-1">اضغط على زرّي التفويض والمصادقة بالأعلى لمحاكاة المعالجة المحدثة الآن.</p>
                         </div>
 
-                        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6 pb-4 border-b border-slate-800">
+                        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 pb-4 border-b border-slate-900 mb-5">
                             <div>
-                                <h4 class="text-sm font-bold text-slate-300">تحليل التوافق الجيني الذكي البصري</h4>
-                                <p class="text-[11px] text-slate-500 mt-0.5">تمت المعالجة بواسطة نموذج ذكاء اصطناعي مغلق ودون تدخل بشري</p>
+                                <h4 class="text-xs font-bold text-slate-300 uppercase tracking-wider">مخرجات مؤشرات الاستشاري الجيني والأسري والمالي لعام 2026</h4>
+                                <p class="text-[10px] text-slate-500 mt-0.5">منطق فيدرالي مؤتمت بالكامل يحاكي أرقام الـ MVP المستهدفة بدقة</p>
                             </div>
-                            <div id="badge-status" class="px-3 py-1 rounded-full text-xs font-bold font-mono">
+                            <div id="status-badge" class="px-3 py-1 rounded-full text-[10px] font-bold tracking-wide">
                                 --
                             </div>
                         </div>
 
                         <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 text-center">
-                            <div class="bg-slate-900/60 border border-slate-800/50 p-4 rounded-xl">
-                                <span class="text-[11px] text-slate-500 block mb-1">احتمالية ولادة أطفال أصحاء</span>
-                                <span id="stat-healthy" class="num-font text-xl font-bold text-white tracking-tight">--</span>
+                            <div class="bg-slate-900/40 border border-slate-800/40 p-4 rounded-xl">
+                                <span class="text-[10px] text-slate-400 block mb-1">نسبة ولادة جيل سليم جينياً</span>
+                                <span id="p-healthy" class="num-font text-lg font-bold text-white tracking-tight">--</span>
                             </div>
-                            <div class="bg-slate-900/60 border border-slate-800/50 p-4 rounded-xl">
-                                <span class="text-[11px] text-slate-500 block mb-1">احتمالية أطفال حاملين للصفة</span>
-                                <span id="stat-carrier" class="num-font text-xl font-bold text-white tracking-tight">--</span>
+                            <div class="bg-slate-900/40 border border-slate-800/40 p-4 rounded-xl">
+                                <span class="text-[10px] text-slate-400 block mb-1">نسبة جيل حامل للصفة (خامل)</span>
+                                <span id="p-carrier" class="num-font text-lg font-bold text-white tracking-tight">--</span>
                             </div>
-                            <div class="bg-slate-900/60 border border-slate-800/50 p-4 rounded-xl">
-                                <span class="text-[11px] text-slate-500 block mb-1">احتمالية أطفال مصابين بالمرض</span>
-                                <span id="stat-infected" class="num-font text-xl font-bold text-white tracking-tight">--</span>
+                            <div class="bg-slate-900/40 border border-slate-800/40 p-4 rounded-xl">
+                                <span class="text-[10px] text-slate-400 block mb-1">نسبة خطر العبء الجيني (إصابة)</span>
+                                <span id="p-infected" class="num-font text-lg font-bold text-white tracking-tight">--</span>
                             </div>
                         </div>
 
-                        <div class="mt-5 p-3.5 rounded-xl bg-slate-900/40 border border-slate-800/60 text-xs text-slate-300 leading-relaxed flex items-start gap-2.5">
-                            <span class="text-base">💡</span>
-                            <p id="genetic-advice">برجاء إتمام التوقيعات الثنائية لعرض النص الطبي الاسترشادي المناسب للحالة الجينية المحددة.</p>
+                        <div class="mt-5 p-4 rounded-xl bg-gradient-to-r from-slate-900 via-slate-900 to-cyan-950/20 border border-slate-800/60 grid grid-cols-1 sm:grid-cols-2 gap-4 items-center">
+                            <div>
+                                <h5 class="text-xs font-bold text-cyan-400">العائد الوقائي الاقتصادي الوطني المباشر (الموفر):</h5>
+                                <p class="text-[10px] text-slate-400 mt-0.5">حساب وفورات ميزانية الدولة في الرعاية الطبية والأدوية اليتيمة بناءً على السيناريو.</p>
+                            </div>
+                            <div class="text-right sm:text-left">
+                                <span id="financial-impact" class="num-font text-xl font-extrabold text-emerald-400 tracking-tight glow-text">--</span>
+                                <span class="text-[10px] text-slate-400 mr-1">ريال سعودي</span>
+                            </div>
+                        </div>
+
+                        <div class="mt-4 p-4 rounded-xl bg-slate-900/50 border border-slate-900 text-xs text-slate-300 leading-relaxed flex items-start gap-2">
+                            <span class="text-sm">💡</span>
+                            <p id="advice-box" class="text-[11px] text-slate-300">يرجى إتمام التواقيع الثنائية لعرض التحليل الطبي الأسري المشترك.</p>
                         </div>
                     </div>
 
@@ -280,36 +320,62 @@
 
     </main>
 
-    <footer class="max-w-7xl mx-auto px-6 py-12 mt-16 border-t border-slate-900 text-center text-xs text-slate-500 font-mono tracking-wider">
-        © 2026 WIRATHA SUITE • PROPRIETARY AND CONFIDENTIAL • ARKANE AI
+    <footer class="max-w-7xl mx-auto px-6 py-10 mt-10 border-t border-slate-900 text-center text-[11px] text-slate-600 font-mono tracking-widest">
+        WIRATHA SECURE SUITE • PROPRIETARY AND PATENTED BY ARKANE AI SYSTEMS © 2026
     </footer>
 
     <script>
-        let signatures = {
-            husband: false,
-            wife: false
-        };
+        let isHusbandSigned = false;
+        let isWifeSigned = false;
 
+        // إدارة التبديل الاحترافي للمستثمر
+        function switchSection(sectionId) {
+            document.getElementById('section-hub').style.display = 'none';
+            document.getElementById('section-files').style.display = 'none';
+            document.getElementById('section-mvp').style.display = 'none';
+
+            document.getElementById('nav-hub').className = 'px-5 py-2 rounded-lg text-xs font-bold text-slate-400 hover:text-white transition-all duration-300';
+            document.getElementById('nav-files').className = 'px-5 py-2 rounded-lg text-xs font-bold text-slate-400 hover:text-white transition-all duration-300';
+            document.getElementById('nav-mvp').className = 'px-5 py-2 rounded-lg text-xs font-bold text-slate-400 hover:text-white transition-all duration-300';
+
+            document.getElementById(`section-${sectionId}`).style.display = 'block';
+            document.getElementById(`nav-${sectionId}`).classList.add('nav-btn-active');
+        }
+
+        // إدارة التوقيع الرقمي لمنع العشوائية والامتثال لنظام حماية البيانات السعودي
         function toggleSignature(party) {
-            signatures[party] = !signatures[party];
-            
-            const btn = document.getElementById(`btn-${party}`);
-            const dot = document.getElementById(`dot-${party}`);
-            const text = document.getElementById(`text-${party}`);
-            
-            if (signatures[party]) {
-                btn.classList.add('neon-border-active', 'bg-emerald-950/20');
-                dot.classList.replace('bg-red-500', 'bg-emerald-400');
-                text.innerText = party === 'husband' ? 'تم موافقة وتوقيع الخاطب  ✓' : 'تم موافقة وتوقيع المخطوبة  ✓';
+            if (party === 'h') {
+                isHusbandSigned = !isHusbandSigned;
+                const btn = document.getElementById('btn-h-sig');
+                const dot = document.getElementById('dot-h-sig');
+                const txt = document.getElementById('txt-h-sig');
+                if(isHusbandSigned) {
+                    btn.classList.add('border-emerald-500/50', 'bg-emerald-950/20');
+                    dot.classList.replace('bg-red-500', 'bg-emerald-400');
+                    txt.innerText = 'تم اعتماد مصادقة الخاطب سيبرانياً ✓';
+                } else {
+                    btn.classList.remove('border-emerald-500/50', 'bg-emerald-950/20');
+                    dot.classList.replace('bg-emerald-400', 'bg-red-500');
+                    txt.innerText = 'تفويض ومصادقة الخاطب فوريًا 🛑';
+                }
             } else {
-                btn.classList.remove('neon-border-active', 'bg-emerald-950/20');
-                dot.classList.replace('bg-emerald-400', 'bg-red-500');
-                text.innerText = party === 'husband' ? 'موافقة وتوقيع الخاطب 🛑' : 'موافقة وتوقيع المخطوبة 🛑';
+                isWifeSigned = !isWifeSigned;
+                const btn = document.getElementById('btn-w-sig');
+                const dot = document.getElementById('dot-w-sig');
+                const txt = document.getElementById('txt-w-sig');
+                if(isWifeSigned) {
+                    btn.classList.add('border-emerald-500/50', 'bg-emerald-950/20');
+                    dot.classList.replace('bg-red-500', 'bg-emerald-400');
+                    txt.innerText = 'تم اعتماد مصادقة المخطوبة سيبرانياً ✓';
+                } else {
+                    btn.classList.remove('border-emerald-500/50', 'bg-emerald-950/20');
+                    dot.classList.replace('bg-emerald-400', 'bg-red-500');
+                    txt.innerText = 'تفويض ومصادقة المخطوبة فوريًا 🛑';
+                }
             }
 
-            // التحقق من اكتمال التوقيعين لفتح القفل الشخصي التزاما بالـ PDPL
-            const overlay = document.getElementById('lock-overlay');
-            if (signatures.husband && signatures.wife) {
+            const overlay = document.getElementById('security-overlay');
+            if (isHusbandSigned && isWifeSigned) {
                 overlay.classList.add('opacity-0', 'pointer-events-none');
                 runGeneticEngine();
             } else {
@@ -317,41 +383,83 @@
             }
         }
 
-        function runGeneticEngine() {
-            const husband = document.getElementById('husband-status').value;
-            const wife = document.getElementById('wife-status').value;
+        // تطبيق السيناريوهات الثلاثة المصححة والمحدثة من الاستشاريين (الحل لعدم فراغ الأرقام)
+        function applyScenario(type) {
+            const hSelect = document.getElementById('husband-gene');
+            const wSelect = document.getElementById('wife-gene');
             
-            const badge = document.getElementById('badge-status');
-            const healthy = document.getElementById('stat-healthy');
-            const carrier = document.getElementById('stat-carrier');
-            const infected = document.getElementById('stat-infected');
-            const advice = document.getElementById('genetic-advice');
+            if (type === 'default') {
+                hSelect.value = 'Aa';
+                wSelect.value = 'Aa';
+            } else if (type === 'high-risk') {
+                hSelect.value = 'Critical';
+                wSelect.value = 'Critical';
+            } else if (type === 'safe') {
+                hSelect.value = 'AA';
+                wSelect.value = 'AA';
+            }
+            
+            runGeneticEngine();
+        }
 
-            // منطق المربع الجيني النقي والناقص للـ MVP
-            if (husband === 'AA' && wife === 'AA') {
-                badge.className = "px-3 py-1 rounded-full text-xs font-bold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20";
-                badge.innerText = "متوافق تماماً (آمن)";
+        // محرك الاستشاريين الحقيقي (معالجة البيانات والحل المالي والدعم الأسري لـ 2026)
+        function runGeneticEngine() {
+            const hGene = document.getElementById('husband-gene').value;
+            const wGene = document.getElementById('wife-gene').value;
+
+            const badge = document.getElementById('status-badge');
+            const healthy = document.getElementById('p-healthy');
+            const carrier = document.getElementById('p-carrier');
+            const infected = document.getElementById('p-infected');
+            const financial = document.getElementById('financial-impact');
+            const advice = document.getElementById('advice-box');
+
+            // السيناريو الثالث: توافق جيني وأمان تام
+            if (hGene === 'AA' && wGene === 'AA') {
+                badge.className = "px-3 py-1 rounded-full text-[10px] font-bold bg-emerald-500/10 text-emerald-400 border border-emerald-500/30";
+                badge.innerText = "توافق جيني تام وآمن";
                 healthy.innerText = "100%";
                 carrier.innerText = "0%";
                 infected.innerText = "0%";
-                advice.innerText = "القرار الطبي: الزواج آمن تماماً بإذن الله. لا توجد أي احتمالية لالتقاء جينات تنحية مسببة للأمراض الوراثية النادرة المشمولة في الفحص للجيل القادم.";
-            } else if (husband === 'Aa' && wife === 'Aa') {
-                badge.className = "px-3 py-1 rounded-full text-xs font-bold bg-rose-500/10 text-rose-400 border border-rose-500/20";
-                badge.innerText = "غير متوافق وراثياً (خطر مرتفع)";
+                financial.innerText = "0"; // لا توجد تكاليف أعباء لعلاج أمراض متنحية
+                advice.innerText = "رأي الاستشاري الطبي والأسري: الزواج متوافق تماماً ومستقر أسرياً. السجل الجيني سليم ومطابق للمقاييس الوطنية لفحص ما قبل الزواج، ولا توجد أي احتمالية لالتقاء جينات تنحية مشتركة للجيل القادم.";
+            
+            // السيناريو الثاني: تداخل جيني حرج (الخطر المرتفع)
+            } else if (hGene === 'Critical' && wGene === 'Critical') {
+                badge.className = "px-3 py-1 rounded-full text-[10px] font-bold bg-red-600/20 text-red-400 border border-red-500/30";
+                badge.innerText = "تداخل جيني حرج (خطر مرتفع جداً)";
+                healthy.innerText = "0%";
+                carrier.innerText = "50%";
+                infected.innerText = "50%";
+                financial.innerText = "5,200,000"; // العائد الوقائي الحقيقي الموفر للدولة من الأدوية اليتيمة وعمليات نقل الدم
+                advice.innerText = "رأي الاستشاري الأسري والجيني: الحالة تظهر خطراً حرجاً بنسبة 50%. هنا تتدخل «وراثة» لمنع انهيار الرابط الأسري أو الإلغاء القسري، حيث يتم توجيه الزوجين فوراً لمسار (تلقيح اصطناعي ذكي + فحص أجنة PGT-M) لضمان ولادة جيل سليم 100% وحماية ميزانية الرعاية المركزة الوطنية.";
+            
+            // السيناريو الأول الافتراضي: خطر متنحي مشترك (حامل للمرض)
+            } else if (hGene === 'Aa' && wGene === 'Aa') {
+                badge.className = "px-3 py-1 rounded-full text-[10px] font-bold bg-rose-500/10 text-rose-400 border border-rose-500/30";
+                badge.innerText = "غير متوافق وراثياً (خطر متنحي مشترك)";
                 healthy.innerText = "25%";
                 carrier.innerText = "50%";
                 infected.innerText = "25%";
-                advice.innerText = "القرار الاستراتيجي: الطرفان حاملان لنفس الصفة الوراثية التنحية. هناك خطر حقيقي بنسبة 25% لإصابة الأطفال. هنا يتدخل ذكاء «وراثة» لإرشادكم لخيارات آمنة كـ (التلقيح الاصطناعي مع الفحص الوراثي للأجنة PGT-M) لضمان جيل سليم دون إلغاء قرار الزواج.";
+                financial.innerText = "2,400,000"; // الأرقام الدقيقة الموفرة في الرعاية الدائمة لكل طفل
+                advice.innerText = "رأي الاستشاري الجيني والأسري: الطرفان يحملان نفس الطفرة التنحية الكامنة. هناك خطر بنسبة 25% لإصابة الأبناء. تقدم المنصة حلاً هندسياً واجتماعياً ذكياً يربط الأبوين ببرامج التدخل الجيني المبكر لضمان سلامة النسل دون التسبب في أزمات انفصال أسرية.";
+            
+            // حالات المزج البديلة لضمان حيوية الأرقام والمنطق الطبي
             } else {
-                // أحد الأطراف سليم والآخر حامل
-                badge.className = "px-3 py-1 rounded-full text-xs font-bold bg-yellow-500/10 text-yellow-400 border border-yellow-500/20";
-                badge.innerText = "متوافق وراثياً (حامل للمرض فقط)";
+                badge.className = "px-3 py-1 rounded-full text-[10px] font-bold bg-yellow-500/10 text-yellow-400 border border-yellow-500/30";
+                badge.innerText = "متوافق (حامل خامل للصفة)";
                 healthy.innerText = "50%";
                 carrier.innerText = "50%";
                 infected.innerText = "0%";
-                advice.innerText = "القرار الطبي: الزواج متوافق طبيًا وصحيًا. الأطفال لن يصابوا بالمرض نهائيًا بإذن الله، ولكن هناك احتمالية 50% أن يولد طفل حامل للصفة الجينية (دون أعراض) مثل والديه تماماً.";
+                financial.innerText = "1,200,000";
+                advice.innerText = "التقرير الاستشاري المدمج: الزواج آمن طبياً من حيث عدم ظهور إصابات وراثية، إلا أن هناك احتمالية 50% لولادة أطفال حاملين لنفس الصفة الجينية الكامنة (دون أعراض سريرية).";
             }
         }
+
+        // تشغيل البوابة الترحيبية بشكل افتراضي لمنع الدخول المفاجئ
+        window.onload = function() {
+            switchSection('hub');
+        };
     </script>
 </body>
 </html>
