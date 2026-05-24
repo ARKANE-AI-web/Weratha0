@@ -1,410 +1,566 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WIRATHA EXECUTIVE SUITE | منظومة وِراثَة</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" rel="stylesheet">
-    
-    <style>
-        body {
-            font-family: 'Cairo', sans-serif;
-            background: radial-gradient(circle at 50% 0%, #06182B 0%, #040B14 70%, #010205 100%);
-            color: #EAF2F4;
-            user-select: none;
-            -webkit-user-select: none;
-            overflow-x: hidden;
-        }
-        .num-font { font-family: 'Plus Jakarta Sans', sans-serif; }
-        
-        /* التأثيرات الزجاجية الفاخرة التي اعتمدناها */
-        .glass-panel {
-            background: rgba(10, 37, 64, 0.45);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid rgba(15, 181, 168, 0.15);
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.4);
-            transition: all 0.4s ease;
-        }
-        .glass-panel:hover {
-            border-color: rgba(15, 181, 168, 0.4);
-            box-shadow: 0 0 30px rgba(15, 181, 168, 0.15);
-        }
-        
-        /* تبويبات التنقل العلوية */
-        .nav-tab.active {
-            background: linear-gradient(135deg, rgba(15, 181, 168, 0.2) 0%, rgba(34, 211, 238, 0.2) 100%);
-            border-color: rgba(15, 181, 168, 0.6);
-            color: #fff;
-            box-shadow: 0 0 15px rgba(15, 181, 168, 0.2);
-        }
-        
-        .glow-text { text-shadow: 0 0 10px rgba(34, 211, 238, 0.5); }
-        .main-section { display: none; animation: fadeIn 0.5s ease forwards; }
-        .file-content { display: none; animation: fadeIn 0.4s ease forwards; }
-        .active-section, .active-file { display: block; }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<title>وَراثة — المنظومة المتكاملة · ARKANE AI</title>
+<style>
+/* ════════════ WIRATHA Ecosystem MVP · Offline iOS ════════════
+   3 Journeys: Safe Match | Family Command Center | Proactive Navigator
+   Dark Glassmorphism #020617 · neon · zero external links
+   ══════════════════════════════════════════════════════════════ */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#020617;--panel:rgba(255,255,255,.045);--panel2:rgba(255,255,255,.07);
+  --line:rgba(255,255,255,.1);--line2:rgba(255,255,255,.16);
+  --teal:#2dd4bf;--tealdk:#0d9488;--cyan:#38bdf8;--ice:#7dd3fc;
+  --coral:#fb7185;--amber:#fbbf24;--violet:#a78bfa;--emer:#34d399;--rose:#f43f5e;
+  --ink:#e8eef7;--mut:#9fb0c8;--dim:#647795;--faint:#3d4f6b;
+}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{font-family:-apple-system,BlinkMacSystemFont,"SF Arabic","Segoe UI",Tahoma,sans-serif;
+  background:var(--bg);color:var(--ink);line-height:1.75;overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;min-height:100vh;position:relative}
+body::before{content:"";position:fixed;inset:0;z-index:-2;background:
+  radial-gradient(900px 600px at 82% -5%,rgba(45,212,191,.14),transparent 60%),
+  radial-gradient(820px 700px at 8% 14%,rgba(56,189,248,.11),transparent 55%),
+  radial-gradient(720px 620px at 50% 112%,rgba(167,139,250,.09),transparent 60%),var(--bg)}
+body::after{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:.5;
+  background-image:radial-gradient(rgba(255,255,255,.025) 1px,transparent 1px);background-size:3px 3px}
+::selection{background:var(--teal);color:#021015}
+::-webkit-scrollbar{width:0;height:0}
+.ltr{direction:ltr;display:inline-block;unicode-bidi:embed}
+.mono{font-family:ui-monospace,"SF Mono",Menlo,monospace;font-variant-numeric:tabular-nums}
 
-        /* منطقة رفع الملفات للمحاكي الحقيقي */
-        .upload-zone {
-            border: 2px dashed rgba(15, 181, 168, 0.4);
-            background: rgba(15, 181, 168, 0.05);
-            transition: all 0.3s ease;
-        }
-        .upload-zone:hover {
-            border-color: rgba(15, 181, 168, 0.8);
-            background: rgba(15, 181, 168, 0.1);
-        }
-    </style>
+.app{max-width:780px;margin:0 auto;padding:0 16px 110px;min-height:100vh}
+
+/* brand */
+.brand{position:sticky;top:0;z-index:50;margin:0 -16px;padding:14px 18px;display:flex;
+  align-items:center;justify-content:space-between;background:rgba(2,6,23,.74);
+  backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px);border-bottom:1px solid var(--line)}
+.brand .logo{display:flex;align-items:center;gap:10px}
+.brand .mark{width:35px;height:35px;border-radius:10px;display:grid;place-items:center;
+  background:linear-gradient(135deg,var(--teal),var(--tealdk));box-shadow:0 6px 22px -6px rgba(45,212,191,.65);flex-shrink:0}
+.brand .mark svg{width:20px;height:20px;stroke:#021015;fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+.brand h1{font-size:18px;font-weight:800;letter-spacing:-.3px;line-height:1.1}
+.brand h1 b{color:var(--teal)}
+.brand .tag{font-size:9.5px;color:var(--dim);letter-spacing:.32em;margin-top:1px}
+.brand .arkane{font-size:10px;color:var(--dim);letter-spacing:.3em;font-weight:700}
+
+/* tabs */
+.tabs{position:sticky;top:64px;z-index:49;margin:0 -16px 22px;display:flex;gap:6px;padding:10px 14px;
+  background:rgba(2,6,23,.62);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);
+  border-bottom:1px solid var(--line);overflow-x:auto}
+.tab{flex:1;min-width:max-content;white-space:nowrap;padding:9px 13px;border-radius:11px;
+  border:1px solid transparent;background:transparent;color:var(--mut);font-family:inherit;
+  font-size:12px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;
+  transition:.25s;-webkit-tap-highlight-color:transparent}
+.tab svg{width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+.tab.on{background:linear-gradient(135deg,rgba(45,212,191,.18),rgba(56,189,248,.12));
+  border-color:rgba(45,212,191,.4);color:var(--teal);box-shadow:0 4px 16px -8px rgba(45,212,191,.5)}
+.tab:active{transform:scale(.96)}
+
+.panel{display:none;animation:fade .5s cubic-bezier(.16,1,.3,1)}
+.panel.on{display:block}
+@keyframes fade{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+
+.glass{background:var(--panel);border:1px solid var(--line);border-radius:20px;
+  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  box-shadow:0 1px 0 rgba(255,255,255,.05) inset,0 18px 40px -24px rgba(0,0,0,.7)}
+.pad{padding:22px}
+.kick{font-size:10px;letter-spacing:.3em;font-weight:700;color:var(--teal);text-transform:uppercase}
+.h2{font-size:23px;font-weight:800;letter-spacing:-.4px;margin:8px 0 6px;line-height:1.25}
+.lead{color:var(--mut);font-size:14px}
+.sec-title{display:flex;align-items:center;gap:9px;font-size:14.5px;font-weight:800;color:var(--ice);margin:0 2px 13px}
+.sec-title .si{width:30px;height:30px;border-radius:9px;display:grid;place-items:center;flex-shrink:0}
+.sec-title .si svg{width:16px;height:16px;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+
+.demo-flag{display:flex;gap:10px;align-items:flex-start;background:rgba(251,191,36,.08);
+  border:1px solid rgba(251,191,36,.28);border-radius:14px;padding:13px 15px;margin-bottom:18px;font-size:12px;color:var(--mut)}
+.demo-flag svg{flex:0 0 16px;height:16px;stroke:var(--amber);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;margin-top:2px}
+.demo-flag b{color:var(--amber)}
+
+/* generic field */
+.field{margin-bottom:15px}
+.field label{display:block;font-size:12.5px;font-weight:700;color:var(--ice);margin-bottom:7px}
+.field label .req{color:var(--coral)}
+.field input,.field select{width:100%;padding:13px 15px;border-radius:13px;font-family:inherit;font-size:15px;
+  background:rgba(255,255,255,.04);border:1px solid var(--line2);color:var(--ink);-webkit-appearance:none;appearance:none;transition:.2s}
+.field input::placeholder{color:var(--faint)}
+.field input:focus,.field select:focus{outline:0;border-color:var(--teal);background:rgba(45,212,191,.06);box-shadow:0 0 0 3px rgba(45,212,191,.12)}
+.field input.bad{border-color:var(--coral);box-shadow:0 0 0 3px rgba(251,113,133,.14)}
+.field select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%239fb0c8' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");background-repeat:no-repeat;background-position:left 15px center;padding-left:42px}
+.hint{font-size:11px;color:var(--dim);margin-top:6px}
+.errline{font-size:11.5px;color:var(--coral);margin-top:6px;display:none}
+.errline.on{display:block}
+
+/* primary button neon */
+.btn{width:100%;margin-top:6px;padding:16px;border-radius:15px;border:0;cursor:pointer;font-family:inherit;
+  font-size:15px;font-weight:800;color:#021015;background:linear-gradient(135deg,var(--teal),var(--cyan));
+  box-shadow:0 0 0 0 rgba(45,212,191,.5),0 12px 30px -10px rgba(45,212,191,.6);transition:.25s;
+  -webkit-tap-highlight-color:transparent;display:flex;align-items:center;justify-content:center;gap:9px}
+.btn svg{width:18px;height:18px;stroke:#021015;fill:none;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
+.btn:hover{box-shadow:0 0 28px 2px rgba(45,212,191,.55),0 12px 34px -8px rgba(56,189,248,.7);transform:translateY(-1px)}
+.btn:active{transform:scale(.98)}
+.btn.busy{opacity:.75;pointer-events:none}
+.btn.ghost{background:transparent;border:1px solid var(--line2);color:var(--ice);box-shadow:none}
+.btn.ghost svg{stroke:var(--ice)}
+.btn.ghost:hover{border-color:var(--teal);box-shadow:none}
+.spin{width:17px;height:17px;border:2.4px solid rgba(2,16,21,.35);border-top-color:#021015;border-radius:99px;animation:sp .7s linear infinite;display:none}
+@keyframes sp{to{transform:rotate(360deg)}}
+.btn.busy .spin{display:block}.btn.busy .b-ico,.btn.busy .b-txt{display:none}
+
+.result{margin-top:20px;display:none;animation:fade .55s cubic-bezier(.16,1,.3,1)}
+.result.on{display:block}
+
+/* ════ Safe Match privacy ════ */
+.priv{display:flex;gap:10px;align-items:center;background:rgba(45,212,191,.07);
+  border:1px solid rgba(45,212,191,.26);border-radius:14px;padding:13px 15px;margin-bottom:18px;font-size:12.5px;color:var(--mut)}
+.priv svg{flex:0 0 18px;height:18px;stroke:var(--teal);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.priv b{color:var(--teal)}
+.dz-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+.dz-pill{padding:11px 12px;border-radius:12px;border:1px solid var(--line2);background:rgba(255,255,255,.03);
+  font-size:12.5px;font-weight:700;color:var(--mut);cursor:pointer;text-align:center;transition:.2s;-webkit-tap-highlight-color:transparent}
+.dz-pill.on{background:rgba(45,212,191,.14);border-color:var(--teal);color:var(--teal)}
+.dz-pill:active{transform:scale(.96)}
+
+.match-card{text-align:center;padding:26px 22px;border-radius:20px 20px 0 0;border:1px solid var(--line);border-bottom:0}
+.match-ring{position:relative;width:132px;height:132px;margin:0 auto 14px}
+.match-ring svg{transform:rotate(-90deg)}
+.match-ring .mv{position:absolute;inset:0;display:grid;place-items:center;flex-direction:column;font-weight:900}
+.match-ring .mv .mp{font-size:34px;letter-spacing:-1px;line-height:1}
+.match-ring .mv .ml{font-size:10px;font-weight:700;color:var(--mut);letter-spacing:.1em;margin-top:3px}
+.match-verdict{font-size:18px;font-weight:800;margin-bottom:4px}
+.match-sub{font-size:12.5px;color:var(--mut);max-width:340px;margin:0 auto}
+.match-body{padding:18px 20px;border:1px solid var(--line);border-top:0;border-radius:0 0 20px 20px}
+.match-body .lab{font-size:10px;letter-spacing:.24em;font-weight:700;color:var(--dim);text-transform:uppercase;margin-bottom:11px}
+.mrow{display:flex;gap:10px;padding:9px 0;font-size:13px;color:var(--mut);border-bottom:1px solid var(--line);align-items:flex-start}
+.mrow:last-child{border:0}
+.mrow .mi{flex:0 0 18px;height:18px;border-radius:6px;display:grid;place-items:center;margin-top:1px}
+.mrow .mi svg{width:11px;height:11px;stroke-width:2.6;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.mrow b{color:var(--ice)}
+
+/* ════ Family Command Center ════ */
+.crisis{background:linear-gradient(135deg,rgba(251,113,133,.1),rgba(167,139,250,.06));
+  border:1px solid rgba(251,113,133,.26);border-radius:18px;padding:20px;margin-bottom:8px}
+.crisis .ct{font-size:17px;font-weight:800;margin-bottom:5px}
+.crisis p{font-size:13px;color:var(--mut)}
+.steptrack{display:flex;gap:6px;margin:18px 0 4px}
+.steptrack .sd{flex:1;height:5px;border-radius:99px;background:rgba(255,255,255,.08);overflow:hidden}
+.steptrack .sd i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--teal),var(--cyan));transition:width .5s ease}
+.steptrack .sd.done i{width:100%}
+.steptrack .sd.now i{width:50%}
+
+.cc-stage{display:none;animation:fade .45s ease}
+.cc-stage.on{display:block}
+.cc-card{display:flex;gap:14px;padding:16px;border-radius:16px;border:1px solid var(--line);background:var(--panel);
+  align-items:center;margin-bottom:11px;cursor:pointer;transition:.22s;-webkit-tap-highlight-color:transparent}
+.cc-card:active{transform:scale(.985)}
+.cc-card.sel{border-color:var(--teal);background:rgba(45,212,191,.07);box-shadow:0 0 0 1px var(--teal)}
+.cc-card .cci{width:46px;height:46px;border-radius:13px;display:grid;place-items:center;flex-shrink:0}
+.cc-card .cci svg{width:23px;height:23px;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.cc-card .cct{flex:1}
+.cc-card .cct h5{font-size:14.5px;font-weight:800;color:var(--ice)}
+.cc-card .cct .ccm{font-size:12px;color:var(--dim);margin-top:2px}
+.cc-card .ccx{font-size:13px;font-weight:800;color:var(--teal);white-space:nowrap}
+.cc-card .chk{width:24px;height:24px;border-radius:99px;border:1.6px solid var(--line2);display:grid;place-items:center;flex-shrink:0;transition:.2s}
+.cc-card.sel .chk{border-color:var(--teal);background:var(--teal)}
+.cc-card .chk svg{width:13px;height:13px;stroke:#021015;fill:none;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;opacity:0;transition:.2s}
+.cc-card.sel .chk svg{opacity:1}
+
+.fund-opt{padding:15px;border-radius:15px;border:1px solid var(--line);margin-bottom:10px;cursor:pointer;transition:.2s;-webkit-tap-highlight-color:transparent}
+.fund-opt:active{transform:scale(.99)}
+.fund-opt.sel{border-color:var(--cyan);background:rgba(56,189,248,.07);box-shadow:0 0 0 1px var(--cyan)}
+.fund-opt .ft{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.fund-opt .fn{font-size:14px;font-weight:800;color:var(--ice)}
+.fund-opt .fb{font-size:11px;font-weight:700;padding:3px 9px;border-radius:99px;background:rgba(45,212,191,.14);color:var(--teal)}
+.fund-opt .fd{font-size:12px;color:var(--mut);margin-top:6px}
+.fund-opt .fcalc{font-size:12.5px;color:var(--cyan);font-weight:700;margin-top:8px;display:none}
+.fund-opt.sel .fcalc{display:block}
+
+.summary{border-radius:18px;border:1px solid var(--line);overflow:hidden}
+.summary .sh{padding:18px 20px;background:linear-gradient(135deg,rgba(45,212,191,.14),rgba(56,189,248,.08));
+  text-align:center;border-bottom:1px solid var(--line)}
+.summary .sh .si2{width:54px;height:54px;border-radius:99px;background:rgba(45,212,191,.16);display:grid;place-items:center;margin:0 auto 10px}
+.summary .sh .si2 svg{width:28px;height:28px;stroke:var(--teal);fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+.summary .sh .st2{font-size:17px;font-weight:800}
+.summary .sh .ss{font-size:12px;color:var(--mut);margin-top:3px}
+.sum-row{display:flex;justify-content:space-between;gap:12px;padding:13px 20px;font-size:13px;border-bottom:1px solid var(--line)}
+.sum-row:last-child{border:0}
+.sum-row .k{color:var(--mut)}.sum-row .v{font-weight:800;color:var(--ice);text-align:left}
+
+/* ════ Proactive Navigator ════ */
+.risk-meter{text-align:center;padding:24px 20px;border-radius:20px;border:1px solid var(--line)}
+.risk-bar{height:14px;border-radius:99px;background:rgba(255,255,255,.06);overflow:hidden;margin:16px 0 8px;position:relative}
+.risk-fill{height:100%;width:0;border-radius:99px;transition:width 1.3s cubic-bezier(.16,1,.3,1)}
+.risk-scale{display:flex;justify-content:space-between;font-size:10px;color:var(--dim)}
+.risk-label{font-size:22px;font-weight:900;letter-spacing:-.5px;margin-top:8px}
+.tl{margin-top:18px;position:relative;padding-right:26px}
+.tl::before{content:"";position:absolute;right:9px;top:6px;bottom:6px;width:2px;background:var(--line2)}
+.tl-item{position:relative;padding-bottom:18px}
+.tl-item:last-child{padding-bottom:0}
+.tl-item::before{content:"";position:absolute;right:-21px;top:4px;width:12px;height:12px;border-radius:99px;
+  background:var(--bg);border:2px solid var(--teal);box-shadow:0 0 10px rgba(45,212,191,.6)}
+.tl-item h5{font-size:14px;font-weight:800;color:var(--ice);margin-bottom:3px}
+.tl-item p{font-size:12.5px;color:var(--mut)}
+.tl-item .tw{font-size:11px;color:var(--teal);font-weight:700;margin-top:3px}
+.toggle-row{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:13px 0;border-bottom:1px solid var(--line)}
+.toggle-row:last-of-type{border:0}
+.toggle-row .tlab{font-size:13.5px;color:var(--ice);font-weight:600}
+.sw{width:48px;height:28px;border-radius:99px;background:rgba(255,255,255,.1);position:relative;cursor:pointer;transition:.25s;flex-shrink:0;border:1px solid var(--line2)}
+.sw::after{content:"";position:absolute;top:2px;right:2px;width:22px;height:22px;border-radius:99px;background:#fff;transition:.25s}
+.sw.on{background:var(--teal);border-color:var(--teal)}
+.sw.on::after{right:auto;left:2px}
+
+.foot{text-align:center;color:var(--dim);font-size:11px;padding:28px 10px 6px;line-height:1.9}
+.foot .ph{color:var(--teal);font-weight:700}
+.divider{height:1px;background:linear-gradient(90deg,transparent,var(--line2),transparent);margin:8px 0}
+</style>
 </head>
-<body class="min-h-screen antialiased">
+<body>
+<div class="app">
 
-    <div class="absolute top-0 left-1/4 w-[500px] h-[500px] bg-[#0FB5A8]/5 rounded-full blur-[140px] pointer-events-none"></div>
+  <header class="brand">
+    <div class="logo">
+      <div class="mark"><svg viewBox="0 0 24 24"><path d="M9 3c3 4 3 6 0 10s-3 6 0 8M15 3c-3 4-3 6 0 10s3 6 0 8M8 7h8M8 17h8M9 12h6"/></svg></div>
+      <div><h1>وَ<b>راثة</b></h1><div class="tag">E C O S Y S T E M</div></div>
+    </div>
+    <div class="arkane">ARKANE&nbsp;AI</div>
+  </header>
 
-    <header class="max-w-7xl mx-auto px-6 py-6 border-b border-slate-800/80 flex flex-col md:flex-row justify-between items-center gap-4 relative z-10">
-        <div class="flex items-center gap-4">
-            <div class="w-12 h-12 bg-gradient-to-tr from-[#0FB5A8] to-[#22D3EE] rounded-2xl flex items-center justify-center shadow-lg">
-                <span class="text-white font-bold text-xl">W</span>
-            </div>
-            <div>
-                <h1 class="text-2xl font-black text-white tracking-wide">وِراثَة <span class="text-[#0FB5A8] text-sm num-font">ARKANE AI</span></h1>
-                <p class="text-xs text-slate-400">المنظومة الفيدرالية لحوكمة وتشفير البيانات الجينية</p>
-            </div>
+  <nav class="tabs">
+    <button class="tab on" data-p="m1" onclick="tab('m1',this)"><svg viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 00-4-4H6a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 11l-3 3-2-2"/></svg>التوافق الآمن</button>
+    <button class="tab" data-p="m2" onclick="tab('m2',this)"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><path d="M9 22V12h6v10"/></svg>غرفة العمليات</button>
+    <button class="tab" data-p="m3" onclick="tab('m3',this)"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 100 20 10 10 0 000-20z"/><path d="M12 6v6l4 2"/></svg>الموجّه الاستباقي</button>
+  </nav>
+
+  <!-- ═══════ M1 · SAFE MATCH ═══════ -->
+  <section class="panel on" id="m1">
+    <div class="kick">التوافق الآمن · SAFE MATCH</div>
+    <div class="h2">تحقّقوا قبل الخطبة — بسرّيةٍ تامة</div>
+    <p class="lead">فحصٌ تطوّعيٌّ للأمراض المتنحية النادرة (غير المشمولة في الفحص الرسمي) قبل التقدّم الرسمي — لتجنّب الرفض والحرج الاجتماعي.</p>
+
+    <div class="priv" style="margin-top:16px">
+      <svg viewBox="0 0 24 24"><path d="M12 2l8 4v6c0 5-3.5 8-8 10-4.5-2-8-5-8-10V6z"/><path d="M9 12l2 2 4-4"/></svg>
+      <div><b>سرّيةٌ بالتصميم:</b> النتيجة لا تُكشف لأي طرفٍ باسمه. تُقارَن الرموز فقط، ولا يُفتح التفصيل إلا بموافقة الطرفين معاً (قفل ثنائي).</div>
+    </div>
+
+    <div class="glass pad">
+      <div class="sec-title"><span class="si" style="background:rgba(45,212,191,.14);color:var(--teal)"><svg viewBox="0 0 24 24" stroke="currentColor"><circle cx="12" cy="8" r="4"/><path d="M4 21v-1a6 6 0 016-6h4a6 6 0 016 6v1"/></svg></span>ملفك الجيني (سرّي)</div>
+      <div class="field"><label>رمز الملف الشخصي (مجهول الهوية)</label>
+        <input id="sm-code" maxlength="8" placeholder="مثال: WX-7421" value="WX-7421" readonly style="opacity:.7">
+        <div class="hint">يُولَّد تلقائياً — لا اسم، لا هوية. للمقارنة فقط.</div></div>
+      <div class="field"><label>الطفرات المتنحية الحاملة لديك <span class="req">*</span></label>
+        <div class="dz-grid" id="sm-mine">
+          <div class="dz-pill" data-g="SMN1" onclick="smPill(this)">SMA (SMN1)</div>
+          <div class="dz-pill" data-g="HBB" onclick="smPill(this)">منجلية (HBB)</div>
+          <div class="dz-pill" data-g="HBA" onclick="smPill(this)">ثلاسيميا (HBA)</div>
+          <div class="dz-pill" data-g="CFTR" onclick="smPill(this)">تليّف كيسي (CFTR)</div>
+          <div class="dz-pill" data-g="GBA" onclick="smPill(this)">غوشيه (GBA)</div>
+          <div class="dz-pill" data-g="none" onclick="smPill(this)">لا يوجد حامل</div>
         </div>
+        <div class="errline" id="sm-err">اختر حالتك الحاملة أو «لا يوجد».</div></div>
 
-        <div class="bg-[#06182B]/80 p-1.5 rounded-xl border border-slate-700/80 flex gap-2">
-            <button onclick="switchMain('files')" id="tab-files" class="nav-tab active px-5 py-2.5 rounded-lg text-xs font-bold text-slate-300 border border-transparent transition-all">
-                📑 الحقيبة الاستراتيجية (الملفات)
-            </button>
-            <button onclick="switchMain('investor')" id="tab-investor" class="nav-tab px-5 py-2.5 rounded-lg text-xs font-bold text-slate-300 border border-transparent transition-all">
-                📊 MVP (عرض المستثمر)
-            </button>
-            <button onclick="switchMain('ministry')" id="tab-ministry" class="nav-tab px-5 py-2.5 rounded-lg text-xs font-bold text-slate-300 border border-transparent transition-all">
-                ⚙️ MVP (المنصة التشغيلية للوزارة)
-            </button>
-        </div>
-    </header>
+      <div class="sec-title" style="margin-top:20px"><span class="si" style="background:rgba(56,189,248,.14);color:var(--cyan)"><svg viewBox="0 0 24 24" stroke="currentColor"><circle cx="12" cy="8" r="4"/><path d="M4 21v-1a6 6 0 016-6h4a6 6 0 016 6v1"/></svg></span>رمز الطرف الآخر</div>
+      <div class="field"><label>الطفرات المتنحية الحاملة لدى الطرف الآخر</label>
+        <div class="dz-grid" id="sm-theirs">
+          <div class="dz-pill" data-g="SMN1" onclick="smPill(this)">SMA (SMN1)</div>
+          <div class="dz-pill" data-g="HBB" onclick="smPill(this)">منجلية (HBB)</div>
+          <div class="dz-pill" data-g="HBA" onclick="smPill(this)">ثلاسيميا (HBA)</div>
+          <div class="dz-pill" data-g="CFTR" onclick="smPill(this)">تليّف كيسي (CFTR)</div>
+          <div class="dz-pill" data-g="GBA" onclick="smPill(this)">غوشيه (GBA)</div>
+          <div class="dz-pill" data-g="none" onclick="smPill(this)">لا يوجد حامل</div>
+        </div></div>
 
-    <main class="max-w-7xl mx-auto px-6 py-8 relative z-10">
+      <button class="btn" id="sm-btn" onclick="smRun()">
+        <svg class="b-ico" viewBox="0 0 24 24"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg>
+        <span class="b-txt">تحقّق من التوافق بسرّية</span><span class="spin"></span></button>
+    </div>
 
-        <section id="sec-files" class="main-section active-section">
-            <div class="flex flex-col lg:flex-row gap-6">
-                <div class="lg:w-1/3 space-y-3">
-                    <h3 class="text-sm font-bold text-[#0FB5A8] mb-4">فهرس الوثائق التنفيذية</h3>
-                    
-                    <button onclick="openFile(1)" id="btn-file-1" class="w-full text-right glass-panel p-4 rounded-xl border-[#0FB5A8]/50 bg-[#0FB5A8]/10 text-white font-bold text-sm">
-                        01. الملف التنفيذي والاستراتيجي
-                    </button>
-                    <button onclick="openFile(2)" id="btn-file-2" class="w-full text-right glass-panel p-4 rounded-xl text-slate-300 hover:text-white text-sm">
-                        02. حوكمة البيانات والامتثال
-                    </button>
-                    <button onclick="openFile(3)" id="btn-file-3" class="w-full text-right glass-panel p-4 rounded-xl text-slate-300 hover:text-white text-sm">
-                        03. الأمن السيبراني والتشفير
-                    </button>
-                    <button onclick="openFile(4)" id="btn-file-4" class="w-full text-right glass-panel p-4 rounded-xl text-slate-300 hover:text-white text-sm">
-                        04. الربط التقني والـ APIs
-                    </button>
-                    <button onclick="openFile(5)" id="btn-file-5" class="w-full text-right glass-panel p-4 rounded-xl text-slate-300 hover:text-white text-sm">
-                        05. النموذج المالي والتجاري
-                    </button>
-                    <button onclick="openFile(6)" id="btn-file-6" class="w-full text-right glass-panel p-4 rounded-xl text-slate-300 hover:text-white text-sm">
-                        06. العرض التقديمي (الأرقام الرسمية)
-                    </button>
-                </div>
+    <div class="result" id="sm-res"></div>
+  </section>
 
-                <div class="lg:w-2/3 glass-panel p-8 rounded-2xl min-h-[500px]">
-                    
-                    <div id="content-1" class="file-content active-file space-y-4">
-                        <h2 class="text-2xl font-bold text-white border-b border-slate-700 pb-3">الملف التنفيذي والاستراتيجي (Blueprint)</h2>
-                        <p class="text-sm text-slate-300 leading-relaxed">المخطط الشامل لمشروع وِراثَة، يوضح هيكلية المنصة الفيدرالية القائمة على الذكاء الاصطناعي لترجمة الفحوصات الوراثية لدعم القرار. يربط هذا المخطط بين أهداف رؤية 2030 لبرنامج التحول الصحي، ويوفر بيئة تشغيلية متكاملة تضمن تقليل الهدر المالي المباشر في علاج الأمراض الوراثية المتنحية، وتوفير بدائل إنجابية آمنة للحد من العبء المجتمعي.</p>
-                        <div class="bg-[#06182B] p-4 rounded-lg border border-slate-700 text-xs text-slate-400">ملاحظة: تفاصيل المخطط التشغيلي للـ 5-in-1 مضمنة بالكامل في الخوادم السحابية.</div>
-                    </div>
-                    
-                    <div id="content-2" class="file-content space-y-4">
-                        <h2 class="text-2xl font-bold text-white border-b border-slate-700 pb-3">حوكمة البيانات والامتثال (PDPL)</h2>
-                        <p class="text-sm text-slate-300 leading-relaxed">تطبيق صارم لنظام حماية البيانات الشخصية السعودي. يعتمد النظام على التشفير اللامركزي، ومبدأ (الموافقة الثنائية التفاعلية) التي تتطلب توقيع الخاطب والمخطوبة معاً قبل فك تشفير أي نتيجة وراثية لمنع التسريب الاجتماعي وحماية خصوصية العوائل.</p>
-                    </div>
+  <!-- ═══════ M2 · FAMILY COMMAND CENTER ═══════ -->
+  <section class="panel" id="m2">
+    <div class="kick">غرفة العمليات الأسرية · COMMAND CENTER</div>
+    <div class="h2">من لحظة الصدمة إلى خطّة واضحة</div>
 
-                    <div id="content-3" class="file-content space-y-4">
-                        <h2 class="text-2xl font-bold text-white border-b border-slate-700 pb-3">الأمن السيبراني وتشفير الجينوم</h2>
-                        <p class="text-sm text-slate-300 leading-relaxed">بروتوكولات الأمان السحابية العالية لحماية البيانات الجينية الحساسة. لا يتم تخزين البصمات الجينية كنصوص صريحة، بل كـ Hashes مشفرة، مما يحقق الامتثال لسياسات الهيئة الوطنية للأمن السيبراني (NCA) بوزارة الصحة.</p>
-                    </div>
+    <div class="demo-flag" style="margin-top:14px">
+      <svg viewBox="0 0 24 24"><path d="M12 9v4M12 17h.01M10.3 3.9L2 18a2 2 0 001.7 3h16.6a2 2 0 001.7-3L13.7 3.9a2 2 0 00-3.4 0z"/></svg>
+      <div><b>بيئة محاكاة:</b> المختبرات والعيادات وخيارات التمويل أمثلةٌ توضيحية. مسار التمويل توجيهٌ لمستشار، لا التزامٌ أو موافقة فورية.</div>
+    </div>
 
-                    <div id="content-4" class="file-content space-y-4">
-                        <h2 class="text-2xl font-bold text-white border-b border-slate-700 pb-3">الربط التقني والـ APIs</h2>
-                        <p class="text-sm text-slate-300 leading-relaxed">هيكلية التكامل الفوري مع منصة (صحتي) وأنظمة السجلات الطبية (HIS). يتيح النظام استدعاء بيانات الفحص آلياً (Zero Manual Entry) لضمان موثوقية النتائج ومطابقتها مركزياً.</p>
-                    </div>
+    <div class="crisis">
+      <div class="ct">نتيجتكما: تطابقٌ متنحٍّ — خطر 25% لكل حمل</div>
+      <p>هذه ليست نهاية الطريق. خلال دقائق نحوّلكما من القلق إلى خطّةٍ عملية: مختبر، عيادة، مسار تمويل، ودعم نفسي — في مكانٍ واحد.</p>
+    </div>
 
-                    <div id="content-5" class="file-content space-y-4">
-                        <h2 class="text-2xl font-bold text-white border-b border-slate-700 pb-3">النموذج المالي التجاري (Financial Model)</h2>
-                        <p class="text-sm text-slate-300 leading-relaxed">هياكل الإيرادات وB2G مع وزارة الصحة. يعتمد النموذج على توفير تكاليف الرعاية الممتدة (ملايين الريالات لكل مريض) مقابل رسوم ترخيص سنوية للمنصة وتقديم التحليل الذكي للعيادات المعتمدة.</p>
-                    </div>
+    <div class="steptrack" id="cc-track">
+      <div class="sd now"><i></i></div><div class="sd"><i></i></div><div class="sd"><i></i></div><div class="sd"><i></i></div>
+    </div>
 
-                    <div id="content-6" class="file-content space-y-6">
-                        <h2 class="text-2xl font-bold text-[#0FB5A8] border-b border-slate-700 pb-3">العرض التقديمي الرسمي (ARKANE AI - وِراثَة)</h2>
-                        
-                        <div class="space-y-4">
-                            <div class="bg-[#06182B] p-5 rounded-xl border border-slate-700">
-                                <h3 class="font-bold text-white mb-2">الفكرة في جملة:</h3>
-                                <p class="text-sm text-slate-300">الفحص قبل الزواج يكشف الخطر لكنه لا يصنع القرار. <span class="text-[#0FB5A8] font-bold">«وراثة»</span> هي طبقة الذكاء التي تترجم النتيجة المخبرية إلى احتمال مفهوم، وخيارات واضحة، وقرار واعٍ. <br><span class="text-yellow-400 font-bold">قرار لا كشف.. إنساني أولاً.</span> نحول "أنتم معرضون" إلى "إليكم خياراتكم وعواقب كل منها".</p>
-                            </div>
+    <!-- stage 0: lab -->
+    <div class="cc-stage on" id="cc0">
+      <div class="sec-title" style="margin-top:18px"><span class="si" style="background:rgba(56,189,248,.14);color:var(--cyan)"><svg viewBox="0 0 24 24" stroke="currentColor"><path d="M9 3v6l-5 9a2 2 0 002 3h12a2 2 0 002-3l-5-9V3"/><path d="M8 3h8"/></svg></span>١ · اختر مختبر التحليل الجيني</div>
+      <div class="cc-card" data-x="مختبر الجينوم المتقدم · 24 ساعة" onclick="ccPick('cc0',this)">
+        <div class="cci" style="background:rgba(56,189,248,.14);color:var(--cyan)"><svg viewBox="0 0 24 24" stroke="currentColor"><path d="M9 3v6l-5 9a2 2 0 002 3h12a2 2 0 002-3l-5-9V3"/></svg></div>
+        <div class="cct"><h5>مختبر الجينوم المتقدم</h5><div class="ccm">نتائج خلال 24 ساعة · معتمد</div></div>
+        <div class="chk"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div></div>
+      <div class="cc-card" data-x="المركز الوطني للوراثة · 48 ساعة" onclick="ccPick('cc0',this)">
+        <div class="cci" style="background:rgba(45,212,191,.14);color:var(--teal)"><svg viewBox="0 0 24 24" stroke="currentColor"><path d="M9 3v6l-5 9a2 2 0 002 3h12a2 2 0 002-3l-5-9V3"/></svg></div>
+        <div class="cct"><h5>المركز الوطني للوراثة</h5><div class="ccm">نتائج خلال 48 ساعة · تغطية تأمينية</div></div>
+        <div class="chk"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div></div>
+      <button class="btn" onclick="ccNext(1)"><span class="b-txt">التالي — عيادة الإخصاب</span>
+        <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg></button>
+    </div>
 
-                            <div class="grid grid-cols-2 gap-4">
-                                <div class="glass-panel p-4 rounded-xl border-red-500/30">
-                                    <h4 class="text-xs text-slate-400 mb-1">المشكلة بالأرقام:</h4>
-                                    <p class="text-2xl font-bold text-white num-font">57%</p>
-                                    <p class="text-xs text-slate-300">نسبة زواج الأقارب في السعودية (الأعلى عالمياً).</p>
-                                </div>
-                                <div class="glass-panel p-4 rounded-xl border-red-500/30">
-                                    <h4 class="text-xs text-slate-400 mb-1">إكمال الزواج عالي الخطورة:</h4>
-                                    <p class="text-2xl font-bold text-red-400 num-font">90%</p>
-                                    <p class="text-xs text-slate-300">يكملون الزواج رغم النتيجة لأنها تُسلم كتحذير جاف.</p>
-                                </div>
-                            </div>
+    <!-- stage 1: ivf clinic -->
+    <div class="cc-stage" id="cc1">
+      <div class="sec-title" style="margin-top:18px"><span class="si" style="background:rgba(167,139,250,.14);color:var(--violet)"><svg viewBox="0 0 24 24" stroke="currentColor"><path d="M12 21s-7-4.4-9.5-9C.8 8.6 2.3 5 6 5c2 0 3.2 1.2 4 2.4C10.8 6.2 12 5 14 5c3.7 0 5.2 3.6 3.5 7-2.5 4.6-9.5 9-9.5 9z"/></svg></span>٢ · عيادة الإخصاب (PGT-M)</div>
+      <div class="cc-card" data-x="مركز الخصوبة التخصصي · PGT-M" onclick="ccPick('cc1',this)">
+        <div class="cci" style="background:rgba(167,139,250,.14);color:var(--violet)"><svg viewBox="0 0 24 24" stroke="currentColor"><circle cx="12" cy="12" r="9"/><path d="M12 7v10M7 12h10"/></svg></div>
+        <div class="cct"><h5>مركز الخصوبة التخصصي</h5><div class="ccm">PGT-M · فحص ما قبل الزرع · نسب نجاح عالية</div></div>
+        <div class="chk"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div></div>
+      <div class="cc-card" data-x="عيادة صحة الإنجابية · PGT-M" onclick="ccPick('cc1',this)">
+        <div class="cci" style="background:rgba(45,212,191,.14);color:var(--teal)"><svg viewBox="0 0 24 24" stroke="currentColor"><circle cx="12" cy="12" r="9"/><path d="M12 7v10M7 12h10"/></svg></div>
+        <div class="cct"><h5>عيادة صحة الإنجابية</h5><div class="ccm">PGT-M · استشارة وراثية مدمجة</div></div>
+        <div class="chk"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div></div>
+      <button class="btn" onclick="ccNext(2)"><span class="b-txt">التالي — مسار التمويل</span>
+        <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg></button>
+    </div>
 
-                            <div class="bg-[#0A2540] p-5 rounded-xl border border-slate-700">
-                                <h3 class="font-bold text-white mb-3">الكلفة المالية الناتجة عن الوراثة:</h3>
-                                <ul class="text-sm text-slate-300 space-y-3">
-                                    <li class="flex items-center gap-2"><span class="text-[#0FB5A8]">■</span> <strong class="text-white num-font">182,000 ريال:</strong> الكلفة المجتمعية السنوية للمريض الواحد (علاج + إنتاجية مفقودة).</li>
-                                    <li class="flex items-center gap-2"><span class="text-[#0FB5A8]">■</span> <strong class="text-white num-font">80,000 ريال:</strong> التكاليف الصحية المباشرة سنوياً لكل مريض منجلي.</li>
-                                    <li class="flex items-center gap-2"><span class="text-[#0FB5A8]">■</span> <strong class="text-white num-font">3.95 مليون ريال:</strong> سعر جرعة دواء واحد لمرض ضمور العضلات الشوكي (Spinraza).</li>
-                                    <li class="flex items-center gap-2"><span class="text-[#0FB5A8]">■</span> <strong class="text-red-400 num-font">5.25 مليار ريال:</strong> الكلفة المجتمعية السنوية لمرض فقر الدم المنجلي وحده في السعودية.</li>
-                                </ul>
-                            </div>
+    <!-- stage 2: funding -->
+    <div class="cc-stage" id="cc2">
+      <div class="sec-title" style="margin-top:18px"><span class="si" style="background:rgba(251,191,36,.14);color:var(--amber)"><svg viewBox="0 0 24 24" stroke="currentColor"><rect x="2" y="6" width="20" height="13" rx="2"/><path d="M2 10h20M6 15h4"/></svg></span>٣ · مسار تمويل الـ 40 ألف ريال</div>
+      <div class="fund-opt sel" data-f="ins" onclick="fundPick(this)">
+        <div class="ft"><span class="fn">التغطية التأمينية</span><span class="fb">الأعلى تفضيلاً</span></div>
+        <div class="fd">تحقّق من شمول وثيقتك لإجراءات PGT-M الوقائية.</div>
+        <div class="fcalc">تقدير تغطية حتى 70% · مساهمتك ≈ 12,000 ريال</div></div>
+      <div class="fund-opt" data-f="charity" onclick="fundPick(this)">
+        <div class="ft"><span class="fn">الجمعيات والمسار الخيري</span><span class="fb">دعم جزئي</span></div>
+        <div class="fd">جهاتٌ داعمة للأمراض الوراثية النادرة قد تغطّي جزءاً.</div>
+        <div class="fcalc">تقدير دعم حتى 50% · مساهمتك ≈ 20,000 ريال</div></div>
+      <div class="fund-opt" data-f="install" onclick="fundPick(this)">
+        <div class="ft"><span class="fn">التقسيط عبر شريك تمويلي</span><span class="fb">مرونة</span></div>
+        <div class="fd">تقسيطٌ ميسّر عبر جهةٍ تمويلية مرخّصة (تقدير توضيحي).</div>
+        <div class="fcalc">≈ 1,667 ريال شهرياً · على 24 شهراً</div></div>
+      <button class="btn ghost" onclick="fundLink(event)" style="margin-bottom:10px">
+        <svg viewBox="0 0 24 24"><path d="M10 13a5 5 0 007 0l3-3a5 5 0 00-7-7l-1 1"/><path d="M14 11a5 5 0 00-7 0l-3 3a5 5 0 007 7l1-1"/></svg>
+        <span class="b-txt">اطلب ربطي بمستشار التمويل</span></button>
+      <button class="btn" onclick="ccNext(3)"><span class="b-txt">التالي — الدعم النفسي</span>
+        <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg></button>
+    </div>
 
-                            <div class="glass-panel p-5 rounded-xl border-[#0FB5A8]/40">
-                                <h3 class="font-bold text-[#0FB5A8] mb-2">الأثر المتوقع (الحل):</h3>
-                                <p class="text-sm text-slate-300 leading-relaxed">نأخذ ما تتركه المنظومة الحالية ناقصاً ونكمله. التجربة الوطنية تثبت أن الإلغاء للزواج عالي الخطورة <strong class="text-white">قفز من 9% إلى 52%</strong> بمجرد تحسين الفهم. كل قرار واعٍ = طفل أقل يولد لمعاناة وراثية يمكن تجنبها، وتوفير وطني يتجاوز 5 مليار ريال.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+    <!-- stage 3: support + summary -->
+    <div class="cc-stage" id="cc3">
+      <div class="sec-title" style="margin-top:18px"><span class="si" style="background:rgba(52,211,153,.14);color:var(--emer)"><svg viewBox="0 0 24 24" stroke="currentColor"><path d="M12 21s-7-4.4-9.5-9C.8 8.6 2.3 5 6 5c2 0 3.2 1.2 4 2.4C10.8 6.2 12 5 14 5c3.7 0 5.2 3.6 3.5 7-2.5 4.6-9.5 9-9.5 9z"/></svg></span>٤ · جلسات الدعم النفسي</div>
+      <div class="cc-card" data-x="جلسة مع مرشد أسري · هذا الأسبوع" onclick="ccPick('cc3',this)">
+        <div class="cci" style="background:rgba(52,211,153,.14);color:var(--emer)"><svg viewBox="0 0 24 24" stroke="currentColor"><path d="M21 11.5a8.4 8.4 0 01-9 8.4 8.4 8.4 0 01-3.8-.9L3 21l1.9-5.7A8.4 8.4 0 1121 11.5z"/></svg></div>
+        <div class="cct"><h5>مرشد أسري مختص</h5><div class="ccm">جلسة سرّية · حضوري أو عن بُعد</div></div>
+        <div class="chk"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div></div>
+      <div class="cc-card" data-x="مجموعة دعم الأمراض الوراثية" onclick="ccPick('cc3',this)">
+        <div class="cci" style="background:rgba(45,212,191,.14);color:var(--teal)"><svg viewBox="0 0 24 24" stroke="currentColor"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2.5"/><path d="M3 20v-1a5 5 0 015-5h2a5 5 0 015 5v1M15 20v-1a4 4 0 014-4"/></svg></div>
+        <div class="cct"><h5>مجموعة دعم الأقران</h5><div class="ccm">عائلاتٌ مرّت بنفس التجربة</div></div>
+        <div class="chk"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div></div>
+      <button class="btn" id="cc-fin" onclick="ccFinish()">
+        <svg class="b-ico" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+        <span class="b-txt">اعتماد خطّة الأسرة</span><span class="spin"></span></button>
+    </div>
 
-        <section id="sec-investor" class="main-section">
-            <div class="text-center mb-8">
-                <h2 class="text-2xl font-bold text-white">المحاكي التفاعلي الموجه لعرض المستثمرين</h2>
-                <p class="text-sm text-slate-400 mt-2">سيناريوهات سريعة جاهزة تُظهر قدرة الذكاء الاصطناعي على صناعة القرار وتقليل الهدر المالي بضغطة زر.</p>
-            </div>
+    <div class="result" id="cc-res"></div>
+  </section>
 
-            <div class="flex justify-center gap-4 mb-8">
-                <button onclick="runInvestorScenario('safe')" class="px-4 py-2 bg-[#0FB5A8]/10 border border-[#0FB5A8]/50 text-[#0FB5A8] rounded-lg text-sm hover:bg-[#0FB5A8]/20 transition-all">سيناريو 1: توافق تام</button>
-                <button onclick="runInvestorScenario('risk')" class="px-4 py-2 bg-red-500/10 border border-red-500/50 text-red-400 rounded-lg text-sm hover:bg-red-500/20 transition-all">سيناريو 2: خطر متنحي مشترك</button>
-            </div>
+  <!-- ═══════ M3 · PROACTIVE NAVIGATOR ═══════ -->
+  <section class="panel" id="m3">
+    <div class="kick">الموجّه الاستباقي · PROACTIVE</div>
+    <div class="h2">تنبيهٌ مبكر قبل أن يصبح الخطر واقعاً</div>
+    <p class="lead">تقديرٌ لعوامل الخطر بناءً على القرابة والتاريخ العائلي والمنطقة — لتوجيهك لخطوةٍ وقائيةٍ في الوقت المناسب.</p>
 
-            <div class="glass-panel p-8 rounded-2xl max-w-4xl mx-auto border-t-4 border-t-[#0FB5A8]" id="investor-board">
-                <h3 class="text-lg font-bold text-white mb-4 text-center">يرجى اختيار سيناريو لعرض الأثر المالي والطبي الفوري</h3>
-            </div>
-        </section>
+    <div class="demo-flag" style="margin-top:16px">
+      <svg viewBox="0 0 24 24"><path d="M12 9v4M12 17h.01M10.3 3.9L2 18a2 2 0 001.7 3h16.6a2 2 0 001.7-3L13.7 3.9a2 2 0 00-3.4 0z"/></svg>
+      <div><b>تقدير عوامل خطر:</b> يعتمد على عواملَ طبية فعلية (القرابة، التاريخ العائلي) لا على وصم أي فئة. ليس تشخيصاً — بل توجيهٌ لاستشارةٍ مختصة.</div>
+    </div>
 
-        <section id="sec-ministry" class="main-section">
-            <div class="mb-6">
-                <h2 class="text-2xl font-bold text-white flex items-center gap-2">
-                    <span class="w-2 h-8 bg-[#22D3EE] rounded-full inline-block"></span>
-                    بيئة التشغيل التجريبية المفتوحة (Live Sandbox)
-                </h2>
-                <p class="text-sm text-slate-400 mt-2 leading-relaxed">هذه الواجهة مخصصة للجان الفحص والتقييم في وزارة الصحة وصحة الافتراضي. تتيح رفع ملفات جينية فعلية أو إدخال بيانات حية لمحاكاة استخراج التقارير الوراثية وتوجيه القرار الإنجابي وحساب الأثر المالي آلياً.</p>
-            </div>
+    <div class="glass pad">
+      <div class="field"><label>درجة القرابة بينكما</label>
+        <select id="nv-kin" onchange="nvCalc()"><option value="0">لا توجد قرابة</option>
+          <option value="2">أبناء عمومة من الدرجة الثانية</option>
+          <option value="3">أبناء عمومة من الدرجة الأولى</option>
+          <option value="4">قرابة مباشرة وثيقة</option></select></div>
+      <div class="field"><label>إصابة سابقة بمرضٍ وراثي في العائلة</label>
+        <select id="nv-fam" onchange="nvCalc()"><option value="0">لا يوجد</option>
+          <option value="2">قريبٌ من الدرجة الثانية</option>
+          <option value="4">قريبٌ من الدرجة الأولى (أخ/أخت/والد)</option></select></div>
+      <div class="field"><label>طفلٌ سابق مصابٌ بمرضٍ وراثي</label>
+        <select id="nv-prev" onchange="nvCalc()"><option value="0">لا</option>
+          <option value="5">نعم</option></select></div>
+    </div>
 
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                
-                <div class="glass-panel p-6 rounded-2xl">
-                    <h3 class="text-[#0FB5A8] font-bold text-sm mb-4 border-b border-slate-700 pb-2">1. إدخال بيانات الفحص (محاكاة حقيقية)</h3>
-                    
-                    <div class="space-y-4">
-                        <div class="flex gap-4">
-                            <div class="w-1/2">
-                                <label class="text-xs text-slate-400 block mb-1">رقم هوية الخاطب</label>
-                                <input type="text" placeholder="10****" class="w-full bg-[#06182B] border border-slate-700 rounded-lg px-3 py-2 text-sm text-white focus:border-[#0FB5A8] outline-none num-font">
-                            </div>
-                            <div class="w-1/2">
-                                <label class="text-xs text-slate-400 block mb-1">رقم هوية المخطوبة</label>
-                                <input type="text" placeholder="10****" class="w-full bg-[#06182B] border border-slate-700 rounded-lg px-3 py-2 text-sm text-white focus:border-[#0FB5A8] outline-none num-font">
-                            </div>
-                        </div>
+    <div class="glass pad" style="margin-top:14px">
+      <div class="risk-meter" style="border:0;padding:0">
+        <div style="font-size:11px;letter-spacing:.2em;color:var(--dim);font-weight:700">مؤشر الخطر التقديري</div>
+        <div class="risk-bar"><div class="risk-fill" id="nv-fill"></div></div>
+        <div class="risk-scale"><span>منخفض</span><span>متوسط</span><span>مرتفع</span></div>
+        <div class="risk-label" id="nv-label">منخفض</div>
+        <p class="match-sub" id="nv-rec" style="margin-top:8px">عدّل المدخلات أعلاه لرؤية التقدير والتوصية.</p>
+      </div>
+    </div>
 
-                        <div>
-                            <label class="text-xs text-slate-400 block mb-1">درجة القرابة (لتحليل التداخل)</label>
-                            <select id="kinship" class="w-full bg-[#06182B] border border-slate-700 rounded-lg px-3 py-2 text-sm text-white focus:border-[#0FB5A8] outline-none">
-                                <option value="none">لا توجد قرابة</option>
-                                <option value="first">قرابة درجة أولى (أبناء عمومة)</option>
-                            </select>
-                        </div>
+    <div class="glass pad" style="margin-top:14px">
+      <div class="sec-title"><span class="si" style="background:rgba(45,212,191,.14);color:var(--teal)"><svg viewBox="0 0 24 24" stroke="currentColor"><path d="M12 2a10 10 0 100 20 10 10 0 000-20z"/><path d="M12 6v6l4 2"/></svg></span>مسارك الاستباقي الموصى به</div>
+      <div class="tl">
+        <div class="tl-item"><h5>فحص الحاملين الموسّع</h5><p>تحليلٌ للأمراض المتنحية النادرة الممتدة، لا المرضين فقط.</p><div class="tw">الآن · قبل الخطبة الرسمية</div></div>
+        <div class="tl-item"><h5>استشارة وراثية</h5><p>قراءة النتيجة وشرح الاحتمالات والخيارات بلغةٍ واضحة.</p><div class="tw">عند وجود تطابق</div></div>
+        <div class="tl-item"><h5>التخطيط لـ PGT-M مبكراً</h5><p>جدولة فحص ما قبل الزرع لضمان أجنّةٍ سليمة.</p><div class="tw">قبل التخطيط للحمل</div></div>
+      </div>
+    </div>
 
-                        <div class="mt-4">
-                            <label class="text-xs text-slate-400 block mb-1">رفع السجل الجيني المخبري (VCF / PDF)</label>
-                            <div class="upload-zone rounded-xl p-8 text-center cursor-pointer" onclick="document.getElementById('file-upload').click()">
-                                <input type="file" id="file-upload" class="hidden">
-                                <svg class="w-8 h-8 text-[#0FB5A8] mx-auto mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"/></svg>
-                                <p class="text-sm text-white font-bold">اسحب وأفلت ملف الفحص هنا</p>
-                                <p class="text-xs text-slate-400 mt-1">أو اضغط لاستعراض الملفات من الجهاز</p>
-                            </div>
-                        </div>
+    <div class="glass pad" style="margin-top:14px">
+      <div class="sec-title"><span class="si" style="background:rgba(56,189,248,.14);color:var(--cyan)"><svg viewBox="0 0 24 24" stroke="currentColor"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 01-3.4 0"/></svg></span>تنبيهاتك الاستباقية</div>
+      <div class="toggle-row"><span class="tlab">تذكير بفحص الحاملين الموسّع</span><div class="sw on" onclick="this.classList.toggle('on')"></div></div>
+      <div class="toggle-row"><span class="tlab">تنبيه عند توفّر دعم تمويل PGT-M</span><div class="sw on" onclick="this.classList.toggle('on')"></div></div>
+      <div class="toggle-row"><span class="tlab">نصائح وقائية دورية حسب ملفّك</span><div class="sw" onclick="this.classList.toggle('on')"></div></div>
+    </div>
+  </section>
 
-                        <div class="mt-4 pt-4 border-t border-slate-700">
-                            <label class="text-xs text-yellow-400 block mb-2">للتجربة الفورية: اختر نوع الطفرة المحقونة في المحرك:</label>
-                            <select id="sandbox-mock" class="w-full bg-[#06182B] border border-yellow-500/30 rounded-lg px-3 py-2 text-sm text-white outline-none">
-                                <option value="sickle">اختبار: فقر الدم المنجلي (تطابق متنحي)</option>
-                                <option value="sma">اختبار: ضمور العضلات الشوكي SMA</option>
-                            </select>
-                        </div>
+  <div class="foot">
+    وَراثة WIRATHA · ARKANE AI · فيصل · <span class="ph mono ltr">+966 56 583 3185</span>
+    <div class="divider"></div>
+    بيئة محاكاة توضيحية — لا تتّصل بسجلٍّ حقيقي ولا تُخزّن بيانات. الذكاء الاصطناعي مساعدٌ لا بديلٌ عن الطبيب.
+  </div>
+</div>
 
-                        <button onclick="runSandboxEngine()" class="w-full mt-4 bg-gradient-to-r from-[#0FB5A8] to-[#0A7D74] text-white font-bold py-3 rounded-xl shadow-lg hover:shadow-[#0FB5A8]/30 transition-all">
-                            تشغيل خوارزمية وِراثَة الفيدرالية
-                        </button>
-                    </div>
-                </div>
+<script>
+function tab(id,el){
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('on'));
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('on'));
+  document.getElementById(id).classList.add('on');el.classList.add('on');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
 
-                <div class="glass-panel p-6 rounded-2xl relative overflow-hidden" id="sandbox-output">
-                    <div class="absolute inset-0 flex flex-col items-center justify-center text-center p-6 bg-[#040B14]/90 z-10" id="sandbox-wait">
-                        <svg class="w-12 h-12 text-slate-600 mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 002-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/></svg>
-                        <p class="text-slate-400 text-sm">بانتظار إدخال البيانات ورفع السجل المخبري<br>المحرك جاهز للتحليل الفوري.</p>
-                    </div>
+/* ════ M1 Safe Match ════ */
+function smPill(el){
+  const box=el.parentElement, none=el.dataset.g==='none';
+  if(none){box.querySelectorAll('.dz-pill').forEach(p=>{if(p!==el)p.classList.remove('on')});el.classList.toggle('on');}
+  else{const n=box.querySelector('[data-g="none"]');if(n)n.classList.remove('on');el.classList.toggle('on');}
+  document.getElementById('sm-err').classList.remove('on');
+}
+function smGenes(boxId){
+  return [...document.querySelectorAll('#'+boxId+' .dz-pill.on')].map(p=>p.dataset.g).filter(g=>g!=='none');
+}
+const GENE_NAME={SMN1:'ضمور العضلات الشوكي (SMA)',HBB:'الأنيميا المنجلية',HBA:'الثلاسيميا',CFTR:'التليّف الكيسي',GBA:'مرض غوشيه'};
+function smRun(){
+  const mineSel=document.querySelectorAll('#sm-mine .dz-pill.on').length;
+  if(!mineSel){document.getElementById('sm-err').classList.add('on');return;}
+  const btn=document.getElementById('sm-btn');btn.classList.add('busy');
+  document.getElementById('sm-res').classList.remove('on');
+  setTimeout(()=>{
+    btn.classList.remove('busy');
+    const mine=smGenes('sm-mine'),theirs=smGenes('sm-theirs');
+    const shared=mine.filter(g=>theirs.includes(g));
+    let cls,pct,verdict,sub,rows;
+    if(shared.length){
+      cls='coral';pct=25;
+      verdict='تطابقٌ متنحٍّ — يستدعي استشارة';
+      sub='كلاكما حاملٌ لنفس الطفرة المتنحية في مرضٍ واحدٍ على الأقل. الاحتمال لكل حمل 25% للإصابة الكاملة.';
+      rows=shared.map(g=>`<div class="mrow"><span class="mi" style="background:rgba(251,113,133,.16)"><svg viewBox="0 0 24 24" stroke="var(--coral)"><path d="M12 9v4M12 17h.01"/><circle cx="12" cy="12" r="9"/></svg></span><span>تطابق في: <b>${GENE_NAME[g]}</b> — يُوصى بفحص ما قبل الزرع PGT-M.</span></div>`).join('')
+        +`<div class="mrow"><span class="mi" style="background:rgba(45,212,191,.16)"><svg viewBox="0 0 24 24" stroke="var(--teal)"><polyline points="20 6 9 17 4 12"/></svg></span><span>هذا ليس مانعاً — بل مؤشرٌ للانتقال إلى <b>غرفة العمليات الأسرية</b> للحل.</span></div>`;
+    }else{
+      cls='emer';pct=2;
+      verdict='توافقٌ آمن — لا تطابق';
+      sub='لا يوجد تطابقٌ في الطفرات المتنحية المشتركة بينكما ضمن النطاق المفحوص. الخطر ضمن المستوى المنخفض العام.';
+      rows=`<div class="mrow"><span class="mi" style="background:rgba(52,211,153,.16)"><svg viewBox="0 0 24 24" stroke="var(--emer)"><polyline points="20 6 9 17 4 12"/></svg></span><span>لا تطابق في الطفرات المتنحية المفحوصة — مؤشرٌ <b>مطمئِن</b>.</span></div>
+        <div class="mrow"><span class="mi" style="background:rgba(56,189,248,.16)"><svg viewBox="0 0 24 24" stroke="var(--cyan)"><path d="M12 8v8M8 12h8"/><circle cx="12" cy="12" r="9"/></svg></span><span>يُنصح دائماً بإكمال الفحص الرسمي قبل الزواج لتأكيد الشمول.</span></div>`;
+    }
+    const ck={coral:'var(--coral)',emer:'var(--emer)'}[cls];
+    const bgk={coral:'rgba(251,113,133,.13)',emer:'rgba(52,211,153,.13)'}[cls];
+    const c=Math.PI*2*54,off=c*(1-pct/100);
+    document.getElementById('sm-res').innerHTML=`
+      <div class="match-card" style="background:${bgk.replace('.13','.06')}">
+        <div class="match-ring"><svg width="132" height="132">
+          <circle cx="66" cy="66" r="54" stroke="var(--line2)" stroke-width="10" fill="none"/>
+          <circle cx="66" cy="66" r="54" stroke="${ck}" stroke-width="10" fill="none" stroke-linecap="round"
+            stroke-dasharray="${c}" stroke-dashoffset="${c}" style="transition:stroke-dashoffset 1.1s cubic-bezier(.16,1,.3,1)"/>
+        </svg><div class="mv"><span class="mp" style="color:${ck}">${pct}%</span><span class="ml">خطر لكل حمل</span></div></div>
+        <div class="match-verdict" style="color:${ck}">${verdict}</div>
+        <div class="match-sub">${sub}</div></div>
+      <div class="match-body"><div class="lab">القراءة المقارنة (سرّية)</div>${rows}</div>`;
+    document.getElementById('sm-res').classList.add('on');
+    setTimeout(()=>{const r=document.querySelector('#sm-res .match-ring circle:last-child');if(r)r.style.strokeDashoffset=off;},120);
+  },1100);
+}
 
-                    <div id="sandbox-result" class="hidden space-y-5"></div>
-                </div>
-            </div>
-        </section>
+/* ════ M2 Command Center ════ */
+let ccStage=0;const ccPicks={};
+function ccPick(stage,el){
+  el.parentElement.querySelectorAll('.cc-card').forEach(c=>{if(c.parentElement===el.parentElement)c.classList.remove('sel')});
+  // restrict to same stage container
+  [...el.parentElement.children].forEach(c=>{if(c.classList&&c.classList.contains('cc-card'))c.classList.remove('sel')});
+  el.classList.add('sel');ccPicks[stage]=el.dataset.x;
+}
+function fundPick(el){
+  document.querySelectorAll('#cc2 .fund-opt').forEach(f=>f.classList.remove('sel'));
+  el.classList.add('sel');ccPicks['fund']=el.querySelector('.fn').textContent;
+}
+function fundLink(ev){
+  const b=ev.target.closest('.btn');const t=b.querySelector('.b-txt');const old=t.textContent;
+  t.textContent='✓ سيتواصل معك مستشار التمويل';b.classList.add('ghost');
+  setTimeout(()=>{t.textContent=old;},2600);
+}
+function setTrack(n){
+  const d=document.querySelectorAll('#cc-track .sd');
+  d.forEach((s,i)=>{s.classList.remove('now','done');if(i<n)s.classList.add('done');else if(i===n)s.classList.add('now');});
+}
+function ccNext(n){
+  document.querySelectorAll('.cc-stage').forEach(s=>s.classList.remove('on'));
+  document.getElementById('cc'+n).classList.add('on');ccStage=n;setTrack(n);
+  document.getElementById('cc'+n).scrollIntoView({behavior:'smooth',block:'start'});
+}
+function ccFinish(){
+  const btn=document.getElementById('cc-fin');btn.classList.add('busy');
+  document.getElementById('cc-res').classList.remove('on');
+  setTimeout(()=>{
+    btn.classList.remove('busy');
+    document.querySelectorAll('#cc-track .sd').forEach(s=>{s.classList.remove('now');s.classList.add('done')});
+    const lab=ccPicks['cc0']||'مختبر الجينوم المتقدم · 24 ساعة';
+    const ivf=ccPicks['cc1']||'مركز الخصوبة التخصصي · PGT-M';
+    const fund=ccPicks['fund']||'التغطية التأمينية';
+    const sup=ccPicks['cc3']||'جلسة مع مرشد أسري · هذا الأسبوع';
+    document.getElementById('cc-res').innerHTML=`
+      <div class="summary">
+        <div class="sh"><div class="si2"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+          <div class="st2">خطّة أسرتكما جاهزة</div><div class="ss">مسارٌ متكامل من المختبر إلى الدعم النفسي</div></div>
+        <div class="sum-row"><span class="k">مختبر التحليل الجيني</span><span class="v">${lab}</span></div>
+        <div class="sum-row"><span class="k">عيادة الإخصاب (PGT-M)</span><span class="v">${ivf}</span></div>
+        <div class="sum-row"><span class="k">مسار التمويل</span><span class="v">${fund}</span></div>
+        <div class="sum-row"><span class="k">الدعم النفسي</span><span class="v">${sup}</span></div>
+        <div class="sum-row"><span class="k">الحالة</span><span class="v" style="color:var(--teal)">معتمدة · بانتظار التأكيد</span></div>
+      </div>`;
+    document.getElementById('cc-res').classList.add('on');
+    document.getElementById('cc-res').scrollIntoView({behavior:'smooth',block:'start'});
+  },1200);
+}
 
-    </main>
-
-    <script>
-        // التحكم بالتبويبات الرئيسية
-        function switchMain(tab) {
-            document.querySelectorAll('.main-section').forEach(s => s.classList.remove('active-section'));
-            document.querySelectorAll('.nav-tab').forEach(b => {
-                b.classList.remove('active');
-                b.classList.add('border-transparent');
-            });
-            
-            document.getElementById('sec-' + tab).classList.add('active-section');
-            document.getElementById('tab-' + tab).classList.add('active');
-            document.getElementById('tab-' + tab).classList.remove('border-transparent');
-        }
-
-        // التحكم بملفات الحقيبة الاستراتيجية
-        function openFile(num) {
-            document.querySelectorAll('.file-content').forEach(f => f.classList.remove('active-file'));
-            for(let i=1; i<=6; i++) {
-                document.getElementById('btn-file-'+i).className = "w-full text-right glass-panel p-4 rounded-xl text-slate-300 hover:text-white text-sm";
-            }
-            
-            document.getElementById('content-'+num).classList.add('active-file');
-            document.getElementById('btn-file-'+num).className = "w-full text-right glass-panel p-4 rounded-xl border-[#0FB5A8]/50 bg-[#0FB5A8]/10 text-white font-bold text-sm";
-        }
-
-        // محرك عرض المستثمر السريع
-        function runInvestorScenario(type) {
-            const board = document.getElementById('investor-board');
-            if (type === 'safe') {
-                board.className = "glass-panel p-8 rounded-2xl max-w-4xl mx-auto border-t-4 border-t-[#0FB5A8]";
-                board.innerHTML = `
-                    <div class="flex items-center gap-3 mb-4"><span class="text-2xl">✅</span><h3 class="text-xl font-bold text-[#0FB5A8]">توافق جيني تام</h3></div>
-                    <p class="text-slate-300 mb-4">التحليل يؤكد خلو الطرفين من الطفرات المشتركة. إصدار الشهادة آلياً عبر نفاذ.</p>
-                    <div class="grid grid-cols-3 gap-4 text-center">
-                        <div class="bg-[#06182B] p-3 rounded-xl border border-slate-700"><p class="text-xs text-slate-400">أطفال أصحاء</p><p class="text-xl font-bold text-white num-font">100%</p></div>
-                        <div class="bg-[#06182B] p-3 rounded-xl border border-slate-700"><p class="text-xs text-slate-400">أطفال حاملين</p><p class="text-xl font-bold text-white num-font">0%</p></div>
-                        <div class="bg-[#06182B] p-3 rounded-xl border border-slate-700"><p class="text-xs text-slate-400">خطر الإصابة</p><p class="text-xl font-bold text-white num-font">0%</p></div>
-                    </div>
-                `;
-            } else {
-                board.className = "glass-panel p-8 rounded-2xl max-w-4xl mx-auto border-t-4 border-t-red-500";
-                board.innerHTML = `
-                    <div class="flex items-center gap-3 mb-4"><span class="text-2xl">⚠️</span><h3 class="text-xl font-bold text-red-400">خطر متنحي مشترك (الأنيميا المنجلية)</h3></div>
-                    <p class="text-slate-300 mb-4">كلاكما حامل للمرض. <span class="font-bold text-yellow-400">القرار الذكي:</span> الزواج يمكن أن يستمر بأمان عبر مسار PGT-M (فحص الأجنة).</p>
-                    <div class="grid grid-cols-3 gap-4 text-center mb-4">
-                        <div class="bg-[#06182B] p-3 rounded-xl border border-slate-700"><p class="text-xs text-slate-400">سليم تماماً</p><p class="text-xl font-bold text-white num-font">25%</p></div>
-                        <div class="bg-[#06182B] p-3 rounded-xl border border-slate-700"><p class="text-xs text-slate-400">حامل للمرض</p><p class="text-xl font-bold text-white num-font">50%</p></div>
-                        <div class="bg-red-500/20 p-3 rounded-xl border border-red-500/50"><p class="text-xs text-red-300">خطر الإصابة</p><p class="text-xl font-bold text-red-400 num-font">25%</p></div>
-                    </div>
-                    <div class="bg-[#06182B] p-4 rounded-xl border border-slate-700">
-                        <p class="text-xs text-slate-400 mb-1">العائد الوقائي (التوفير على ميزانية الدولة):</p>
-                        <p class="text-2xl font-bold text-[#0FB5A8] num-font">5,250,000 ريال <span class="text-xs font-normal text-slate-400">للفوج</span></p>
-                    </div>
-                `;
-            }
-        }
-
-        // المحرك الحقيقي لبيئة وزارة الصحة (التي تبهر المقيمين)
-        function runSandboxEngine() {
-            // إظهار أنيميشن التحليل
-            document.getElementById('sandbox-wait').innerHTML = `
-                <div class="w-10 h-10 border-4 border-slate-700 border-t-[#0FB5A8] rounded-full animate-spin mb-3"></div>
-                <p class="text-slate-300 text-sm">جاري قراءة ملف السجل المخبري VCF...<br>وتحليل مصفوفة الطفرات وحساب الأثر المالي...</p>
-            `;
-            
-            setTimeout(() => {
-                document.getElementById('sandbox-wait').classList.add('hidden');
-                const resultDiv = document.getElementById('sandbox-result');
-                resultDiv.classList.remove('hidden');
-                
-                const mockType = document.getElementById('sandbox-mock').value;
-                const isKin = document.getElementById('kinship').value === 'first';
-                
-                if (mockType === 'sickle') {
-                    // بيانات مأخوذة حرفياً من عرضك التقديمي
-                    resultDiv.innerHTML = `
-                        <h3 class="text-lg font-bold text-white border-b border-slate-700 pb-2">تقرير منصة وِراثَة الطبي المدعوم بالذكاء الاصطناعي</h3>
-                        
-                        <div class="bg-red-500/10 border border-red-500/30 p-4 rounded-xl">
-                            <h4 class="text-red-400 font-bold text-sm mb-1">النتيجة المخبرية: خطر وراثي متنحي</h4>
-                            <p class="text-xs text-slate-300">تم رصد تطابق في طفرة (فقر الدم المنجلي). نسبة الخطر لكل حمل تبلغ <strong class="text-white num-font">25%</strong>.</p>
-                            ${isKin ? '<p class="text-xs text-yellow-400 mt-1">⚠️ تحذير إضافي: زواج أقارب درجة أولى، تم فحص طفرات الأمراض النادرة الأخرى.</p>' : ''}
-                        </div>
-
-                        <div class="bg-[#0A2540] p-4 rounded-xl border border-[#0FB5A8]/30">
-                            <h4 class="text-[#0FB5A8] font-bold text-sm mb-2">توجيه القرار الإنساني (إلى العائلة):</h4>
-                            <p class="text-xs text-slate-300 leading-relaxed">كلاكما حامل للمرض، لكن كلمة (حامل) تعني أنكما سليمان كلياً. يمكن لقصتكم أن تستمر، والحل الطبي متوفر عبر تحويلكم فوراً إلى عيادة <strong class="text-white">الفحص الوراثي للأجنة (PGT-M)</strong> لضمان إنجاب طفل سليم تماماً وكسر حلقة المرض في العائلة.</p>
-                            <button class="mt-3 px-4 py-2 bg-[#0FB5A8] text-[#06182B] text-xs font-bold rounded-lg w-full hover:bg-[#22D3EE] transition-all">تحويل الملف آلياً لمستشفى صحة الافتراضي</button>
-                        </div>
-
-                        <div class="bg-[#06182B] p-4 rounded-xl border border-slate-700">
-                            <h4 class="text-white font-bold text-sm mb-2">الأثر المالي المباشر (Calculated ROI):</h4>
-                            <ul class="text-xs text-slate-400 space-y-2">
-                                <li class="flex justify-between"><span>تكلفة الرعاية المباشرة المتوقعة للمريض:</span> <span class="text-white font-bold num-font">80,000 ريال / سنوياً</span></li>
-                                <li class="flex justify-between"><span>الكلفة المجتمعية السنوية (علاج + إنتاجية):</span> <span class="text-white font-bold num-font">182,000 ريال</span></li>
-                                <li class="flex justify-between border-t border-slate-700 pt-2 mt-1">
-                                    <span class="text-[#0FB5A8]">الوفر المالي التقديري الوطني لمنع الحالة:</span> 
-                                    <span class="text-[#0FB5A8] font-bold num-font text-base">5.25 مليار ريال (إجمالي الفوج)</span>
-                                </li>
-                            </ul>
-                        </div>
-                    `;
-                } else if (mockType === 'sma') {
-                    // اختبار مرض الضمور العضلي بناء على الأرقام الحقيقية المرفقة
-                    resultDiv.innerHTML = `
-                        <h3 class="text-lg font-bold text-white border-b border-slate-700 pb-2">تقرير منصة وِراثَة الطبي المدعوم بالذكاء الاصطناعي</h3>
-                        
-                        <div class="bg-red-500/10 border border-red-500/30 p-4 rounded-xl">
-                            <h4 class="text-red-400 font-bold text-sm mb-1">النتيجة المخبرية: طفرة أمراض نادرة (SMA)</h4>
-                            <p class="text-xs text-slate-300">التحليل أظهر تطابق طفرة (ضمور العضلات الشوكي SMA). احتمالية إصابة الجنين <strong class="text-white num-font">25%</strong>.</p>
-                        </div>
-
-                        <div class="bg-[#0A2540] p-4 rounded-xl border border-[#0FB5A8]/30">
-                            <h4 class="text-[#0FB5A8] font-bold text-sm mb-2">صناعة القرار الموجه:</h4>
-                            <p class="text-xs text-slate-300 leading-relaxed">المرض نادر وشديد الخطورة. النظام يوجه العائلة للاستشارة الوراثية العاجلة لبحث خيارات التلقيح وتجنب المعاناة القاسية للطفل.</p>
-                        </div>
-
-                        <div class="bg-[#06182B] p-4 rounded-xl border border-slate-700">
-                            <h4 class="text-white font-bold text-sm mb-2">الأثر المالي وتكلفة الأدوية اليتيمة (Calculated ROI):</h4>
-                            <ul class="text-xs text-slate-400 space-y-2">
-                                <li class="flex justify-between"><span>تكلفة جرعة دواء (Spinraza) للمريض:</span> <span class="text-red-400 font-bold num-font">3.95 مليون ريال</span></li>
-                                <li class="flex justify-between border-t border-slate-700 pt-2 mt-1">
-                                    <span class="text-[#0FB5A8]">الوفر المالي التقديري لحماية طفل واحد:</span> 
-                                    <span class="text-[#0FB5A8] font-bold num-font text-base">يتجاوز 3.95 مليون ريال</span>
-                                </li>
-                            </ul>
-                        </div>
-                    `;
-                }
-            }, 1800); // محاكاة 1.8 ثانية لمعالجة البيانات
-        }
-    </script>
+/* ════ M3 Navigator ════ */
+function nvCalc(){
+  const k=+document.getElementById('nv-kin').value;
+  const f=+document.getElementById('nv-fam').value;
+  const p=+document.getElementById('nv-prev').value;
+  let score=k+f+p; // 0..13
+  let pct=Math.min(100,Math.round(score/13*100));
+  let label,color,rec;
+  if(score<=2){label='منخفض';color='var(--emer)';rec='عوامل الخطر محدودة. يُنصح بفحص الحاملين الموسّع كإجراءٍ احترازي قبل الخطبة.';}
+  else if(score<=6){label='متوسط';color='var(--amber)';rec='توجد عوامل خطر تستدعي فحص الحاملين الموسّع واستشارة وراثية مبكرة.';}
+  else{label='مرتفع';color='var(--coral)';rec='عوامل خطر مرتفعة — يُوصى بشدّة بفحص الحاملين الموسّع واستشارة وراثية والتخطيط المبكر لـ PGT-M.';}
+  const fill=document.getElementById('nv-fill');
+  fill.style.background=`linear-gradient(90deg,var(--emer),${color})`;
+  fill.style.width=Math.max(6,pct)+'%';
+  const L=document.getElementById('nv-label');L.textContent=label;L.style.color=color;
+  document.getElementById('nv-rec').textContent=rec;
+}
+nvCalc();
+</script>
 </body>
 </html>
